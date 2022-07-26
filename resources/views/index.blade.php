@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'x-store')
+@section('title', 'x-store | Главная')
 
 @section('content')
     <div class="container">
@@ -9,9 +9,9 @@
                     <img src="https://loremflickr.com/200/200" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">iPhone 12</h5>
-                        <p class="card-text">59990</p>
+                        <p class="card-text">Категория</p>
                         <div class="links d-flex justify-content-between">
-                            <a href="#" class="btn btn-primary">Подробнее</a>
+                           <p>59999</p>
                             <a href="#" class="btn btn-success">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor"
                                      class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
@@ -28,9 +28,9 @@
                     <img src="https://loremflickr.com/200/200/white" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">iPhone 12</h5>
-                        <p class="card-text">59990</p>
+                        <p class="card-text">Категория</p>
                         <div class="links d-flex justify-content-between">
-                            <a href="#" class="btn btn-primary">Подробнее</a>
+                            <p>59999</p>
                             <a href="#" class="btn btn-success">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor"
                                      class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
@@ -47,9 +47,9 @@
                     <img src="https://loremflickr.com/200/200" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">iPhone 12</h5>
-                        <p class="card-text">59990</p>
+                        <p class="card-text">Категория</p>
                         <div class="links d-flex justify-content-between">
-                            <a href="#" class="btn btn-primary">Подробнее</a>
+                            <p>59999</p>
                             <a href="#" class="btn btn-success">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor"
                                      class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
@@ -66,9 +66,9 @@
                     <img src="https://loremflickr.com/200/200" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">iPhone 12</h5>
-                        <p class="card-text">59990</p>
+                        <p class="card-text">Категория</p>
                         <div class="links d-flex justify-content-between">
-                            <a href="#" class="btn btn-primary">Подробнее</a>
+                            <p>59999</p>
                             <a href="#" class="btn btn-success">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor"
                                      class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
@@ -85,9 +85,9 @@
                     <img src="https://loremflickr.com/200/200" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">iPhone 12</h5>
-                        <p class="card-text">59990</p>
+                        <p class="card-text">Категория</p>
                         <div class="links d-flex justify-content-between">
-                            <a href="#" class="btn btn-primary">Подробнее</a>
+                            <p>59999</p>
                             <a href="#" class="btn btn-success">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor"
                                      class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
@@ -104,9 +104,9 @@
                     <img src="https://loremflickr.com/200/200" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">iPhone 12</h5>
-                        <p class="card-text">59990</p>
+                        <p class="card-text">Категория</p>
                         <div class="links d-flex justify-content-between">
-                            <a href="#" class="btn btn-primary">Подробнее</a>
+                            <p>59999</p>
                             <a href="#" class="btn btn-success">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor"
                                      class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
@@ -123,9 +123,9 @@
                     <img src="https://loremflickr.com/200/200" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">iPhone 12</h5>
-                        <p class="card-text">59990</p>
+                        <p class="card-text">Категория</p>
                         <div class="links d-flex justify-content-between">
-                            <a href="#" class="btn btn-primary">Подробнее</a>
+                            <p>59999</p>
                             <a href="#" class="btn btn-success">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor"
                                      class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
@@ -142,9 +142,9 @@
                     <img src="https://loremflickr.com/200/200" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">iPhone 12</h5>
-                        <p class="card-text">59990</p>
+                        <p class="card-text">Категория</p>
                         <div class="links d-flex justify-content-between">
-                            <a href="#" class="btn btn-primary">Подробнее</a>
+                            <p>59999</p>
                             <a href="#" class="btn btn-success">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor"
                                      class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
