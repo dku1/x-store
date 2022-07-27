@@ -1,0 +1,14 @@
+.active-category{
+    background-color: #494949;
+    border: 1px solid #494949;
+    border-radius: 5px;
+    width: 300px;
+}
+
+.category-item:hover{
+    background-color: #494949;
+    border: 1px solid #494949;
+    border-radius: 5px;
+    text-decoration-color: white;
+    width: 300px;
+}

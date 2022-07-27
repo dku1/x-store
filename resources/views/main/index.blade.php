@@ -4,6 +4,7 @@
 @section('content')
     <div class="container">
         <div class="row">
+            <h3 class="text-center mt-4">{{ __('main.menu.products') }}</h3>
             @foreach($products as $product)
                 <x-product-card :product="$product"/>
             @endforeach

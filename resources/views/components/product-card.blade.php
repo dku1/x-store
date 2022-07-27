@@ -1,4 +1,4 @@
-<div class="col-lg-4 col-sm-6 mt-5">
+<div class="col-lg-4 col-sm-6 mt-4">
     <div class="card" style="width: 18rem;">
         <img src="{{ $product->image }}" class="card-img-top" alt="Изображение недоступно">
         <div class="card-body">

@@ -3,6 +3,7 @@
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +18,13 @@ use App\Http\Controllers\MainController;
 
 Route::get('/', [MainController::class, 'index'])->name('main');
 
-//Route::get('/', function () {
-
-   // return view('index');
-//})->name('index');
+Route::group([
+    'prefix' => 'categories',
+    'as' => 'categories.',
+], function (){
+    Route::get('/', [CategoryController::class, 'index'])->name('index');
+    Route::get('show/{category}', [CategoryController::class, 'show'])->name('show');
+});
 
 Route::middleware([
     'auth:sanctum',
