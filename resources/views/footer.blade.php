@@ -1,4 +1,4 @@
-<footer class="text-center text-white bg-dark mt-5">
+<footer class="text-center text-white bg-dark mt-3">
     <!-- Grid container -->
     <div class="container pt-4">
         <!-- Section: Social media -->
@@ -63,7 +63,7 @@
     <!-- Copyright -->
     <div class="text-center text-white p-3" style="background-color: rgba(0, 0, 0, 0.2);">
         © 2022 Copyright:
-        <a class="text-secondary text-decoration-none" href="{{ route('index') }}">x-store</a>
+        <a class="text-secondary text-decoration-none" href="{{ route('main') }}">x-store</a>
     </div>
     <!-- Copyright -->
 </footer>
