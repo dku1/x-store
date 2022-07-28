@@ -2,8 +2,15 @@
     <div class="card" style="width: 18rem;">
         <img src="{{ $product->image }}" class="card-img-top" alt="Изображение недоступно">
         <div class="card-body">
-            <h5 class="card-title">{{ $product->title_ru }}</h5>
-            <p class="card-text">{{ $product->category->title_ru ?? '-'  }}</p>
+            <h5 class="card-title"><a class="text-dark text-decoration-none"
+                                      href="{{ route('products.show', $product) }}">{{ $product->title_ru }}</a></h5>
+            <p class="card-text"><a class="text-dark text-decoration-none"
+                                    href="{{ isset($product->category) ?
+                                    route('categories.show', $product->category) :
+                                    route('categories.index') }}">
+                    {{ $product->category->title_ru ?? '-'  }}
+                </a>
+            </p>
             <div class="links d-flex justify-content-between">
                 <p>{{ $product->price }}</p>
                 <a href="#" class="btn btn-success">

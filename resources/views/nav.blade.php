@@ -7,12 +7,40 @@
                     <a class="nav-link text-white" href="{{ route('main') }}">{{ __('main.menu.main') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white hover:text-sky-300" href="{{ route('categories.index') }}">{{ __('main.menu.categories') }}</a>
+                    <a class="nav-link text-white hover:text-sky-300"
+                       href="{{ route('categories.index') }}">{{ __('main.menu.categories') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white hover:text-sky-300" href="#">{{ __('main.menu.products') }}</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        {{ __('main.menu.account') }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        @guest()
+                            <li><a class="dropdown-item" href="{{ route('login') }}">{{ __('auth.login') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ route('register') }}">{{ __('auth.registry') }}</a>
+                            </li>
+                        @else
+                            <li><a class="dropdown-item"
+                                   href="{{ route('dashboard') }}">{{ __('main.menu.personal-area') }}</a></li>
+                            <li>
+                                <form action="{{ route('logout') }}" method="post">
+                                    @csrf
+                                    <button class="dropdown-item">{{ __('auth.logout') }}</button>
+                                </form>
+                            </li>
+                        @endguest
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavDarkDropdown">
+            <x-locale/>
+            <ul class="navbar-nav">
+                <li>
                     <a class="nav-link text-white hover:text-sky-300" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
                              class="bi bi-cart-fill" viewBox="0 0 16 16">
@@ -21,26 +49,6 @@
                         </svg>
                     </a>
                 </li>
-            </ul>
-            <ul class="navbar-nav mb-2 mb-lg-0">
-                @guest()
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ route('login') }}">Вход</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ route('register') }}">Регистрация</a>
-                    </li>
-                @else
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ route('dashboard') }}">{{ __('main.menu.personal-area') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <form action="{{ route('logout') }}" method="post">
-                            @csrf
-                            <button class="btn btn-danger">Выход</button>
-                        </form>
-                    </li>
-                @endguest
             </ul>
         </div>
     </div>

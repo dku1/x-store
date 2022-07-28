@@ -10,7 +10,7 @@
             @endforeach
         </div>
         <div class="d-flex justify-content-center paginate mt-5">
-            {{ $products->links('pagination::bootstrap-4') }}
+            {{ $products->onEachSide(1)->links('pagination::bootstrap-4') }}
         </div>
     </div>
 @endsection

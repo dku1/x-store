@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +18,11 @@ use App\Http\Controllers\CategoryController;
 
 Route::get('/', [MainController::class, 'index'])->name('main');
 
+Route::get('locale/{locale}', function ($locale){
+   session()->put(['locale' => $locale]);
+   return redirect()->back();
+})->name('locale');
+
 Route::group([
     'prefix' => 'categories',
     'as' => 'categories.',
@@ -25,6 +30,8 @@ Route::group([
     Route::get('/', [CategoryController::class, 'index'])->name('index');
     Route::get('show/{category}', [CategoryController::class, 'show'])->name('show');
 });
+
+Route::get('products/show/{product}', [ProductController::class, 'show'])->name('products.show');
 
 Route::middleware([
     'auth:sanctum',

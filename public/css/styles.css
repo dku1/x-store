@@ -2,13 +2,26 @@
     background-color: #494949;
     border: 1px solid #494949;
     border-radius: 5px;
+}
+
+.category-item{
+    border-radius: 5px;
     width: 300px;
 }
 
 .category-item:hover{
+    transition: 0.5s;
     background-color: #494949;
     border: 1px solid #494949;
-    border-radius: 5px;
-    text-decoration-color: white;
-    width: 300px;
 }
+
+.main-content{
+    min-height: 722px;
+}
+
+/* Locale */
+.active-locale{
+    width: 35px;
+    border-bottom: 1px solid currentColor;
+}
+/* Locale */

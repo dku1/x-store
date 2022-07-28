@@ -8,7 +8,6 @@ use App\Services\CategoryService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -26,7 +25,7 @@ class CategoryController extends Controller
         return view('category.index', compact('categoryItems', 'products'));
     }
 
-    public function show(Category $category)
+    public function show(Category $category): Factory|View|Application
     {
         $categoryItems = $this->service->getItems();
         $products = Product::where('category_id', $category->id)->with(['category'])->paginate(9);

@@ -1,5 +1,7 @@
 <?php
 
 return [
-  'dashboard' => 'Личный кабинет',
+    'login' => 'Вход',
+    'registry' => 'Регистрация',
+    'logout' => 'Выход',
 ];
