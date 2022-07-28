@@ -2,16 +2,17 @@
     <div class="container-fluid">
         <a class="navbar-brand text-secondary" href="{{ route('main') }}">X-Store</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 main-menu">
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('main') }}">{{ __('main.menu.main') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white hover:text-sky-300"
+                    <a class="nav-link @if(request()->routeIs('categories.*')) text-primary @else text-white @endif"
                        href="{{ route('categories.index') }}">{{ __('main.menu.categories') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white hover:text-sky-300" href="{{ route('products.index') }}">{{ __('main.menu.products') }}</a>
+                    <a class="nav-link @if(request()->routeIs('products.*')) text-primary @else text-white @endif"
+                       href="{{ route('products.index') }}">{{ __('main.menu.products') }}</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
@@ -53,3 +54,4 @@
         </div>
     </div>
 </nav>
+
