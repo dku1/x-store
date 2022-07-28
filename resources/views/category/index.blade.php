@@ -5,7 +5,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <h3 class="text-center mt-4">{{ request()->routeIs('categories.show') ? request()->category->title_ru :  __('main.menu.categories') }}</h3>
+            <h3 class="text-center mt-4">{{ request()->routeIs('categories.show') ? request()->category->getField('title') :  __('main.menu.categories') }}</h3>
             <div class="col-3 mt-4">
                 @include('category-tree', ['categoryItems' => $categoryItems])
             </div>

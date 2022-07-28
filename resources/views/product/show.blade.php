@@ -5,9 +5,9 @@
 <div class="container">
     <div class="bg-light p-5 rounded">
         <img src="{{ $product->image }}" alt="">
-        <h2>{{ $product->title_ru }}</h2>
+        <h2>{{ $product->getField('title') }}</h2>
         @isset($product->category)
-        <h4><a class="text-dark text-decoration-none" href="{{ route('categories.show', $product->category) }}">{{ $product->category->title_ru }}</a></h4>
+        <h4><a class="text-dark text-decoration-none" href="{{ route('categories.show', $product->category) }}">{{ $product->category->getField('title') }}</a></h4>
         @endisset
         <p class="lead">{{ $product->description }}</p>
         <div class="links d-flex justify-content-between">

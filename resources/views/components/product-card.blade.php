@@ -3,12 +3,12 @@
         <img src="{{ $product->image }}" class="card-img-top" alt="Изображение недоступно">
         <div class="card-body">
             <h5 class="card-title"><a class="text-dark text-decoration-none"
-                                      href="{{ route('products.show', $product) }}">{{ $product->title_ru }}</a></h5>
+                                      href="{{ route('products.show', $product) }}">{{ $product->getField('title') }}</a></h5>
             <p class="card-text"><a class="text-dark text-decoration-none"
                                     href="{{ isset($product->category) ?
                                     route('categories.show', $product->category) :
                                     route('categories.index') }}">
-                    {{ $product->category->title_ru ?? '-'  }}
+                    {{ isset($product->category) ? $product->category->getField('title') : '-'  }}
                 </a>
             </p>
             <div class="links d-flex justify-content-between">

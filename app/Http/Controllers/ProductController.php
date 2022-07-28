@@ -9,6 +9,12 @@ use Illuminate\Contracts\View\View;
 
 class ProductController extends Controller
 {
+    public function index(): Factory|View|Application
+    {
+        $products = Product::with(['category'])->paginate(9);
+        return view('product.index', compact('products'));
+    }
+
     public function show(Product $product): Factory|View|Application
     {
         return view('product.show', compact('product'));

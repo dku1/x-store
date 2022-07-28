@@ -16,7 +16,7 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', [MainController::class, 'index'])->name('main');
+Route::redirect('/', 'products/index')->name('main');
 
 Route::get('locale/{locale}', function ($locale){
    session()->put(['locale' => $locale]);
@@ -31,7 +31,14 @@ Route::group([
     Route::get('show/{category}', [CategoryController::class, 'show'])->name('show');
 });
 
-Route::get('products/show/{product}', [ProductController::class, 'show'])->name('products.show');
+Route::group([
+    'prefix' => 'products',
+    'as' => 'products.',
+], function (){
+    Route::get('index', [ProductController::class, 'index'])->name('index');
+    Route::get('show/{product}', [ProductController::class, 'show'])->name('show');
+});
+
 
 Route::middleware([
     'auth:sanctum',

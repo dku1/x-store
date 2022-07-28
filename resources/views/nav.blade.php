@@ -11,7 +11,7 @@
                        href="{{ route('categories.index') }}">{{ __('main.menu.categories') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white hover:text-sky-300" href="#">{{ __('main.menu.products') }}</a>
+                    <a class="nav-link text-white hover:text-sky-300" href="{{ route('products.index') }}">{{ __('main.menu.products') }}</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
