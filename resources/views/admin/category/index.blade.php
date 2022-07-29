@@ -29,8 +29,6 @@
                 <th scope="col">#</th>
                 <th scope="col">{{ __('admin.categories.title') }}</th>
                 <th scope="col" class="text-center">{{ __('admin.categories.count_products') }}</th>
-                <th scope="col" class="text-center">{{ __('admin.categories.parent_category') }}</th>
-                <th scope="col" class="text-center">{{ __('admin.categories.count_sub_category') }}</th>
                 <th scope="col" class="text-center">{{ __('admin.actions') }}</th>
             </tr>
             </thead>
@@ -42,12 +40,6 @@
                            href="{{ route('admin.categories.show', $category) }}">{{ $category->getField('title') }}</a>
                     </td>
                     <td class="text-center">{{ $category->products->count() }}</td>
-
-                    <td class="text-center text-white">@isset($category->parent) <a class="text-white"
-                            href="{{ route('admin.categories.show', $category->parent) }}">{{ $category->parent->getField('title') }}</a>
-                        @else - @endisset
-                    </td>
-                    <td class="text-center">{{ isset($category->children) ? $category->children->count() : '-' }}</td>
                     <td class="pt-1 text-center">
                         <form action="{{ route('admin.categories.destroy', $category) }}"
                               method="post">

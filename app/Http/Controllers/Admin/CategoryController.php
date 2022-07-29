@@ -21,7 +21,7 @@ class CategoryController extends Controller
      */
     public function index(): View|Factory|Application
     {
-        $categories = Category::with(['products', 'children', 'parent'])->orderBy('updated_at', 'desc')->paginate(10);
+        $categories = Category::with('products')->orderBy('updated_at', 'desc')->paginate(10);
         return view('admin.category.index', compact('categories'));
     }
 
@@ -53,34 +53,37 @@ class CategoryController extends Controller
      * Display the specified resource.
      *
      * @param Category $category
-     * @return Response
+     * @return Application|Factory|View
      */
-    public function show(Category $category)
+    public function show(Category $category): Application|Factory|View
     {
-        //
+        return view('admin.category.show', compact('category'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param Category $category
-     * @return Response
+     * @return Application|Factory|View
      */
-    public function edit(Category $category)
+    public function edit(Category $category): View|Factory|Application
     {
-        //
+        $categories = Category::all();
+        return view('admin.category.form', compact('category', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
+     * @param CategoryRequest $request
      * @param Category $category
-     * @return Response
+     * @return RedirectResponse
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category): RedirectResponse
     {
-        //
+        $category->update($request->validated());
+        session()->flash('success', 'Категория изменена');
+        return redirect()->route('admin.categories.show', $category);
     }
 
     /**
