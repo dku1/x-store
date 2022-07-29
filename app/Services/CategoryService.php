@@ -8,7 +8,7 @@ class CategoryService
 {
     public function getItems()
     {
-        $categoryItems = Category::ofSort(['parent_id' => 'asc', 'sort_order' => 'asc'])->with('children')->get();
+        $categoryItems = Category::orderBy('parent_id')->with('children')->get();
         return $this->buildTree($categoryItems);
     }
 

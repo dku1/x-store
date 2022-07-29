@@ -7,7 +7,10 @@ use App\Models\Category;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use App\Http\Requests\CategoryRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class CategoryController extends Controller
 {
@@ -18,36 +21,39 @@ class CategoryController extends Controller
      */
     public function index(): View|Factory|Application
     {
-        $categories = Category::get();
+        $categories = Category::with(['products', 'children', 'parent'])->orderBy('updated_at', 'desc')->paginate(10);
         return view('admin.category.index', compact('categories'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
-    public function create()
+    public function create(): Application|Factory|View
     {
-        //
+        $categories = Category::all();
+        return view('admin.category.form', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param CategoryRequest $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request): RedirectResponse
     {
-        //
+        Category::create($request->validated());
+        session()->flash('success', 'Категория создана');
+        return redirect()->route('admin.categories.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @param Category $category
+     * @return Response
      */
     public function show(Category $category)
     {
@@ -57,8 +63,8 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @param Category $category
+     * @return Response
      */
     public function edit(Category $category)
     {
@@ -68,9 +74,9 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param Category $category
+     * @return Response
      */
     public function update(Request $request, Category $category)
     {
@@ -80,11 +86,13 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @param Category $category
+     * @return RedirectResponse
      */
-    public function destroy(Category $category)
+    public function destroy(Category $category): RedirectResponse
     {
-        //
+        $category->delete();
+        session()->flash('warning', 'Категория удалена');
+        return redirect()->route('admin.categories.index');
     }
 }

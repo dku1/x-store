@@ -29,17 +29,18 @@
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
+            <x-locale/>
         </ul>
 
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
             <li class="nav-item mr-3">
-                <a href="{{ route('main') }}" class="btn btn-primary">Вернуться на сайт</a>
+                <a href="{{ route('main') }}" class="btn btn-primary">{{ __('personal-area.menu.go-main') }}</a>
             </li>
             <li class="nav-item mr-1">
                 <form action="" method="post">
                     @csrf
-                    <button class="btn btn-danger">Выход</button>
+                    <button class="btn btn-danger">{{ __('auth.logout') }}</button>
                 </form>
             </li>
         </ul>

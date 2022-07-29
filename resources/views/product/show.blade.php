@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'x-store | ' . $product->title_ru)
+@section('title', 'x-store | ' . $product->getField('title'))
 
 @section('content')
 <div class="container">

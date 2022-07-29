@@ -7,10 +7,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    use HasFactory, Localization;
+    use HasFactory, Localization, SoftDeletes;
+
+    protected $fillable = ['title_ru', 'title_en', 'parent_id'];
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
 
     public function parent(): BelongsTo
     {
@@ -20,12 +28,5 @@ class Category extends Model
     public function children(): HasMany
     {
         return $this->hasMany(self::class, 'parent_id');
-    }
-    public function scopeOfSort($query, $sort)
-    {
-        foreach ($sort as $column => $direction) {
-            $query->orderBy($column, $direction);
-        }
-        return $query;
     }
 }
