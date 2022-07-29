@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MainController;
+use App\Http\Controllers\Admin\MainController;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 
@@ -18,15 +19,15 @@ use App\Http\Controllers\ProductController;
 
 Route::redirect('/', 'products/index')->name('main');
 
-Route::get('locale/{locale}', function ($locale){
-   session()->put(['locale' => $locale]);
-   return redirect()->back();
+Route::get('locale/{locale}', function ($locale) {
+    session()->put(['locale' => $locale]);
+    return redirect()->back();
 })->name('locale');
 
 Route::group([
     'prefix' => 'categories',
     'as' => 'categories.',
-], function (){
+], function () {
     Route::get('/', [CategoryController::class, 'index'])->name('index');
     Route::get('show/{category}', [CategoryController::class, 'show'])->name('show');
 });
@@ -34,9 +35,18 @@ Route::group([
 Route::group([
     'prefix' => 'products',
     'as' => 'products.',
-], function (){
+], function () {
     Route::get('index', [ProductController::class, 'index'])->name('index');
     Route::get('show/{product}', [ProductController::class, 'show'])->name('show');
+});
+
+Route::group([
+    'namespace' => 'App\Http\Controllers\Admin',
+    'prefix' => 'admin',
+    'as' => 'admin.',
+], function () {
+   Route::get('/', [MainController::class, 'index'])->name('main');
+   Route::resource('categories', AdminCategoryController::class);
 });
 
 
