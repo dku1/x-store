@@ -19,10 +19,10 @@
                         <li class="breadcrumb-item">
                             @isset($category)
                                 <a class="text-secondary"
-                                   href="#">{{ __('admin.edit') }}</a>
+                                   href="#" style="pointer-events: none">{{ __('admin.edit') }}</a>
                             @else
                                 <a class="text-secondary"
-                                   href="#">{{ __('admin.create') }}</a>
+                                   href="#" style="pointer-events: none">{{ __('admin.create') }}</a>
                             @endisset
                         </li>
                     </ol>

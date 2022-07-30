@@ -25,3 +25,9 @@
     border-bottom: 1px solid currentColor;
 }
 /* Locale */
+
+/* Card */
+.card-hover:hover{
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2), 0 16px 20px rgba(0,0,0,0.2);
+}
+/* Card */

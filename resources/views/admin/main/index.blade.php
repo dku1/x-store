@@ -13,7 +13,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a class="text-secondary"
-                                                       href="{{ route('admin.main') }}">{{ __('main.menu.main') }}</a>
+                                                       href="{{ route('admin.main') }}" style="pointer-events: none">{{ __('main.menu.main') }}</a>
                         </li>
                     </ol>
                 </div>

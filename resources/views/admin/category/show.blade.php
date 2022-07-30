@@ -38,7 +38,7 @@
                                                        href="{{ route('admin.categories.index') }}">{{ __('main.menu.categories') }}</a>
                         </li>
                         <li class="breadcrumb-item"><a class="text-secondary"
-                                                       href="#">{{ $category->getField('title') }}</a>
+                                                       href="#" style="pointer-events: none">{{ $category->getField('title') }}</a>
                         </li>
                     </ol>
                 </div>

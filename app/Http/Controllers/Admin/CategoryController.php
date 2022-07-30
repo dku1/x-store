@@ -94,8 +94,12 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category): RedirectResponse
     {
-        $category->delete();
-        session()->flash('warning', 'Категория удалена');
+        if ($category->availableForRemoval()){
+            $category->delete();
+            session()->flash('warning', 'Категория удалена');
+        }else{
+            session()->flash('warning', 'Категорию нельзя удалить');
+        }
         return redirect()->route('admin.categories.index');
     }
 }

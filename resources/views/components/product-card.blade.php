@@ -1,5 +1,5 @@
-<div class="col-lg-4 col-sm-6 mt-4">
-    <div class="card" style="width: 18rem;">
+<div class="col-lg-4 col-sm-6 mt-4" style="display: flex; vertical-align: middle;">
+    <div class="card card-hover" style="width: 18rem;">
         <img src="{{ $product->image }}" class="card-img-top" alt="Изображение недоступно">
         <div class="card-body">
             <h5 class="card-title"><a class="text-dark text-decoration-none"
@@ -11,7 +11,8 @@
                     {{ isset($product->category) ? $product->category->getField('title') : '-'  }}
                 </a>
             </p>
-            <div class="links d-flex justify-content-between">
+        </div>
+            <div class="card-footer text-muted links d-flex justify-content-between">
                 <p>{{ $product->price }}</p>
                 <a href="#" class="btn btn-success">
                     <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor"
@@ -21,6 +22,5 @@
                     </svg>
                 </a>
             </div>
-        </div>
     </div>
 </div>

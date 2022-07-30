@@ -29,4 +29,9 @@ class Category extends Model
     {
         return $this->hasMany(self::class, 'parent_id');
     }
+
+    public function availableForRemoval(): bool
+    {
+        return $this->children->count() === 0 and $this->products->count() === 0;
+    }
 }
