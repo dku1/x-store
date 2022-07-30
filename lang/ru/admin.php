@@ -2,6 +2,7 @@
 
 return [
     'create' => 'Создать',
+    'add' => 'Добавить',
     'actions' => 'Действия',
     'save' => 'Сохранить',
     'edit' => 'Редактирование',
@@ -13,5 +14,9 @@ return [
         'count_products' => 'Кол-во товаров',
         'parent_category' => 'Родительская категория',
         'count_sub_category' => 'Кол-во подкатегорий',
-    ]
+    ],
+    'options' => 'Опции',
+    'option' => 'Опция',
+    'count_values' => 'Кол-во значений',
+    'available_values' => 'Доступные значения',
 ];

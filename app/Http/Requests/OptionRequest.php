@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryRequest extends FormRequest
+class OptionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,11 +23,10 @@ class CategoryRequest extends FormRequest
      */
     public function rules()
     {
-        $id = is_null($this->category) ? '' : $this->category->id;
+        $id = is_null($this->option) ? '' : $this->option->id;
         return [
-            'title_ru' => 'required|min:3|max:255|string|unique:categories,title_ru,' . $id,
-            'title_en' => 'required|min:3|max:255|string|unique:categories,title_en,' . $id,
-            'parent_id' => 'required_unless:parent_id,0',
+            'title_ru' => 'required|min:3|max:255|string|unique:options,title_ru,' . $id,
+            'title_en' => 'required|min:3|max:255|string|unique:options,title_en,' . $id,
         ];
     }
 
@@ -43,8 +42,6 @@ class CategoryRequest extends FormRequest
             'title_en.min' => 'Минимум 3 символа',
             'title_en.max' => 'Максимум 255 символов',
             'title_en.unique' => 'Название должно быть уникальным',
-
-            'parent_id' => 'Нельзя выбрать несуществующую родительскую категорию',
         ];
     }
 }

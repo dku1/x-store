@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\OptionController as AdminOptionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 
@@ -49,6 +50,7 @@ Route::group([
    Route::get('/', [MainController::class, 'index'])->name('main');
    Route::resource('categories', AdminCategoryController::class);
    Route::resource('products', AdminProductController::class);
+   Route::resource('options', AdminOptionController::class);
 });
 
 

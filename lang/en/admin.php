@@ -2,6 +2,7 @@
 
 return [
     'create' => 'Create',
+    'add' => 'Add',
     'actions' => 'Actions',
     'save' => 'Save',
     'edit' => 'Edit',
@@ -13,5 +14,9 @@ return [
         'count_products' => 'Count products',
         'parent_category' => 'Parent category',
         'count_sub_category' => 'Count sub categories',
-    ]
+    ],
+    'options' => 'Options',
+    'option' => 'Option',
+    'count_values' => 'Count values',
+    'available_values' => 'Available values',
 ];
