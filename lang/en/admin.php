@@ -3,6 +3,9 @@
 return [
     'create' => 'Create',
     'add' => 'Add',
+    'values' => 'Values',
+    'value' => 'value',
+    'for_option' => 'for option',
     'actions' => 'Actions',
     'save' => 'Save',
     'edit' => 'Edit',

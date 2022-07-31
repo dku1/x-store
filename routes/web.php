@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\OptionController as AdminOptionController;
+use App\Http\Controllers\Admin\ValueController as AdminValueController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 
@@ -51,6 +52,8 @@ Route::group([
    Route::resource('categories', AdminCategoryController::class);
    Route::resource('products', AdminProductController::class);
    Route::resource('options', AdminOptionController::class);
+   Route::resource('options.values', AdminValueController::class)->except(['show', 'index']);
+
 });
 
 
