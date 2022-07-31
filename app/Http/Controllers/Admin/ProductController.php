@@ -3,14 +3,27 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Option;
 use App\Models\Product;
+use App\Http\Requests\ProductRequest;
+use App\Services\ProductService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 
 class ProductController extends Controller
 {
+
+    private ProductService $service;
+
+    public function __construct(ProductService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -25,66 +38,76 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
-    public function create()
+    public function create(): Application|Factory|View
     {
-        //
+        $categories = Category::get();
+        $options = Option::with('values')->get();
+        return view('admin.product.form', compact('categories', 'options'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param ProductRequest $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request): RedirectResponse
     {
-        //
+        $this->service->store($request->validated());
+        session()->flash('success', 'Товар добавлен');
+        return redirect()->route('admin.products.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param Product $product
+     * @return Application|Factory|View
      */
-    public function show(Product $product)
+    public function show(Product $product): Application|Factory|View
     {
-        //
+        return view('admin.product.show', compact('product'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param Product $product
+     * @return Application|Factory|View
      */
-    public function edit(Product $product)
+    public function edit(Product $product): View|Factory|Application
     {
-        //
+        $categories = Category::get();
+        $options = Option::with('values')->get();
+        return view('admin.product.form', compact('categories', 'product', 'options'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param ProductRequest $request
+     * @param Product $product
+     * @return RedirectResponse
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product): RedirectResponse
     {
-        //
+        $this->service->upload($request->validated(), $product);
+        session()->flash('success', $product->getField('title') . ' изменён');
+        return redirect()->route('admin.products.show', $product);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param Product $product
+     * @return RedirectResponse
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product): RedirectResponse
     {
-        //
+        $product->delete();
+        session()->flash('warning', $product->getField('title') . ' удалён');
+        return redirect()->route('admin.products.index');
     }
 }

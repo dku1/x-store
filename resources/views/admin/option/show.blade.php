@@ -69,11 +69,18 @@
     </div>
     <div class="col-9 m-auto">
         <table class="table mt-3 table-dark table-hover">
+            <tr>
+                <td class="text-center">{{ __('admin.title_ru') }}</td>
+                <td class="text-center">{{ __('admin.title_en') }}</td>
+                <td class="text-center">{{ __('admin.categories.count_products') }}</td>
+                <td class="text-center">{{ __('admin.actions') }}</td>
+            </tr>
             @foreach($option->values as $value)
                 <tr>
-                    <td>{{$value->title_ru}}</td>
-                    <td>{{$value->title_en}}</td>
-                    <td>
+                    <td class="text-center">{{$value->title_ru}}</td>
+                    <td class="text-center">{{$value->title_en}}</td>
+                    <td class="text-center">{{$value->products->count()}}</td>
+                    <td class="text-center">
                         <form action="{{ route('admin.options.values.destroy', [$option, $value]) }}" method="post">
                             @csrf
                             @method('delete')

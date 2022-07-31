@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+
+    <link rel="stylesheet" href="/plugins/select2/css/select2.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
@@ -85,6 +87,8 @@
 <!-- jQuery UI 1.11.4 -->
 <script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
 <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="/plugins/select2/js/select2.full.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $.widget.bridge('uibutton', $.ui.button)
@@ -98,5 +102,6 @@
         content: "...";
     }
 </style>
+<script> $('.select2').select2()</script>
 </body>
 </html>

@@ -8,10 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory, Localization;
+    use HasFactory, Localization, SoftDeletes;
+
+    protected $fillable = ['title_ru', 'title_en', 'image', 'description', 'price', 'old_price', 'category_id'];
 
     public function category(): BelongsTo
     {
