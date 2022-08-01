@@ -25,6 +25,6 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('layouts.master', CurrencyComposer::class);
+        View::composer(['layouts.master', 'product.index', 'category.index'], CurrencyComposer::class);
     }
 }

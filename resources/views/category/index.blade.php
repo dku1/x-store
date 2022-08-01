@@ -12,7 +12,7 @@
             <div class="col-lg-9">
                 <div class="card-group">
                     @foreach($products as $product)
-                        <x-product-card :product="$product"/>
+                        <x-product-card :product="$product" :currentCurrency="$currentCurrency"/>
                     @endforeach
                 </div>
                 <div class="d-flex justify-content-center paginate mt-5">
