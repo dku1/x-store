@@ -28,6 +28,11 @@ Route::get('locale/{locale}', function ($locale) {
     return redirect()->back();
 })->name('locale');
 
+Route::get('currency/{code}', function ($code){
+    session()->put(['currency' => $code]);
+    return redirect()->back();
+})->name('currency');
+
 Route::group([
     'prefix' => 'categories',
     'as' => 'categories.',

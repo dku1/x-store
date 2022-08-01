@@ -36,6 +36,19 @@
                         @endguest
                     </ul>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        {{ $currentCurrency->symbol }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        @foreach($currencies as $currency)
+                            @if($currency->code !== $currentCurrency->code)
+                                <li><a class="dropdown-item" href="{{ route('currency', $currency->code) }}">{{ $currency->symbol }}</a></li>
+                            @endif
+                        @endforeach
+                    </ul>
+                </li>
             </ul>
         </div>
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavDarkDropdown">
