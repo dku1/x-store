@@ -27,6 +27,13 @@ return [
         'description' => 'Описание',
         'number_of_sales' => 'Количество продаж',
     ],
+    'currencies' => [
+        'currencies' => 'Валюты',
+        'code' => 'Код',
+        'symbol' => 'Символ',
+        'rate' => 'Ставка',
+        'update_rates' => 'Обновить ставки',
+    ],
     'options' => 'Опции',
     'option' => 'Опция',
     'count_values' => 'Кол-во значений',

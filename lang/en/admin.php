@@ -27,6 +27,13 @@ return [
         'description' => 'Description',
         'number_of_sales' => 'Number of sales',
     ],
+    'currencies' => [
+        'currencies' => 'Currencies',
+        'code' => 'Code',
+        'symbol' => 'Symbol',
+        'rate' => 'Rate',
+        'update_rates' => 'Update rates',
+    ],
     'options' => 'Options',
     'option' => 'Option',
     'count_values' => 'Count values',
