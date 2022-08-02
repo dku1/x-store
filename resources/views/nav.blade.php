@@ -7,15 +7,15 @@
                     <a class="nav-link text-white" href="{{ route('main') }}">{{ __('main.menu.main') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link @if(request()->routeIs('categories.*')) text-primary @else text-white @endif"
+                    <a class="nav-link @if(request()->routeIs('categories.*')) text-primary @endif"
                        href="{{ route('categories.index') }}">{{ __('main.menu.categories') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link @if(request()->routeIs('products.*')) text-primary @else text-white @endif"
+                    <a class="nav-link @if(request()->routeIs('products.*')) text-primary @endif"
                        href="{{ route('products.index') }}">{{ __('main.menu.products') }}</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">
                         {{ __('main.menu.account') }}
                     </a>
@@ -37,7 +37,7 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">
                         {{ $currentCurrency->symbol }}
                     </a>
@@ -55,7 +55,7 @@
             <x-locale/>
             <ul class="navbar-nav">
                 <li>
-                    <a class="nav-link text-white hover:text-sky-300" href="{{ route('cart.index') }}">
+                    <a class="nav-link @if(request()->routeIs('cart.index')) text-primary @endif" href="{{ route('cart.index') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
                              class="bi bi-cart-fill" viewBox="0 0 16 16">
                             <path
