@@ -17,6 +17,11 @@ class Cart extends Model
         return $this->belongsToMany(Product::class)->withPivot('quantity');
     }
 
+    public function isEmpty(): bool
+    {
+        return $this->products->count() === 0;
+    }
+
     public static function getBySessionOrCreate()
     {
         $cart = self::where('session_id', session()->getId())->first();

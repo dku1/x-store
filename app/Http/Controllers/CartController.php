@@ -17,6 +17,7 @@ class CartController extends Controller
     public function __construct(CartService $service)
     {
         $this->service = $service;
+        $this->middleware('cart.not.empty', ['except' => ['add']]);
     }
 
     public function index(): Factory|View|Application
@@ -33,7 +34,7 @@ class CartController extends Controller
         return redirect()->back();
     }
 
-    public function remove(Product $product): RedirectResponse
+    public function remove(Product $product)
     {
         $cart = Cart::getBySessionOrCreate();
         $this->service->remove($cart, $product);
