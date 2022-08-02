@@ -16,6 +16,7 @@
 </head>
 <body>
 @include('nav')
+<x-session-flash/>
 <section class="main-content">
     @yield('content')
 </section>

@@ -64,7 +64,7 @@
                     <span>ADMIN</span>
                 </div>
             </div>
-            @include('admin.layouts.sub-layouts.session-flash')
+            <x-session-flash/>
             @include('admin.layouts.sub-layouts.admin-menu')
         </div>
         <!-- /.sidebar -->

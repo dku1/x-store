@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
-use App\View\Composers\CurrencyComposer;
+use App\View\Composers\AllCurrencyComposer;
+use App\View\Composers\CartComposer;
+use App\View\Composers\CurrentCurrencyComposer;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
@@ -25,6 +27,8 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(['layouts.master', 'product.index', 'category.index'], CurrencyComposer::class);
+        View::composer('layouts.master', AllCurrencyComposer::class);
+        View::composer(['layouts.master', 'product.index', 'category.index', 'components.cart'], CurrentCurrencyComposer::class);
+        View::composer('components.cart', CartComposer::class);
     }
 }

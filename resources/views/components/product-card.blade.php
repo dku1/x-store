@@ -17,7 +17,7 @@
             <div class="mt-2">
                 {{ $product->convert($currentCurrency) }} {{ $currentCurrency->symbol }}
             </div>
-            <a href="#" class="btn btn-success">
+            <a href="{{ route('cart.add', $product) }}" class="btn btn-success">
                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor"
                      class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
                     <path

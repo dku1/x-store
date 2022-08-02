@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ValueController as AdminValueController;
 use App\Http\Controllers\Admin\CurrencyController as AdminCurrencyController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,14 @@ Route::get('currency/{code}', function ($code){
     session()->put(['currency' => $code]);
     return redirect()->back();
 })->name('currency');
+
+Route::group([
+    'prefix' => 'cart',
+    'as' => 'cart.',
+], function (){
+    Route::get('index', [CartController::class, 'index'])->name('index');
+    Route::get('add/{product}', [CartController::class, 'add'])->name('add');
+});
 
 Route::group([
     'prefix' => 'categories',
