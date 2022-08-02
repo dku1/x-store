@@ -28,4 +28,13 @@ class Cart extends Model
         $pivotRow = $this->products->where('id', $product->id)->first()->pivot;
         return $pivotRow->quantity * $product->convert(Currency::getCurrent());
     }
+
+    public function getFullPrice(): float|int
+    {
+        $fullPrice = 0;
+        foreach ($this->products as $product){
+            $fullPrice += $this->getFullProductPrice($product);
+        }
+        return $fullPrice;
+    }
 }

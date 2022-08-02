@@ -17,4 +17,16 @@ class CartService
             $cart->products()->attach($product);
         }
     }
+
+    public function remove(Cart $cart, Product $product)
+    {
+        if (!$cart->products->contains($product)) return false;
+        if ($cart->products->where('id', $product->id)->first()->pivot->quantity == 1){
+            $cart->products()->detach($product);
+        } else{
+            $pivotRow = $cart->products->where('id', $product->id)->first()->pivot;
+            $pivotRow->quantity--;
+            $pivotRow->save();
+        }
+    }
 }

@@ -9,4 +9,5 @@ return [
     'actions' => 'Actions',
     'full_price' => 'Full price',
     'create_order' => 'Create order',
+    'purchase_cost' => 'Purchase cost',
 ];

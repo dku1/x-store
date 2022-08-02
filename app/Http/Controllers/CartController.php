@@ -32,4 +32,12 @@ class CartController extends Controller
         session()->flash('success', $product->getField('title') . ' добавлен в корзину');
         return redirect()->back();
     }
+
+    public function remove(Product $product): RedirectResponse
+    {
+        $cart = Cart::getBySessionOrCreate();
+        $this->service->remove($cart, $product);
+        session()->flash('warning', 'Количество товара уменьшено');
+        return redirect()->back();
+    }
 }
