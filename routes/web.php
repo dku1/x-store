@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\CurrencyController as AdminCurrencyController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,14 @@ Route::group([
     Route::get('index', [CartController::class, 'index'])->name('index');
     Route::get('add/{product}', [CartController::class, 'add'])->name('add');
     Route::get('remove/{product}', [CartController::class, 'remove'])->name('remove');
+});
+
+Route::group([
+    'prefix' => 'order',
+    'as' => 'order.',
+    'middleware' => 'cart.not.empty',
+], function (){
+    Route::get('create/{cart}', [OrderController::class, 'create'])->name('create');
 });
 
 Route::group([

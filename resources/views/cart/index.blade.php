@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Корзина')
+@section('title', 'x-store | ' . __('cart.cart'))
 
 @section('content')
     <div class="col-10 m-auto">
@@ -48,7 +48,7 @@
                 <h4 style="margin-right: 30px">
                     {{ __('cart.purchase_cost') }} : {{ $cart->getFullPrice() . ' ' . $currentCurrency->symbol }}
                 </h4>
-                <a href="" class="btn btn-success mt-2">{{ __('cart.create_order') }}</a>
+                <a href="{{ route('order.create', $cart) }}" class="btn btn-success mt-2">{{ __('cart.create_order') }}</a>
             </div>
         </div>
     </div>
