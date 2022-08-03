@@ -34,6 +34,9 @@ return [
         'rate' => 'Ставка',
         'update_rates' => 'Обновить ставки',
     ],
+    'orders' => [
+      'orders' => 'Заказы',
+    ],
     'options' => 'Опции',
     'option' => 'Опция',
     'count_values' => 'Кол-во значений',

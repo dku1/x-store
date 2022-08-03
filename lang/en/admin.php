@@ -34,6 +34,9 @@ return [
         'rate' => 'Rate',
         'update_rates' => 'Update rates',
     ],
+    'orders' => [
+        'orders' => 'Orders',
+    ],
     'options' => 'Options',
     'option' => 'Option',
     'count_values' => 'Count values',
