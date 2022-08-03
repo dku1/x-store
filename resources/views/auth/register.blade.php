@@ -1,59 +1,49 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+@extends('layouts.master')
 
-        <x-jet-validation-errors class="mb-4" />
+@section('title', 'x-store | Регистрация')
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
-            <div>
-                <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-            </div>
-
-            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                <div class="mt-4">
-                    <x-jet-label for="terms">
-                        <div class="flex items-center">
-                            <x-jet-checkbox name="terms" id="terms"/>
-
-                            <div class="ml-2">
-                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
-                                ]) !!}
-                            </div>
-                        </div>
-                    </x-jet-label>
+@section('content')
+    <div class="container mt-3">
+        <div class="col-10 m-auto">
+            <form class="row g-3" method="POST" action="{{ route('register') }}">
+                @csrf
+                <h3 class="text-center mt-5 mb-5">Регистрация</h3>
+                <div class="col-md-6">
+                    <label class="form-label">Имя</label>
+                    <input type="text" class="form-control" name="first_name" placeholder="Александр" value="{{ old('first_name') }}">
                 </div>
-            @endif
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-jet-button class="ml-4">
-                    {{ __('Register') }}
-                </x-jet-button>
-            </div>
-        </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+                <div class="col-md-6">
+                    <label for="inputEmail4" class="form-label">Фамилия</label>
+                    <input type="text" class="form-control" name="last_name" placeholder="Невский" value="{{ old('last_name') }}">
+                </div>
+                <div class="col-md-4">
+                    <label for="inputEmail4" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" placeholder="example@mail.ru" value="{{ old('email') }}">
+                </div>
+                <div class="col-md-4">
+                    <label for="inputPassword4" class="form-label">Пароль</label>
+                    <input type="password" class="form-control" name="password">
+                </div>
+                <div class="col-md-4">
+                    <label for="inputPassword4" class="form-label">Подтверждение пароля</label>
+                    <input type="password" class="form-control" name="password_confirmation">
+                </div>
+                <div class="col-4">
+                    <label for="inputAddress" class="form-label">Город</label>
+                    <input type="text" class="form-control" name="city" placeholder="*" value="{{ old('city') }}">
+                </div>
+                <div class="col-4">
+                    <label for="inputAddress" class="form-label">Адрес</label>
+                    <input type="text" class="form-control" name="address" placeholder="*" value="{{ old('address') }}">
+                </div>
+                <div class="col-4">
+                    <label for="inputAddress" class="form-label">Индекс</label>
+                    <input type="text" class="form-control" name="index" placeholder="*" value="{{ old('index') }}">
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                </div>
+            </form>
+        </div>
+    </div>
+@endsection

@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\OrderController;
 use App\Models\Currency;
 use Illuminate\Support\ServiceProvider;
 

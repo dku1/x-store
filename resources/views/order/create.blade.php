@@ -47,7 +47,8 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                                 <label for="firstName" class="form-label">Имя</label>
-                                <input type="text" class="form-control" placeholder="Александр" value=""
+                                <input type="text" class="form-control" placeholder="Александр"
+                                       value="{{ auth()->user()->first_name ?? '' }}"
                                        name="first_name">
                             </div>
 
@@ -56,7 +57,8 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                                 <label for="lastName" class="form-label">Фамилия</label>
-                                <input type="text" class="form-control" placeholder="Невский" value="" name="last_name">
+                                <input type="text" class="form-control" placeholder="Невский"
+                                       value="{{ auth()->user()->last_name ?? '' }}" name="last_name">
                             </div>
 
                             <div class="col-12">
@@ -66,7 +68,8 @@
                                 <label for="username" class="form-label">Email</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text">@</span>
-                                    <input type="text" class="form-control" placeholder="email" name="email">
+                                    <input type="text" class="form-control" placeholder="email" name="email"
+                                           value="{{ auth()->user()->email ?? '' }}">
                                 </div>
                             </div>
 
@@ -75,7 +78,8 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                                 <label for="address" class="form-label">Город</label>
-                                <input type="text" class="form-control" name="city" placeholder="Барнаул">
+                                <input type="text" class="form-control" name="city" placeholder="Барнаул"
+                                       value="{{ auth()->user()->city ?? '' }}">
                             </div>
 
                             <div class="col-12">
@@ -84,7 +88,8 @@
                                 @enderror
                                 <label for="address" class="form-label">Адрес</label>
                                 <input type="text" class="form-control" name="address"
-                                       placeholder="Партизанская д.82, кв.70">
+                                       placeholder="Партизанская д.82, кв.70"
+                                       value="{{ auth()->user()->address ?? '' }}">
                             </div>
 
                             <div class="col-12">
@@ -92,7 +97,8 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                                 <label for="address" class="form-label">Индекс</label>
-                                <input type="text" class="form-control" name="index" placeholder="656049">
+                                <input type="text" class="form-control" name="index" placeholder="656049"
+                                       value="{{ auth()->user()->index ?? '' }}">
                             </div>
                         </div>
                         <hr class="my-4">

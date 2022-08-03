@@ -11,6 +11,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PersonalAreaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,7 +90,9 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::prefix('personal-area')->group(function (){
+        Route::get('dashboard', [PersonalAreaController::class, 'dashboard'])->name('dashboard');
+        Route::get('orders', [PersonalAreaController::class, 'orders'])->name('personal-area.orders');
+        Route::get('orders/products-show/{order}', [PersonalAreaController::class, 'showProductsByOrder'])->name('personal-area.orders.show');
+    });
 });

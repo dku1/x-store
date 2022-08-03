@@ -1,39 +1,72 @@
-.active-category{
+.active-category {
     background-color: #494949;
     border: 1px solid #494949;
     border-radius: 5px;
 }
 
-.category-item{
+.category-item {
     border-radius: 5px;
     width: 300px;
 }
 
-.category-item:hover{
+.category-item:hover {
     transition: 0.5s;
     background-color: #494949;
     border: 1px solid #494949;
 }
 
-.main-content{
+.main-content {
     min-height: 722px;
 }
 
 /* Locale */
-.active-locale{
+.active-locale {
     width: 35px;
     border-bottom: 1px solid currentColor;
 }
+
 /* Locale */
 
 /* Card */
-.card-hover:hover{
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2), 0 16px 20px rgba(0,0,0,0.2);
+.card-hover:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 16px 20px rgba(0, 0, 0, 0.2);
 }
+
 /* Card */
 
 .navbar-nav .nav-link {
     color: white;
 }
+
+/* Nav */
+nav.profile {
+    font-family: SansSerif, fantasy;
+    font-size: 19px;
+    border-radius: 0 0 10px 10px;
+    background-color: #efeded;
+    height: 100px;
+}
+
+.profile ul li a.nav-link {
+    color: #464646;
+}
+
+.profile ul li a.nav-link:hover {
+    color: #000000;
+}
+
+.profile ul li a.nav-link.active {
+    color: #000000;
+}
+
+/* Nav */
+
+/* Profile-content */
+.profile-content {
+    border-radius: 10px 10px 10px 10px;
+    border: 1px solid #9e9e9f;
+}
+
+/* Profile-content */
 
 

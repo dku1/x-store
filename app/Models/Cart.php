@@ -28,17 +28,21 @@ class Cart extends Model
         return $cart ?? self::create(['session_id' => session()->getId()]);
     }
 
-    public function getFullProductPrice(Product $product): float|int
+    public function getFullProductPrice(Product $product, Currency $currency = null): float|int
     {
         $pivotRow = $this->products->where('id', $product->id)->first()->pivot;
-        return $pivotRow->quantity * $product->convert(Currency::getCurrent());
+        if (is_null($currency)){
+            return $pivotRow->quantity * $product->convert(Currency::getCurrent());
+        }else{
+            return $pivotRow->quantity * $product->convert($currency);
+        }
     }
 
-    public function getFullPrice(): float|int
+    public function getFullPrice(Currency $currency = null): float|int
     {
         $fullPrice = 0;
         foreach ($this->products as $product){
-            $fullPrice += $this->getFullProductPrice($product);
+            $fullPrice += $this->getFullProductPrice($product, $currency);
         }
         return $fullPrice;
     }
