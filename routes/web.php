@@ -50,6 +50,7 @@ Route::group([
     'middleware' => 'cart.not.empty',
 ], function (){
     Route::get('create/{cart}', [OrderController::class, 'create'])->name('create');
+    Route::post('store/{cart}', [OrderController::class, 'store'])->name('store');
 });
 
 Route::group([
