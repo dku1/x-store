@@ -16,6 +16,11 @@
         <div class="card-footer text-muted links d-flex justify-content-between">
             <div class="mt-2">
                 {{ $product->convert($currentCurrency) }} {{ $currentCurrency->symbol }}
+                @isset($product->old_price)
+                <small class="text-decoration-line-through"
+                       style="margin-left: 15px">{{ $product->convert($currentCurrency, true) }} {{ $currentCurrency->symbol }}
+                </small>
+                @endisset
             </div>
             <a href="{{ route('cart.add', $product) }}" class="btn btn-success">
                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor"

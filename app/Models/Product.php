@@ -31,8 +31,12 @@ class Product extends Model
         return $this->hasManyThrough(Option::class,Value::class, 'option_id', 'id');
     }
 
-    public function convert(Currency $currency): float|int
+    public function convert(Currency $currency, $old = false): float|int
     {
-        return round($this->price * $currency->rate, 2);
+        if ($old and isset($this->old_price)){
+            return round($this->old_price * $currency->rate, 2);
+        }else{
+            return round($this->price * $currency->rate, 2);
+        }
     }
 }
