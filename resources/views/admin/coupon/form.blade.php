@@ -8,7 +8,7 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="m-0">{{ isset($coupon) ? __('admin.edit') . ' ' . $coupon->code : __('admin.create') }}</h1>
-                </div><!-- /.col -->
+                </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.main') }}">{{ __('main.menu.main') }}</a>
@@ -47,7 +47,7 @@
                 <input type="text" class="form-control" placeholder="ua5UBrI7" name="code"
                        value="{{ $coupon->code ?? $code }}">
             </div>
-            <div class="col-md-4">
+            <div class="col-md-5">
                 @error('value')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
@@ -70,7 +70,7 @@
                     @endforeach
                 </select>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-5">
                 @error('currency_id')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
@@ -87,26 +87,23 @@
             </div>
 
             <div class="col-md-12 mt-3">
-                @error('disposable ')
+                @error('disposable')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                    <label class="form-check-label" for="flexRadioDefault1">
-                        Одноразовый
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                    <label class="form-check-label" for="flexRadioDefault2">
+                    <input class="form-check-input" type="checkbox" value="0" name="disposable">
+                    <label class="form-check-label" for="disposable">
                         Многоразовый
                     </label>
                 </div>
             </div>
             <div class="col-md-4 mt-3">
+                @error('end_date')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
                 <div class="form-group">
                     <label class="control-label" for="date">{{ __('coupon.date_end') }}</label>
-                    <input class="form-control" id="date" name="date_end" placeholder="MM/DD/YYY" type="date">
+                    <input class="form-control" id="date" name="end_date" placeholder="MM/DD/YYY" type="date">
                 </div>
             </div>
             <div class="col-10 mt-3">

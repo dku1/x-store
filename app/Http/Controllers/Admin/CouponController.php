@@ -5,14 +5,24 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
 use App\Models\Currency;
+use App\Services\CouponService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use App\Http\Requests\CouponRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class CouponController extends Controller
 {
+    public CouponService $service;
+
+    public function __construct(CouponService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -39,12 +49,13 @@ class CouponController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Response
+     * @param CouponRequest $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CouponRequest $request): RedirectResponse
     {
-        //
+        $this->service->store($request->validated());
+        return redirect()->route('admin.coupons.index')->with('success', 'Купон создан');
     }
 
     /**
@@ -72,11 +83,11 @@ class CouponController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @param  \App\Models\Coupon  $coupon
      * @return Response
      */
-    public function update(Request $request, Coupon $coupon)
+    public function update(CouponRequest $request, Coupon $coupon)
     {
         //
     }
