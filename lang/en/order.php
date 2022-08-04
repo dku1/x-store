@@ -17,4 +17,7 @@ return [
     'not_processed' => 'Not processed',
     'date' => 'Date',
     'user' => 'User',
+    'unprocessed_orders' => 'Unprocessed orders',
+    'more_info' => 'More info',
+    'processed_orders' => 'Processed orders',
 ];

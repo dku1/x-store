@@ -17,4 +17,7 @@ return [
     'not_processed' => 'Не обработан',
     'date' => 'Дата',
     'user' => 'Пользователь',
+    'unprocessed_orders' => 'Необработанные заказы',
+    'more_info' => 'Подробнее',
+    'processed_orders' => 'Обработанные заказы',
 ];
