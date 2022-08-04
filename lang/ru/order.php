@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'order' => 'Заказ',
     'create_order' => 'Оформление заказа',
     'first_name' => 'Имя',
     'last_name' => 'Фамилия',
@@ -11,4 +12,9 @@ return [
     'you_cart' => 'Ваша корзина',
     'sum' => 'Сумма',
     'apply' => 'Применить',
+    'status' => 'Статус',
+    'processed' => 'Обработан',
+    'not_processed' => 'Не обработан',
+    'date' => 'Дата',
+    'user' => 'Пользователь',
 ];

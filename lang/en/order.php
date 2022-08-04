@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'order' => 'Order',
     'create_order' => 'Create order',
     'first_name' => 'First name',
     'last_name' => 'Last name',
@@ -11,4 +12,9 @@ return [
     'you_cart' => 'Your shopping cart',
     'sum' => 'Sum',
     'apply' => 'Apply',
+    'status' => 'Status',
+    'processed' => 'Processed',
+    'not_processed' => 'Not processed',
+    'date' => 'Date',
+    'user' => 'User',
 ];

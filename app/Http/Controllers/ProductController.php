@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Option;
 use App\Models\Product;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;

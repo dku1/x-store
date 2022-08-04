@@ -32,7 +32,7 @@ Route::get('locale/{locale}', function ($locale) {
     return redirect()->back();
 })->name('locale');
 
-Route::get('currency/{code}', function ($code){
+Route::get('currency/{code}', function ($code) {
     session()->put(['currency' => $code]);
     return redirect()->back();
 })->name('currency');
@@ -40,7 +40,7 @@ Route::get('currency/{code}', function ($code){
 Route::group([
     'prefix' => 'cart',
     'as' => 'cart.',
-], function (){
+], function () {
     Route::get('index', [CartController::class, 'index'])->name('index');
     Route::get('add/{product}', [CartController::class, 'add'])->name('add');
     Route::get('remove/{product}', [CartController::class, 'remove'])->name('remove');
@@ -50,7 +50,7 @@ Route::group([
     'prefix' => 'order',
     'as' => 'order.',
     'middleware' => 'cart.not.empty',
-], function (){
+], function () {
     Route::get('create/{cart}', [OrderController::class, 'create'])->name('create');
     Route::post('store/{cart}', [OrderController::class, 'store'])->name('store');
 });
@@ -76,14 +76,15 @@ Route::group([
     'prefix' => 'admin',
     'as' => 'admin.',
 ], function () {
-   Route::get('/', [MainController::class, 'index'])->name('main');
-   Route::resource('categories', AdminCategoryController::class);
-   Route::resource('products', AdminProductController::class);
-   Route::resource('options', AdminOptionController::class);
-   Route::resource('options.values', AdminValueController::class)->except(['show', 'index']);
-   Route::resource('currencies', AdminCurrencyController::class)->except('show');
-   Route::get('rates/update', [AdminCurrencyController::class, 'updateRates'])->name('rates.update');
-   Route::resource('orders', AdminOrderController::class)->except(['create', 'store', 'update', 'edit']);
+    Route::get('/', [MainController::class, 'index'])->name('main');
+    Route::resource('categories', AdminCategoryController::class);
+    Route::resource('products', AdminProductController::class);
+    Route::resource('options', AdminOptionController::class);
+    Route::resource('options.values', AdminValueController::class)->except(['show', 'index']);
+    Route::resource('currencies', AdminCurrencyController::class)->except('show');
+    Route::get('rates/update', [AdminCurrencyController::class, 'updateRates'])->name('rates.update');
+    Route::resource('orders', AdminOrderController::class)->except(['create', 'store', 'update', 'edit']);
+    Route::get('orders/handle/{order}', [AdminOrderController::class, 'handle'])->name('orders.handle');
 });
 
 
@@ -92,9 +93,10 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::prefix('personal-area')->group(function (){
+    Route::prefix('personal-area')->group(function () {
         Route::get('dashboard', [PersonalAreaController::class, 'dashboard'])->name('dashboard');
         Route::get('orders', [PersonalAreaController::class, 'orders'])->name('personal-area.orders');
-        Route::get('orders/products-show/{order}', [PersonalAreaController::class, 'showProductsByOrder'])->name('personal-area.orders.show');
+        Route::get('orders/products-show/{order}',
+            [PersonalAreaController::class, 'showProductsByOrder'])->name('personal-area.orders.show');
     });
 });

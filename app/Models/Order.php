@@ -5,12 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = ['first_name', 'last_name', 'address', 'city', 'index', 'user_id', 'coupon_id', 'cart_id', 'currency_id', 'email'];
+
+    protected $with = ['currency', 'cart.products'];
 
     public function cart(): BelongsTo
     {
@@ -30,5 +33,21 @@ class Order extends Model
     public function isProcessed(): bool
     {
         return $this->status === 1;
+    }
+
+    public function scopeStatus($query, $status)
+    {
+        return $query->where('status', $status);
+    }
+
+    public function handle()
+    {
+        $this->status = 1;
+        $this->save();
+    }
+
+    public function getSum()
+    {
+        return $this->cart->getFullPrice($this->currency);
     }
 }
