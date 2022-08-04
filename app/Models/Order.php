@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
@@ -14,6 +15,11 @@ class Order extends Model
     protected $fillable = ['first_name', 'last_name', 'address', 'city', 'index', 'user_id', 'coupon_id', 'cart_id', 'currency_id', 'email'];
 
     protected $with = ['currency', 'cart.products'];
+
+    public function coupons(): BelongsToMany
+    {
+        return $this->belongsToMany(Coupon::class);
+    }
 
     public function cart(): BelongsTo
     {
