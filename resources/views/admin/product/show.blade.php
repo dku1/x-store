@@ -74,6 +74,10 @@
                 <td>{{ $product->old_price ?? '-' }}</td>
             </tr>
             <tr>
+                <td>{{ __('admin.products.count') }}</td>
+                <td>{{ $product->count }}</td>
+            </tr>
+            <tr>
                 <td>{{ __('admin.products.number_of_sales') }}</td>
                 <td>TTT</td>
             </tr>

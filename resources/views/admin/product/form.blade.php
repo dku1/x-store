@@ -56,7 +56,7 @@
                        value="{{ $product->title_en ?? old('title_en') }}">
             </div>
 
-            <div class="col-md-6 mt-3">
+            <div class="col-md-4 mt-3">
                 @error('price')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
@@ -65,7 +65,7 @@
                        value="{{ $product->price ?? old('price') }}">
             </div>
 
-            <div class="col-md-6 mt-3">
+            <div class="col-md-4 mt-3">
                 @error('old_price')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
@@ -73,6 +73,16 @@
                 <input type="text" class="form-control" placeholder="*" name="old_price"
                        value="{{ $product->old_price ?? old('old_price') }}">
             </div>
+
+                <div class="col-md-4 mt-3">
+                    @error('count')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                    <lable>{{ __('admin.products.count') }}</lable>
+                    <input type="text" class="form-control" placeholder="15" name="count"
+                           value="{{ $product->count ?? old('count') }}">
+                </div>
+
             <div class="col-6 mt-3">
                 @error('category_id')
                 <div class="alert alert-danger">{{ $message }}</div>

@@ -30,6 +30,7 @@ class ProductRequest extends FormRequest
             'title_en' => 'required|min:3|max:255|string|unique:categories,title_en,' . $id,
             'price' => 'required|numeric',
             'old_price' => 'nullable|numeric',
+            'count' => 'required|numeric',
             'category_id' => 'nullable|exists:categories,id',
             'value_ids' => 'nullable|array',
             'value_ids.*' => 'nullable|integer|exists:values,id',
@@ -54,6 +55,9 @@ class ProductRequest extends FormRequest
             'price.required' => 'Добавьте цену',
             'price.numeric' => 'Цена не соответствует формату',
             'old_price.numeric' => 'Старая цена не соответствует формату',
+
+            'count.required' => 'Укажите кол-во товара',
+            'count.numeric' => 'Кол-во товара - число',
 
             'category_id.exists' => 'Категории не существует',
             'description.required' => 'Добавьте описание',

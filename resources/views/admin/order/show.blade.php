@@ -129,7 +129,7 @@
                         </a>
                     </td>
                     <td class="text-center align-middle">{{ $product->pivot->quantity }}</td>
-                    <td class="text-center align-middle">{{ $order->getSum() . ' ' . $order->currency->symbol }}</td>
+                    <td class="text-center align-middle">{{ $order->cart->getFullProductPrice($product, $order->currency) . ' ' . $order->currency->symbol }}</td>
                 </tr>
             @endforeach
             </tbody>

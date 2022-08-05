@@ -28,7 +28,6 @@ class OrderController extends Controller
     public function store(OrderRequest $request, Cart $cart, Currency $currency): RedirectResponse
     {
          $this->service->save($request->validated(), $cart, $currency);
-         session()->flash('success', 'Заказ успешно оформлен');
-         return redirect()->route('products.index');
+         return redirect()->route('products.index')->with('success', 'Заказ успешно оформлен');
     }
 }

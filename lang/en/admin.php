@@ -26,6 +26,7 @@ return [
         'image' => 'Image',
         'description' => 'Description',
         'number_of_sales' => 'Number of sales',
+        'count' => 'Count',
     ],
     'currencies' => [
         'currencies' => 'Currencies',

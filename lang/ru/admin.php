@@ -26,6 +26,7 @@ return [
         'image' => 'Изображение',
         'description' => 'Описание',
         'number_of_sales' => 'Количество продаж',
+        'count' => 'Количество',
     ],
     'currencies' => [
         'currencies' => 'Валюты',

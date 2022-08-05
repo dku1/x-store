@@ -14,11 +14,16 @@ class Product extends Model
 {
     use HasFactory, Localization, SoftDeletes;
 
-    protected $fillable = ['title_ru', 'title_en', 'image', 'description', 'price', 'old_price', 'category_id'];
+    protected $fillable = ['title_ru', 'title_en', 'image', 'description', 'price', 'old_price', 'category_id', 'count'];
 
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function available(): bool
+    {
+        return $this->count >= 1;
     }
 
     public function values(): BelongsToMany

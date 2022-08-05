@@ -8,15 +8,18 @@ use App\Models\Product;
 
 class CartService
 {
-    public function add(Cart $cart, Product $product)
+    public function add(Cart $cart, Product $product): bool
     {
+        if (!$product->available()) return false;
         if ($cart->products->contains($product)) {
             $pivotRow = $cart->products->where('id', $product->id)->first()->pivot;
             $pivotRow->quantity++;
+            if ($pivotRow->quantity > $product->count) return false;
             $pivotRow->save();
         } else {
             $cart->products()->attach($product);
         }
+        return true;
     }
 
     public function remove(Cart $cart, Product $product)

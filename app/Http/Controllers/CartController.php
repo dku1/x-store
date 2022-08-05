@@ -31,9 +31,10 @@ class CartController extends Controller
     public function add(Product $product): RedirectResponse
     {
         $cart = Cart::getBySessionOrCreate();
-        $this->service->add($cart, $product);
-        session()->flash('success', $product->getField('title') . ' добавлен в корзину');
-        return redirect()->back();
+        if ($this->service->add($cart, $product)){
+            return redirect()->back()->with('success', $product->getField('title') . ' добавлен в корзину');
+        }
+        return redirect()->back()->with('warning', $product->getField('title') . ' недоступен в полном объёме');
     }
 
     public function remove(Product $product): RedirectResponse
