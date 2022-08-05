@@ -91,7 +91,11 @@
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="0" name="disposable">
+                    <input class="form-check-input" type="checkbox" value="0" name="disposable"
+                           @if(isset($coupon) and !$coupon->disposable())
+                           checked
+                        @endif
+                    >
                     <label class="form-check-label" for="disposable">
                         Многоразовый
                     </label>

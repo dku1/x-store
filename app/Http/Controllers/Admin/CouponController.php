@@ -30,7 +30,7 @@ class CouponController extends Controller
      */
     public function index(): Application|Factory|View
     {
-        $coupons = Coupon::get();
+        $coupons = Coupon::with('currency')->paginate(9);
         return view('admin.coupon.index', compact('coupons'));
     }
 
