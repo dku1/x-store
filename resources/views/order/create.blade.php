@@ -24,15 +24,22 @@
                                     class="text-muted">{{ $cart->getFullProductPrice($product) }} {{ $currentCurrency->symbol }}</span>
                             </li>
                         @endforeach
+                        @foreach($cart->coupons as $coupon)
+                                <li class="list-group-item d-flex justify-content-between lh-sm">
+                                  Применён купон {{ $coupon->code }} на {{ $coupon->value }} @if($coupon->isPercentage())
+                                        % @else {{ $coupon->currency->symbol }} @endif
+                                </li>
+                        @endforeach
                         <li class="list-group-item d-flex justify-content-between">
                             <span>{{ __('order.sum') }} ({{ $currentCurrency->code }})</span>
                             <strong> {{ $cart->getFullPrice() }} {{ $currentCurrency->symbol }}</strong>
                         </li>
                     </ul>
 
-                    <form class="card p-2">
+                    <form class="card p-2" method="post" action="{{ route('cart.coupon.apply', $cart) }}">
+                        @csrf
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Использовать промокод">
+                            <input type="text" class="form-control" name="code" placeholder="Использовать промокод">
                             <button type="submit" class="btn btn-primary">{{ __('order.apply') }}</button>
                         </div>
                     </form>
@@ -102,7 +109,8 @@
                             </div>
                         </div>
                         <hr class="my-4">
-                        <button class="w-100 btn btn-success btn-lg" type="submit">{{ __('order.confirm_the_order') }}</button>
+                        <button class="w-100 btn btn-success btn-lg"
+                                type="submit">{{ __('order.confirm_the_order') }}</button>
                     </form>
                 </div>
             </div>

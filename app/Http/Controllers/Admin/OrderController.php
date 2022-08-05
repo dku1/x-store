@@ -31,7 +31,11 @@ class OrderController extends Controller
      */
     public function show(Order $order): View|Factory|Application
     {
-        return view('admin.order.show', compact('order'));
+        $couponsString = '';
+        foreach ($order->cart->coupons as $coupon) {
+            $couponsString .= $coupon->code . ' ';
+        }
+        return view('admin.order.show', compact('order', 'couponsString'));
     }
 
     /**
@@ -48,7 +52,9 @@ class OrderController extends Controller
 
     public function handle(Order $order): RedirectResponse
     {
-        if ($order->isProcessed()) return redirect()->back()->with('warning', 'Заказ уже обработан');
+        if ($order->isProcessed()) {
+            return redirect()->back()->with('warning', 'Заказ уже обработан');
+        }
         $order->handle();
         return redirect()->back()->with('success', 'Заказ обработан');
     }

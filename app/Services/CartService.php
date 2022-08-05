@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Cart;
+use App\Models\Coupon;
 use App\Models\Product;
 
 class CartService
@@ -29,4 +30,31 @@ class CartService
             $pivotRow->save();
         }
     }
+
+    public function recalculation($price, Coupon $coupon): float|int
+    {
+        if ($coupon->isPercentage()) {
+            return $this->percentageRecalculation($price, $coupon->value);
+        } else {
+            return $this->currencyRecalculation($price, $coupon);
+        }
+    }
+
+    public function percentageRecalculation($price, $value): float|int
+    {
+        $discount = ($price * $value) / 100;
+        return round($price - $discount, 2);
+    }
+
+    public function currencyRecalculation($price, Coupon $coupon)
+    {
+        $discount = (new CurrencyService())->convert($coupon->value);
+        if ($price < $discount) {
+            session()->flash('warning', 'Купон неприменим');
+            return $price;
+        }else{
+            return round($price - $discount, 2);
+        }
+    }
+
 }

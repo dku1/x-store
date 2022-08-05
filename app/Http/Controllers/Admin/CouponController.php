@@ -98,10 +98,11 @@ class CouponController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Coupon $coupon
-     * @return Response
+     * @return RedirectResponse
      */
-    public function destroy(Coupon $coupon)
+    public function destroy(Coupon $coupon): RedirectResponse
     {
-        //
+        $coupon->delete();
+        return redirect()->route('admin.coupons.index')->with('warning', 'Купон удалён');
     }
 }

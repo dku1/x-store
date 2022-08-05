@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Coupon;
 use App\Models\Product;
 use App\Services\CartService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
@@ -34,11 +36,19 @@ class CartController extends Controller
         return redirect()->back();
     }
 
-    public function remove(Product $product)
+    public function remove(Product $product): RedirectResponse
     {
         $cart = Cart::getBySessionOrCreate();
         $this->service->remove($cart, $product);
         session()->flash('warning', 'Количество товара уменьшено');
+        return redirect()->back();
+    }
+
+    public function coupon(Request $request, Cart $cart): RedirectResponse
+    {
+        $coupon = Coupon::where('code', $request->code)->first();
+        if (!$coupon) return redirect()->back()->with('warning', 'Купона не существует');
+        $cart->coupons()->attach($coupon);
         return redirect()->back();
     }
 }

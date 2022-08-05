@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\CartService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -15,6 +16,11 @@ class Cart extends Model
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class)->withPivot('quantity');
+    }
+
+    public function coupons(): BelongsToMany
+    {
+        return $this->belongsToMany(Coupon::class, 'cart_coupon');
     }
 
     public function isEmpty(): bool
@@ -43,6 +49,11 @@ class Cart extends Model
         $fullPrice = 0;
         foreach ($this->products as $product){
             $fullPrice += $this->getFullProductPrice($product, $currency);
+        }
+        if ($this->coupons->count() > 0){
+             foreach ($this->coupons as $coupon){
+                 $fullPrice = (new CartService())->recalculation($fullPrice, $coupon);
+             }
         }
         return $fullPrice;
     }

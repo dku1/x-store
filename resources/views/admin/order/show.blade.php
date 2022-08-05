@@ -68,6 +68,12 @@
                 <td>{{ __('order.date') }}</td>
                 <td>{{ $order->created_at->format('m - d - Y') }}</td>
             </tr>
+            @if($order->cart->coupons->count() > 0)
+            <tr>
+                <td>{{ __('coupon.coupons') }}</td>
+                <td>{{ $couponsString }}</td>
+            </tr>
+            @endif
             <tr>
                 <td>{{ __('order.sum') }}</td>
                 <td>{{ $order->getSum()}} {{ $order->currency->symbol }}</td>

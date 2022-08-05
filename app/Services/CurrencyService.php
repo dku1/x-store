@@ -31,4 +31,10 @@ class CurrencyService
     {
         return Http::get('https://www.cbr-xml-daily.ru/latest.js')['rates'];
     }
+
+    public function convert($value): float|int
+    {
+        $currency = Currency::getCurrent();
+        return $value / $currency->rate;
+    }
 }
