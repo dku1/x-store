@@ -14,7 +14,16 @@ class Product extends Model
 {
     use HasFactory, Localization, SoftDeletes;
 
-    protected $fillable = ['title_ru', 'title_en', 'image', 'description', 'price', 'old_price', 'category_id', 'count'];
+    protected $fillable = [
+        'title_ru',
+        'title_en',
+        'image',
+        'description',
+        'price',
+        'old_price',
+        'category_id',
+        'count'
+    ];
 
     public function category(): BelongsTo
     {
@@ -31,16 +40,25 @@ class Product extends Model
         return $this->belongsToMany(Value::class);
     }
 
-    public function options(): HasManyThrough
+    public function getRelatedProducts()
     {
-        return $this->hasManyThrough(Option::class,Value::class, 'option_id', 'id');
+        return self::where('category_id', $this->category_id)->where('id', '!=', $this->id)->get()->take(3);
+    }
+
+    public function options(): \Illuminate\Support\Collection
+    {
+        $options = collect();
+        foreach ($this->values as $value) {
+            $options->push($value->option);
+        }
+        return $options;
     }
 
     public function convert(Currency $currency, $old = false): float|int
     {
-        if ($old and isset($this->old_price)){
+        if ($old and isset($this->old_price)) {
             return round($this->old_price * $currency->rate, 2);
-        }else{
+        } else {
             return round($this->price * $currency->rate, 2);
         }
     }
