@@ -23,8 +23,9 @@ class CouponRequest extends FormRequest
      */
     public function rules()
     {
+        $id = is_null($this->coupon) ? '' : $this->coupon->id;
         return [
-            'code' => 'required|string|min:6|max:8|unique:coupons,code',
+            'code' => 'required|string|min:6|max:8|unique:coupons,code,' . $id,
             'value' => 'required|numeric|min:1',
             'type' => 'required',
             'currency_id' => 'nullable|integer|exists:currencies,id',

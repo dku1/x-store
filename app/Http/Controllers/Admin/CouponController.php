@@ -73,23 +73,25 @@ class CouponController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Coupon $coupon
-     * @return Response
+     * @return Application|Factory|View
      */
-    public function edit(Coupon $coupon)
+    public function edit(Coupon $coupon): View|Factory|Application
     {
-
+        $currencies = Currency::all();
+        return view('admin.coupon.form', compact('coupon', 'currencies'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
+     * @param CouponRequest $request
      * @param Coupon $coupon
-     * @return Response
+     * @return RedirectResponse
      */
-    public function update(CouponRequest $request, Coupon $coupon)
+    public function update(CouponRequest $request, Coupon $coupon): RedirectResponse
     {
-        //
+        $this->service->update($request->validated(), $coupon);
+        return redirect()->route('admin.coupons.show', $coupon)->with('success', 'Купон редактирован');
     }
 
     /**

@@ -78,7 +78,7 @@
                 <select class="custom-select" name="currency_id">
                     @foreach($currencies as $currency)
                         <option
-                            @if(isset($coupon) and $coupon->currency->id === $currency->id)
+                            @if(isset($coupon) and $coupon->currency_id === $currency->id)
                             selected
                             @endif
                             value="{{ $currency->id }}">{{ $currency->symbol }}</option>
@@ -105,10 +105,17 @@
                 @error('end_date')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
+                @isset($coupon)
+                    <div class="form-group">
+                        <label class="control-label" for="date">{{ __('coupon.date_end') }}</label>
+                        <input class="form-control" id="date" name="end_date" placeholder="MM/DD/YYY" type="text" value="{{  substr($coupon->end_date, 0, 10)  }}">
+                    </div>
+                @else
                 <div class="form-group">
                     <label class="control-label" for="date">{{ __('coupon.date_end') }}</label>
                     <input class="form-control" id="date" name="end_date" placeholder="MM/DD/YYY" type="date">
                 </div>
+                @endif
             </div>
             <div class="col-10 mt-3">
                 <button type="submit" class="btn btn-success">{{ __('admin.save') }}</button>
