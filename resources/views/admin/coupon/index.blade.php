@@ -40,7 +40,7 @@
             @foreach($coupons as $coupon)
                 <tr>
                     <td class="text-center align-middle">{{ $coupon->id }}</td>
-                    <td class="text-center align-middle">{{ $coupon->code }}</td>
+                    <td class="text-center align-middle"><a class="text-white text-decoration-none" href="{{ route('admin.coupons.show', $coupon) }}">{{ $coupon->code }}</a></td>
                     <td class="text-center align-middle">{{ $coupon->value }} @if($coupon->isPercentage())
                             % @else {{ $coupon->currency->symbol }} @endif</td>
                     <td class="text-center align-middle">{{ substr($coupon->end_date, 0, 10) }}</td>

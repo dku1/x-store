@@ -11,4 +11,7 @@ return [
     'type' => 'Type',
     'currency' => 'Currency',
     'date_end' => 'Valid until',
+    'disposable' => 'Disposable',
+    'reusable' => 'Reusable',
+    'number_of_uses' => 'Number of uses',
 ];

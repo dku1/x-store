@@ -61,30 +61,30 @@ class CouponController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Coupon  $coupon
-     * @return Response
+     * @param Coupon $coupon
+     * @return Application|Factory|View
      */
-    public function show(Coupon $coupon)
+    public function show(Coupon $coupon): Application|Factory|View
     {
-        //
+        return view('admin.coupon.show', compact('coupon'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Coupon  $coupon
+     * @param Coupon $coupon
      * @return Response
      */
     public function edit(Coupon $coupon)
     {
-        //
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  Request  $request
-     * @param  \App\Models\Coupon  $coupon
+     * @param Coupon $coupon
      * @return Response
      */
     public function update(CouponRequest $request, Coupon $coupon)
@@ -95,7 +95,7 @@ class CouponController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Coupon  $coupon
+     * @param Coupon $coupon
      * @return Response
      */
     public function destroy(Coupon $coupon)

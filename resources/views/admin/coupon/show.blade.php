@@ -1,18 +1,18 @@
 @extends('admin.layouts.master')
 
-@section('title', 'x-store | Admin panel | Категории')
+@section('title', 'x-store | Admin panel | Купоны')
 
 @section('content')
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6 d-flex">
-                    <h1 class="m-0">{{ $category->getField('title') }}</h1>
-                    <form action="{{ route('admin.categories.destroy', $category) }}"
+                    <h1 class="m-0">{{ $coupon->code }}</h1>
+                    <form action="{{ route('admin.coupons.destroy', $coupon) }}"
                           method="post">
                         @method('DELETE')
                         @csrf
-                        <a href="{{ route('admin.categories.edit', $category) }}"
+                        <a href="{{ route('admin.coupons.edit', $coupon) }}"
                            class="btn text-warning">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                  fill="currentColor" class="bi bi-pencil-fill"
@@ -35,10 +35,10 @@
                         <li class="breadcrumb-item"><a href="{{ route('admin.main') }}">{{ __('main.menu.main') }}</a>
                         </li>
                         <li class="breadcrumb-item"><a class="text-primary"
-                                                       href="{{ route('admin.categories.index') }}">{{ __('main.menu.categories') }}</a>
+                                                       href="{{ route('admin.coupons.index') }}">{{ __('coupon.coupons') }}</a>
                         </li>
                         <li class="breadcrumb-item"><a class="text-secondary"
-                                                       href="#" style="pointer-events: none">{{ $category->getField('title') }}</a>
+                                                       href="#" style="pointer-events: none">{{ $coupon->code }}</a>
                         </li>
                     </ol>
                 </div>
@@ -50,34 +50,24 @@
         <table class="table mt-3 table-dark table-hover">
             <tr>
                 <td>#</td>
-                <td>{{ $category->id }}</td>
+                <td>{{ $coupon->id }}</td>
             </tr>
             <tr>
-                <td>{{ __('admin.title_ru') }}</td>
-                <td>{{ $category->title_ru }}</td>
+                <td>{{ __('coupon.code') }}</td>
+                <td>{{ $coupon->code }}</td>
             </tr>
             <tr>
-                <td>{{ __('admin.title_en') }}</td>
-                <td>{{ $category->title_en }}</td>
+                <td>{{ __('coupon.value') }}</td>
+                <td>{{ $coupon->value }} @if($coupon->isPercentage())
+                        % @else {{ $coupon->currency->symbol }} @endif</td>
             </tr>
             <tr>
-                <td>{{ __('admin.categories.count_products') }}</td>
-                <td>{{ $category->products->count() }}</td>
+                <td>{{ __('coupon.number_of_uses') }}</td>
+                <td>@if($coupon->disposable()) {{ __('coupon.disposable') }} @else {{ __('coupon.reusable') }} @endif</td>
             </tr>
             <tr>
-                <td>{{ __('admin.categories.parent_category') }}</td>
-                <td>@isset($category->parent)<a href="{{ route('admin.categories.show', $category->parent) }}"
-                                                class="text-white">{{ $category->parent->getField('title') }}</a>
-                    @else {{ __('main.menu.main') }} @endisset
-                </td>
-            </tr>
-            <tr>
-                <td>{{ __('admin.categories.count_sub_category') }}</td>
-                <td>{{ $category->children->count() }}</td>
-            </tr>
-            <tr>
-            <td>{{ __('admin.last_update') }}</td>
-            <td>{{ $category->updated_at->diffForHumans() }}</td>
+                <td>{{ __('coupon.date_end') }}</td>
+                <td>{{ substr($coupon->end_date, 0, 10) }}</td>
             </tr>
         </table>
     </div>

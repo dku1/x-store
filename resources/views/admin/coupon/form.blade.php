@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title', 'x-store | Admin panel | Категории')
+@section('title', 'x-store | Admin panel | Купоны')
 
 @section('content')
     <div class="content-header">
