@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Subscription;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -19,6 +20,12 @@ class PersonalAreaController extends Controller
     {
         $orders = auth()->user()->orders()->get();
         return view('personal-area.orders', compact('orders'));
+    }
+
+    public function subscriptions(): Factory|View|Application
+    {
+        $subscriptions = Subscription::getSubscriptionsByUser();
+        return view('personal-area.subscriptions', compact('subscriptions'));
     }
 
     public function showProductsByOrder(Order $order): Factory|View|Application

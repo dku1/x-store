@@ -12,7 +12,7 @@
                     <a class="nav-link @if(request()->routeIs('personal-area.orders*')) active @endif" href="{{ route('personal-area.orders') }}">{{ __('personal-area.menu.orders') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">{{ __('personal-area.menu.subscriptions') }}</a>
+                    <a class="nav-link" href="{{ route('personal-area.subscriptions') }}">{{ __('personal-area.menu.subscriptions') }}</a>
                 </li>
             </ul>
         </div>

@@ -65,7 +65,7 @@ class CartService
         }
     }
 
-    private function getPivotRow(Cart $cart, Product $product)
+    public function getPivotRow(Cart $cart, Product $product)
     {
         return $cart->products->where('id', $product->id)->first()->pivot;
     }

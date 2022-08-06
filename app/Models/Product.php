@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\Localization;
+use App\Services\CartService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -31,9 +32,26 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function subscription(): HasMany
+    public function subscriptions(): HasMany
     {
         return $this->hasMany(Subscription::class);
+    }
+
+    public function carts(): BelongsToMany
+    {
+        return $this->belongsToMany(Cart::class);
+    }
+
+    public function getNumberOfSales(): int
+    {
+        $amount = 0;
+        $carts = $this->carts()->with('order');
+        foreach ($carts as $cart){
+            if(isset($cart->order)){
+                $amount += (new CartService())->getPivotRow($cart, $this)->quantity;
+            }
+        }
+        return $amount;
     }
 
     public function available(): bool

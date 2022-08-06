@@ -14,6 +14,8 @@ class Subscription extends Model
 
     protected $fillable = ['email', 'product_id'];
 
+    protected $with = ['product'];
+
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
@@ -29,10 +31,20 @@ class Subscription extends Model
         }
     }
 
+    public static function getSubscriptionsByUser()
+    {
+        return self::where('email', auth()->user()->email)->active()->get();
+    }
+
     public static function subscriptionExists(string $email, Product $product): bool
     {
         $subscription = self::where('email', $email)->where('product_id', $product->id)->activeByProduct($product)->first();
         return (bool)$subscription;
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
     }
 
     public function scopeActiveByProduct($query, Product $product)

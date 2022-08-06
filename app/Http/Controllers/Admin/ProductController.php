@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Option;
 use App\Models\Product;
 use App\Http\Requests\ProductRequest;
+use App\Services\CartService;
 use App\Services\ProductService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;

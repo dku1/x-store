@@ -102,5 +102,6 @@ Route::middleware([
         Route::get('orders', [PersonalAreaController::class, 'orders'])->name('personal-area.orders');
         Route::get('orders/products-show/{order}',
             [PersonalAreaController::class, 'showProductsByOrder'])->name('personal-area.orders.show');
+        Route::get('subscriptions', [PersonalAreaController::class, 'subscriptions'])->name('personal-area.subscriptions');
     });
 });

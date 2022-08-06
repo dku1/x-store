@@ -79,7 +79,11 @@
             </tr>
             <tr>
                 <td>{{ __('admin.products.number_of_sales') }}</td>
-                <td>TTT</td>
+                <td>{{ $product->getNumberOfSales() }}</td>
+            </tr>
+            <tr>
+                <td>{{ __('subscription.subscriptions') }}</td>
+                <td>{{ $product->subscriptions()->active()->count() }}</td>
             </tr>
             <tr>
                 <td>{{ __('admin.category') }}</td>

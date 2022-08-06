@@ -6,6 +6,7 @@ use App\Services\CartService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Cart extends Model
 {
@@ -21,6 +22,11 @@ class Cart extends Model
     public function coupons(): BelongsToMany
     {
         return $this->belongsToMany(Coupon::class, 'cart_coupon');
+    }
+
+    public function order(): HasOne
+    {
+        return $this->hasOne(Order::class);
     }
 
     public function isEmpty(): bool
