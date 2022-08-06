@@ -10,11 +10,12 @@ class CartService
 {
     public function add(Cart $cart, Product $product): bool
     {
-        if (!$product->available()) return false;
+        if (!$product->available() or !$product->removeCount(1)) {
+            return false;
+        }
         if ($cart->products->contains($product)) {
-            $pivotRow = $cart->products->where('id', $product->id)->first()->pivot;
+            $pivotRow = $this->getPivotRow($cart,$product);
             $pivotRow->quantity++;
-            if ($pivotRow->quantity > $product->count) return false;
             $pivotRow->save();
         } else {
             $cart->products()->attach($product);
@@ -22,16 +23,20 @@ class CartService
         return true;
     }
 
-    public function remove(Cart $cart, Product $product)
+    public function remove(Cart $cart, Product $product): bool
     {
-        if (!$cart->products->contains($product)) return false;
-        if ($cart->products->where('id', $product->id)->first()->pivot->quantity == 1) {
+        if (!$cart->products->contains($product)) {
+            return false;
+        }
+        $pivotRow = $this->getPivotRow($cart,$product);
+        if ($pivotRow->quantity == 1) {
             $cart->products()->detach($product);
         } else {
-            $pivotRow = $cart->products->where('id', $product->id)->first()->pivot;
             $pivotRow->quantity--;
             $pivotRow->save();
         }
+        $product->increaseCount(1);
+        return true;
     }
 
     public function recalculation($price, Coupon $coupon): float|int
@@ -55,9 +60,14 @@ class CartService
         if ($price < $discount) {
             session()->flash('warning', 'Купон неприменим');
             return $price;
-        }else{
+        } else {
             return round($price - $discount, 2);
         }
+    }
+
+    private function getPivotRow(Cart $cart, Product $product)
+    {
+        return $cart->products->where('id', $product->id)->first()->pivot;
     }
 
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -28,6 +29,11 @@ class Product extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function subscription(): HasMany
+    {
+        return $this->hasMany(Subscription::class);
     }
 
     public function available(): bool
@@ -61,5 +67,20 @@ class Product extends Model
         } else {
             return round($this->price * $currency->rate, 2);
         }
+    }
+
+    public function removeCount(int $countRemove): bool
+    {
+        if ($this->count < $countRemove) return false;
+        $this->count = $this->count - $countRemove;
+        $this->save();
+        return true;
+    }
+
+    public function increaseCount(int $countIncrease): bool
+    {
+        $this->count = $this->count + $countIncrease;
+        $this->save();
+        return true;
     }
 }

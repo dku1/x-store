@@ -71,6 +71,7 @@ Route::group([
 ], function () {
     Route::get('index', [ProductController::class, 'index'])->name('index');
     Route::get('show/{product}', [ProductController::class, 'show'])->name('show');
+    Route::post('subscription/{product}', [ProductController::class, 'subscribe'])->name('subscription');
 });
 
 Route::group([

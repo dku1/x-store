@@ -36,6 +36,7 @@
                             </div>
                         @endforeach
                     </div>
+                    @if($product->available())
                     <div class="col-12 mt-2">
                         <a href="{{ route('cart.add', $product) }}" class="btn btn-success">
                             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor"
@@ -45,6 +46,13 @@
                             </svg>
                         </a>
                     </div>
+                    @else
+                        <div class="col-12 mt-2">
+                            <a href="#" class="btn btn-secondary" style="pointer-events: none">
+                                Товар закончился
+                            </a>
+                        </div>
+                    @endif
                 </div>
                 <div class="row mt-3">
                     <div class="col">
@@ -74,11 +82,11 @@
                                 <div id="collapse-1-1" class="collapse show" aria-labelledby="heading-1-1"
                                      data-parent="#accordion-1">
                                     <div class="card-body">
-                                        <form method="post">
+                                        <form method="post" action="{{ route('products.subscription', $product) }}">
                                             @csrf
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="basic-addon1">@</span>
-                                                <input type="email" class="form-control" placeholder="email" aria-label="Username" aria-describedby="basic-addon1"
+                                                <input type="email" class="form-control" name="email" placeholder="email" aria-label="Username" aria-describedby="basic-addon1"
                                                 @auth value="{{ auth()->user()->email }}" @endauth
                                                 >
                                             </div>

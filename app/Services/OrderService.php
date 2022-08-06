@@ -16,21 +16,7 @@ class OrderService
         if (auth()->check()) {
             $data['user_id'] = auth()->user()->id;
         }
-        foreach ($cart->products as $product){
-           if (!$this->removeCountProducts($product, $product->pivot->quantity))
-               return false;
-        }
         Order::create($data);
         session()->regenerate();
-    }
-
-    private function removeCountProducts(Product $product, int $countRemove): bool
-    {
-        if ($product->count >= $countRemove){
-            $product->count = $product->count - $countRemove;
-            $product->save();
-            return true;
-        }
-        return false;
     }
 }
