@@ -27,7 +27,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('layouts.master', AllCurrencyComposer::class);
-        View::composer(['layouts.master', 'product.index', 'category.index', 'cart.index', 'order.create', 'product.show'], CurrentCurrencyComposer::class);
+        View::composer('nav', AllCurrencyComposer::class);
+        View::composer(['product.index', 'category.index', 'cart.index', 'order.create', 'product.show', 'nav'], CurrentCurrencyComposer::class);
     }
 }

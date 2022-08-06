@@ -18,7 +18,7 @@ class OrderController extends Controller
      */
     public function index(): View|Factory|Application
     {
-        $allOrders = Order::get()->groupBy('status');
+        $allOrders = Order::with('currency', 'cart.products')->get()->groupBy('status');
         $orders = $allOrders[0]->merge($allOrders[1]);
         return view('admin.order.index', compact('orders'));
     }

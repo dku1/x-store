@@ -25,9 +25,9 @@ class OrderController extends Controller
         return view('order.create', compact('cart'));
     }
 
-    public function store(OrderRequest $request, Cart $cart, Currency $currency): RedirectResponse
+    public function store(OrderRequest $request, Cart $cart): RedirectResponse
     {
-         $this->service->save($request->validated(), $cart, $currency);
+         $this->service->save($request->validated(), $cart);
          return redirect()->route('products.index')->with('success', 'Заказ успешно оформлен');
     }
 }

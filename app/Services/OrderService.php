@@ -9,10 +9,10 @@ use App\Models\Product;
 
 class OrderService
 {
-    public function save(array $data, Cart $cart, Currency $currency)
+    public function save(array $data, Cart $cart)
     {
         $data['cart_id'] = $cart->id;
-        $data['currency_id'] = $currency->id;
+        $data['currency_id'] = Currency::getCurrent()->id;
         if (auth()->check()) {
             $data['user_id'] = auth()->user()->id;
         }

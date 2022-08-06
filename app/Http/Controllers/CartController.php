@@ -22,9 +22,8 @@ class CartController extends Controller
         $this->middleware('cart.not.empty', ['except' => ['add']]);
     }
 
-    public function index(): Factory|View|Application
+    public function index(Cart $cart): Factory|View|Application
     {
-        $cart = Cart::getBySessionOrCreate();
         return view('cart.index', compact('cart'));
     }
 

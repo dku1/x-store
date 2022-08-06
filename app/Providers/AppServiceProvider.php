@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Cart;
 use App\Models\Currency;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,8 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->bind(Currency::class, function ($app){
-            return Currency::getCurrent();
+        $this->app->bind(Cart::class, function ($app){
+            return Cart::getBySessionOrCreate();
         });
     }
 }

@@ -7,14 +7,17 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">{{ __('admin.currencies.currencies') }} <a href="{{ route('admin.currencies.create') }}" class="btn btn-success ml-3">{{ __('admin.create') }}</a></h1>
+                    <h1 class="m-0">{{ __('admin.currencies.currencies') }} <a
+                            href="{{ route('admin.currencies.create') }}"
+                            class="btn btn-success ml-3">{{ __('admin.create') }}</a></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.main') }}">{{ __('main.menu.main') }}</a>
                         </li>
                         <li class="breadcrumb-item"><a class="text-secondary"
-                                                       href="{{ route('admin.currencies.index') }}" style="pointer-events: none">{{ __('admin.currencies.currencies') }}</a>
+                                                       href="#"
+                                                       style="pointer-events: none">{{ __('admin.currencies.currencies') }}</a>
                         </li>
                     </ol>
                 </div>
@@ -68,6 +71,7 @@
             @endforeach
             </tbody>
         </table>
-        <a href="{{ route('admin.rates.update') }}" class="btn btn-primary">{{ __('admin.currencies.update_rates') }}</a>
+        <a href="{{ route('admin.rates.update') }}"
+           class="btn btn-primary">{{ __('admin.currencies.update_rates') }}</a>
     </div>
 @endsection

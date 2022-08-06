@@ -18,7 +18,7 @@ class PersonalAreaController extends Controller
 
     public function orders(): Factory|View|Application
     {
-        $orders = auth()->user()->orders()->get();
+        $orders = auth()->user()->orders()->with(['currency', 'cart.products', 'cart.coupons'])->get();
         return view('personal-area.orders', compact('orders'));
     }
 

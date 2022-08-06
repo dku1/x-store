@@ -27,6 +27,8 @@ class Product extends Model
         'count'
     ];
 
+    protected $with = ['category'];
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);

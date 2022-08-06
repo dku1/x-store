@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ValueController as AdminValueController;
 use App\Http\Controllers\Admin\CurrencyController as AdminCurrencyController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\CouponController as AdminCouponController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
@@ -89,6 +90,7 @@ Route::group([
     Route::resource('orders', AdminOrderController::class)->except(['create', 'store', 'update', 'edit']);
     Route::get('orders/handle/{order}', [AdminOrderController::class, 'handle'])->name('orders.handle');
     Route::resource('coupons', AdminCouponController::class);
+    Route::resource('users', UserController::class)->except(['update', 'edit']);
 });
 
 

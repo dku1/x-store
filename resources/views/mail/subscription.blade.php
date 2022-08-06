@@ -1,1 +1,1 @@
-Здравствуйте, товар {{ $product->title_ru }} появился в наличии!
+Hello, product {{ $product->title_en }} appeared in stock!

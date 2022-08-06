@@ -36,8 +36,9 @@ class Cart extends Model
 
     public static function getBySessionOrCreate()
     {
-        $cart = self::where('session_id', session()->getId())->first();
-        return $cart ?? self::create(['session_id' => session()->getId()]);
+        $sessionId = session()->getId();
+        $cart = self::where('session_id', $sessionId)->first();
+        return $cart ?? self::create(['session_id' => $sessionId]);
     }
 
     public function getFullProductPrice(Product $product, Currency $currency = null): float|int

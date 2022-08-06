@@ -37,6 +37,11 @@ return [
     ],
     'orders' => [
         'orders' => 'Orders',
+        'count_orders' => 'Count orders',
+    ],
+    'users' => [
+        'users' => 'Users',
+        'date_register' => 'Date register',
     ],
     'options' => 'Options',
     'option' => 'Option',

@@ -14,7 +14,7 @@
                         <li class="breadcrumb-item"><a href="{{ route('admin.main') }}">{{ __('main.menu.main') }}</a>
                         </li>
                         <li class="breadcrumb-item"><a class="text-secondary"
-                                                       href="{{ route('admin.orders.index') }}"
+                                                       href="#"
                                                        style="pointer-events: none">{{ __('admin.orders.orders') }}</a>
                         </li>
                     </ol>

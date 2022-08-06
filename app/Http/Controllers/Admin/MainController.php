@@ -13,8 +13,9 @@ class MainController extends Controller
 {
     public function index(): Factory|View|Application
     {
-        $unprocessedOrders = Order::status(0)->get();
-        $processedOrders = Order::status(1)->get();
+        $orders = Order::get()->groupBy('status');
+        $unprocessedOrders = $orders[0];
+        $processedOrders = $orders[1];
         $subscriptions = Subscription::active()->get();
         return view('admin.main.index', compact(['unprocessedOrders', 'processedOrders', 'subscriptions']));
     }

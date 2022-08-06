@@ -14,7 +14,7 @@ class ProductController extends Controller
 {
     public function index(): Factory|View|Application
     {
-        $products = Product::with(['category'])->paginate(9);
+        $products = Product::paginate(9);
         return view('product.index', compact('products'));
     }
 

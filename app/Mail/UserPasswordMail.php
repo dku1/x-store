@@ -2,26 +2,26 @@
 
 namespace App\Mail;
 
-use App\Models\Product;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendSubscriptionMessage extends Mailable
+class UserPasswordMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public Product $product;
+    public string $password;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Product $product)
+    public function __construct(string $password)
     {
-        $this->product = $product;
+        $this->password = $password;
     }
 
     /**
@@ -31,6 +31,6 @@ class SendSubscriptionMessage extends Mailable
      */
     public function build(): static
     {
-        return $this->view('mail.subscription');
+        return $this->view('mail.user-password');
     }
 }

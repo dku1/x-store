@@ -21,14 +21,14 @@ class CategoryController extends Controller
     public function index(): Factory|View|Application
     {
         $categoryItems = $this->service->getItems();
-        $products = Product::with(['category'])->paginate(9);
+        $products = Product::paginate(9);
         return view('category.index', compact('categoryItems', 'products'));
     }
 
     public function show(Category $category): Factory|View|Application
     {
         $categoryItems = $this->service->getItems();
-        $products = Product::where('category_id', $category->id)->with(['category'])->paginate(9);
+        $products = Product::where('category_id', $category->id)->paginate(9);
         return view('category.index', compact('categoryItems', 'products'));
     }
 }

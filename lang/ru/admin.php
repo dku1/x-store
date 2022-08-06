@@ -36,7 +36,12 @@ return [
         'update_rates' => 'Обновить ставки',
     ],
     'orders' => [
-      'orders' => 'Заказы',
+        'orders' => 'Заказы',
+        'count_orders' => 'Количество заказов',
+    ],
+    'users' => [
+        'users' => 'Пользователи',
+        'date_register' => 'Дата регистрации',
     ],
     'options' => 'Опции',
     'option' => 'Опция',

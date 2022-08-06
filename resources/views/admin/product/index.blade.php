@@ -16,7 +16,7 @@
                         <li class="breadcrumb-item"><a href="{{ route('admin.main') }}">{{ __('main.menu.main') }}</a>
                         </li>
                         <li class="breadcrumb-item"><a class="text-secondary"
-                                                       href="{{ route('admin.products.index') }}" style="pointer-events: none">{{ __('main.menu.products') }}</a>
+                                                       href="#" style="pointer-events: none">{{ __('main.menu.products') }}</a>
                         </li>
                     </ol>
                 </div>
