@@ -37,6 +37,7 @@ class User extends Authenticatable
         'index',
         'email',
         'password',
+        'role_id',
     ];
 
     /**
@@ -72,6 +73,11 @@ class User extends Authenticatable
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class)->orderBy('created_at', 'desc');
+    }
+
+    public function latestOrder(): HasOne
+    {
+        return $this->hasOne(Order::class)->latestOfMany();
     }
 
     public function role(): BelongsTo

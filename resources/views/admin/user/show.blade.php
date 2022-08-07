@@ -48,8 +48,42 @@
                 <td>{{ $user->email }}</td>
             </tr>
             <tr>
-                <td>email</td>
-                <td>{{ $user->email }}</td>
+                <td>Роль</td>
+                <td>{{ $user->role->value }}</td>
+            </tr>
+            <tr>
+                <td>Имя</td>
+                <td>{{ $user->first_name }}</td>
+            </tr>
+            <tr>
+                <td>Фамилия</td>
+                <td>{{ $user->last_name }}</td>
+            </tr>
+            <tr>
+                <td>Город</td>
+                <td>{{ $user->city ?? '-' }}</td>
+            </tr>
+            <tr>
+                <td>Адрес</td>
+                <td>{{ $user->address ?? '-' }}</td>
+            </tr>
+            <tr>
+                <td>Индекс</td>
+                <td>{{ $user->index ?? '-' }}</td>
+            </tr>
+            <tr>
+                <td>Заказов</td>
+                <td>{{ $user->orders->count() }}</td>
+            </tr>
+            @isset($user->latestOrder)
+            <tr>
+                <td>Дата последнего заказа</td>
+                <td>{{ $user->latestOrder->created_at->format('d-m-Y') }}</td>
+            </tr>
+            @endisset
+            <tr>
+                <td>Дата регистрации</td>
+                <td>{{ $user->created_at->format('d-m-Y')  }}</td>
             </tr>
         </table>
     </div>
