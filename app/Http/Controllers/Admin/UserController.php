@@ -52,22 +52,28 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
-     * @return Response
+     * @param User $user
+     * @return Application|Factory|View
      */
-    public function show(User $user)
+    public function show(User $user): View|Factory|Application
     {
-        //
+        return view('admin.user.show', compact('user'));
+    }
+
+    public function ban(User $user)
+    {
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
-     * @return Response
+     * @param User $user
+     * @return RedirectResponse
      */
-    public function destroy(User $user)
+    public function destroy(User $user): RedirectResponse
     {
-        //
+        $user->delete();
+        return redirect()->back()->with('warning', 'Пользователь удалён');
     }
 }

@@ -55,8 +55,7 @@
             </div>
             <div class="col-md-5 mt-2">
                 <label for="inputEmail4" class="form-label">Роль</label>
-                <select class="select2" multiple="multiple"
-                        style="width: 100%;" name="role_ids[]">
+                <select class="custom-select" name="role_id">
                     @foreach($roles as $role)
                         <option value="{{ $role->id }}">{{ $role->value }}</option>
                     @endforeach

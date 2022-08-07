@@ -106,7 +106,7 @@
         <div class="row">
             <h4 class="mt-3">Похожите товары</h4>
             @foreach($product->getRelatedProducts() as $product)
-                <x-product-card :product="$product"/>
+                <x-product-card :product="$product" :currentCurrency="$currentCurrency"/>
             @endforeach
         </div>
     </div>

@@ -27,8 +27,7 @@ class UserRequest extends FormRequest
             'first_name' => 'required|string|min:3|max:255',
             'last_name' => 'required|string|min:3|max:255',
             'email' => 'required|string|email|unique:users,email',
-            'role_ids' => 'nullable|array',
-            'role_ids.*' => 'nullable|integer|exists:roles,id',
+            'role_id' => 'required|integer|exists:roles,id',
         ];
     }
 
