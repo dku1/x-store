@@ -1,8 +1,8 @@
 <aside id="coll-filter">
-    <x-filter-form title="Фильтры">
+    <x-filter-form title="{{ __('filter.filters') }}">
         <div class="input-group input-group-sm">
             <input class="form-control border-1" type="search"
-                   placeholder="Название товара"
+                   placeholder="{{ __('filter.product_title') }}"
                    aria-label="Search" name="search"
                    @isset(request()->search) value="{{ request()->search }}"
                 @endisset >
@@ -17,9 +17,9 @@
         <div class="input-group input-group-sm mt-3">
             <select name="price" class="form-select" id="collection_order">
                 @foreach([
-                 '' => 'По умолчанию',
-                 'asc' => 'По возрастанию цены',
-                 'desc' => 'По убыванию цены'
+                 '' => __('filter.default'),
+                 'asc' => __('filter.ascending'),
+                 'desc' => __('filter.descending'),
                  ] as $value => $text)
                     <option
                         @if(isset(request()->price) and request()->price === $value)
@@ -30,29 +30,27 @@
             </select>
         </div>
         <div class="input-group input-group-sm mt-3">
-            <button class="filter-button input-group-text border-1">Сортировать
+            <button class="filter-button input-group-text border-1">{{ __('filter.sort') }}
             </button>
         </div>
     </x-filter-form>
-
-    <x-filter-form title="Цена" class="mt-3">
+    <x-filter-form title="{{ __('filter.price') }}" class="mt-3">
         <div class="input-group input-group-sm mb-3">
-            <span class="input-group-text">От</span>
+            <span class="input-group-text">{{ __('filter.from') }}</span>
             <input type="text" class="form-control" name="priceFrom" placeholder="10000"
                    value="{{ request()->priceFrom }}">
         </div>
         <div class="input-group input-group-sm mb-3">
-            <span class="input-group-text">До</span>
+            <span class="input-group-text">{{ __('filter.before') }}</span>
             <input type="text" class="form-control" name="priceTo" placeholder="50000"
                    value="{{ request()->priceTo }}">
         </div>
         <div class="input-group input-group-sm">
-            <button class="filter-button input-group-text border-1">Применить
+            <button class="filter-button input-group-text border-1">{{ __('filter.apply') }}
             </button>
         </div>
     </x-filter-form>
-
-    <x-filter-form title="Опции" class="mt-3">
+    <x-filter-form title="{{ __('filter.options') }}" class="mt-3">
         @foreach($options as $option)
             <h6>{{ $option->getField('title') }}</h6>
             @foreach($option->values as $value)
@@ -70,12 +68,11 @@
             @endforeach
         @endforeach
         <div class="input-group input-group-sm">
-            <button class="filter-button input-group-text border-1">Применить
+            <button class="filter-button input-group-text border-1">{{ __('filter.apply') }}
             </button>
         </div>
     </x-filter-form>
-
     <div class="card border-0">
-        <a href="#" class="btn btn-secondary mt-3" style="pointer-events: none">Товаров: {{ $total }}</a>
+        <a href="#" class="btn btn-secondary mt-3" style="pointer-events: none">{{ __('filter.products')  }}: {{ $total }}</a>
     </div>
 </aside>
