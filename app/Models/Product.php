@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Filters\QueryFilter;
+use Illuminate\Database\Eloquent\Builder;
 use App\Models\Traits\Localization;
 use App\Services\CartService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,7 +11,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
@@ -48,8 +49,8 @@ class Product extends Model
     {
         $amount = 0;
         $carts = $this->carts()->with('order');
-        foreach ($carts as $cart){
-            if(isset($cart->order)){
+        foreach ($carts as $cart) {
+            if (isset($cart->order)) {
                 $amount += (new CartService())->getPivotRow($cart, $this)->quantity;
             }
         }
@@ -91,7 +92,9 @@ class Product extends Model
 
     public function removeCount(int $countRemove): bool
     {
-        if ($this->count < $countRemove) return false;
+        if ($this->count < $countRemove) {
+            return false;
+        }
         $this->count = $this->count - $countRemove;
         $this->save();
         return true;
@@ -102,5 +105,10 @@ class Product extends Model
         $this->count = $this->count + $countIncrease;
         $this->save();
         return true;
+    }
+
+    public function scopeFilter(Builder $builder, QueryFilter $filters): Builder
+    {
+        return $filters->apply($builder);
     }
 }

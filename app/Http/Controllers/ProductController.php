@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\ProductFilters;
 use App\Models\Product;
 use App\Models\Subscription;
 use Illuminate\Contracts\Foundation\Application;
@@ -12,9 +13,13 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index(): Factory|View|Application
+    public function index(ProductFilters $filters): Factory|View|Application
     {
-        $products = Product::paginate(9);
+        $products = Product::filter($filters)->get();
+
+
+
+        //$products = Product::paginate(9);
         return view('product.index', compact('products'));
     }
 
