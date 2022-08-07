@@ -11,8 +11,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
-
 class UserController extends Controller
 {
     /**
@@ -60,9 +58,18 @@ class UserController extends Controller
         return view('admin.user.show', compact('user'));
     }
 
-    public function ban(User $user)
+    public function ban(User $user): RedirectResponse
     {
+        $user->ban = true;
+        $user->save();
+        return redirect()->back()->with('warning', 'Пользователь заблокирован');
+    }
 
+    public function unBan(User $user): RedirectResponse
+    {
+        $user->ban = false;
+        $user->save();
+        return redirect()->back()->with('success', 'Пользователь разблокирован');
     }
 
     /**

@@ -91,6 +91,8 @@ Route::group([
     Route::get('orders/handle/{order}', [AdminOrderController::class, 'handle'])->name('orders.handle');
     Route::resource('coupons', AdminCouponController::class);
     Route::resource('users', UserController::class)->except(['update', 'edit']);
+    Route::get('users/ban/{user}', [UserController::class, 'ban'])->name('users.ban');
+    Route::get('users/unban/{user}', [UserController::class, 'unBan'])->name('users.unban');
 });
 
 
