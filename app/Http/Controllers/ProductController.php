@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Filters\ProductFilters;
+use App\Models\Option;
 use App\Models\Product;
 use App\Models\Subscription;
 use Illuminate\Contracts\Foundation\Application;
@@ -15,12 +16,10 @@ class ProductController extends Controller
 {
     public function index(ProductFilters $filters): Factory|View|Application
     {
-        $products = Product::filter($filters)->get();
-
-
-
-        //$products = Product::paginate(9);
-        return view('product.index', compact('products'));
+        $products = Product::filter($filters)->paginate(12);
+        $total = $products->total();
+        $options = Option::with('values')->get();
+        return view('product.index', compact('products', 'options', 'total'));
     }
 
     public function show(Product $product): Factory|View|Application

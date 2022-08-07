@@ -69,4 +69,9 @@ nav.profile {
 
 /* Profile-content */
 
+.filter-button:hover{
+    transition: 0.2s;
+    background-color: #b2b1b1;
+}
+
 
