@@ -6,14 +6,16 @@ use Illuminate\View\Component;
 
 class FilterForm extends Component
 {
+
+    public string $title;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(string $title)
     {
-        //
+        $this->title = $title;
     }
 
     /**
