@@ -39,7 +39,7 @@
             </thead>
             <tbody>
             @foreach($orders as $order)
-                <tr style="background-color: @if($order->isProcessed()) #0f401b @else #52170b @endif">
+                <tr>
                     <td class="text-center align-middle">
                         {{ $order->id }}
                     </td>
@@ -58,13 +58,15 @@
                     <td class="text-center align-middle">
                         {{ $order->index }}
                     </td>
-                    <td class="text-center align-middle">
-                        @if($order->isProcessed())
+                    @if($order->isProcessed())
+                        <td class="text-center align-middle text-success">
                             {{ __('order.processed') }}
-                        @else
+                        </td>
+                    @else
+                        <td class="text-center align-middle text-danger">
                             {{ __('order.not_processed') }}
-                        @endif
-                    </td>
+                        </td>
+                    @endif
                     <td class="text-center align-middle">
                         <form action="{{ route('admin.orders.destroy', $order) }}"
                               method="post">

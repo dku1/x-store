@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -43,5 +44,26 @@ class Coupon extends Model
     public static function codeGenerate(): string
     {
         return Str::random(8);
+    }
+
+    public function deactivate()
+    {
+        $this->status = 1;
+        $this->save();
+    }
+
+    public function isAvailable(): bool
+    {
+        return $this->isActive() and !$this->isOverdue();
+    }
+
+    public function isActive(): bool
+    {
+        return $this->status === 0;
+    }
+
+    public function isOverdue(): bool
+    {
+        return Carbon::now() > Carbon::parse($this->end_date);
     }
 }

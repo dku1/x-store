@@ -16,7 +16,17 @@ class OrderService
         if (auth()->check()) {
             $data['user_id'] = auth()->user()->id;
         }
+        $this->deactivateCouponsFromCart($cart);
         Order::create($data);
         session()->regenerate();
+    }
+
+    private function deactivateCouponsFromCart(Cart $cart)
+    {
+        foreach ($cart->coupons as $coupon) {
+            if ($coupon->disposable()) {
+                $coupon->deactivate();
+            }
+        }
     }
 }

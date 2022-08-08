@@ -24,7 +24,7 @@ class CouponService
         $coupon->update($data);
     }
 
-    private function getDateTimeFormat(string $date): string
+    public function getDateTimeFormat(string $date): string
     {
         return date("Y-m-d H:i:s", strtotime($date));
     }

@@ -42,6 +42,7 @@ return [
     'users' => [
         'users' => 'Users',
         'date_register' => 'Date register',
+        'users_registered' => 'Users registered',
     ],
     'options' => 'Options',
     'option' => 'Option',

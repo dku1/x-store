@@ -47,7 +47,7 @@ class CartController extends Controller
     public function coupon(Request $request, Cart $cart): RedirectResponse
     {
         $coupon = Coupon::where('code', $request->code)->first();
-        if (!$coupon) return redirect()->back()->with('warning', 'Купона не существует');
+        if (!$coupon or !$coupon->isAvailable()) return redirect()->back()->with('warning', 'Купон не действителен');
         $cart->coupons()->attach($coupon);
         return redirect()->back();
     }

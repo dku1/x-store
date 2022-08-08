@@ -25,7 +25,7 @@
                             </li>
                         @endforeach
                         @foreach($cart->coupons as $coupon)
-                                <li class="list-group-item d-flex justify-content-between lh-sm">
+                                <li class="list-group-item d-flex justify-content-between lh-sm" style="background-color: #428854">
                                   Применён купон {{ $coupon->code }} на {{ $coupon->value }} @if($coupon->isPercentage())
                                         % @else {{ $coupon->currency->symbol }} @endif
                                 </li>

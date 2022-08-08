@@ -69,6 +69,14 @@
                 <td>{{ __('coupon.date_end') }}</td>
                 <td>{{ substr($coupon->end_date, 0, 10) }}</td>
             </tr>
+            <tr>
+                <td>{{ __('coupon.status') }}</td>
+                @if($coupon->isAvailable())
+                    <td class="text-success">{{ __('coupon.active') }}</td>
+                @else
+                    <td class="text-danger">{{ __('coupon.not_active') }}</td>
+                @endif
+            </tr>
         </table>
     </div>
 @endsection

@@ -42,6 +42,7 @@ return [
     'users' => [
         'users' => 'Пользователи',
         'date_register' => 'Дата регистрации',
+        'users_registered' => 'Пользователей зарегистрировано',
     ],
     'options' => 'Опции',
     'option' => 'Опция',

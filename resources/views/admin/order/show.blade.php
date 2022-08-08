@@ -96,15 +96,17 @@
                     <td>{{ $order->user->first_name . ' ' . $order->user->last_name }}</td>
                 </tr>
             @endisset
-            <tr style="background-color: @if($order->isProcessed()) #0f401b @else #52170b @endif">
+            <tr>
                 <td>{{ __('order.status') }}</td>
-                <td>
-                    @if($order->isProcessed())
+                @if($order->isProcessed())
+                    <td class="text-left align-middle text-success">
                         {{ __('order.processed') }}
-                    @else
+                    </td>
+                @else
+                    <td class="text-left align-middle text-danger">
                         {{ __('order.not_processed') }}
-                    @endif
-                </td>
+                    </td>
+                @endif
             </tr>
         </table>
     </div>
