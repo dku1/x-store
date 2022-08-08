@@ -2,10 +2,10 @@
 
 namespace App\Actions\Admin;
 
+use App\Jobs\SendMessage;
 use App\Mail\UserPasswordMail;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class UserCreate
@@ -14,7 +14,7 @@ class UserCreate
     {
         $password = Str::random(8);
         $data['password'] = Hash::make($password);
-        Mail::to($data['email'])->send(new UserPasswordMail($password));
+        SendMessage::dispatch($data['email'], new UserPasswordMail($password));
         User::create($data);
     }
 }

@@ -89,7 +89,7 @@
                 @enderror
                 <label>{{ __('admin.category') }}</label>
                 <select class="custom-select" name="category_id">
-                    <option value="0">-</option>
+                    <option value="">-</option>
                     @foreach($categories as $item)
                         <option
                             @if((isset($product) and $product->category_id == $item->id) or old('category_id') == $item->id)

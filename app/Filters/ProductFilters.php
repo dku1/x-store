@@ -20,12 +20,12 @@ class ProductFilters extends QueryFilter
 
     public function priceFrom(int $priceFrom = 1): Builder
     {
-        return $this->builder->where('price', '>', $priceFrom);
+        return $this->builder->where('price', '>=', $priceFrom);
     }
 
     public function priceTo(int $priceTo = 1000000): Builder
     {
-        return $this->builder->where('price', '<', $priceTo);
+        return $this->builder->where('price', '<=', $priceTo);
     }
 
     public function values(array $valuesIds): Builder

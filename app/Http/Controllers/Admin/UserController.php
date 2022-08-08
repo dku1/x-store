@@ -11,6 +11,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\RedirectResponse;
+
 class UserController extends Controller
 {
     /**

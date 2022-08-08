@@ -2,7 +2,6 @@
 @section('title', 'x-store | ' . $product->getField('title'))
 
 @section('content')
-
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-7 text-center">
@@ -105,11 +104,13 @@
                 @endif
             </div>
         </div>
-        <div class="row">
-            <h4 class="mt-3">Похожите товары</h4>
-            @foreach($product->getRelatedProducts() as $product)
-                <x-product-card :product="$product" :currentCurrency="$currentCurrency"/>
-            @endforeach
-        </div>
+        @if($product->getRelatedProducts()->count() != 0)
+            <div class="row">
+                <h4 class="mt-3">Похожите товары</h4>
+                @foreach($product->getRelatedProducts() as $product)
+                    <x-product-card :product="$product" :currentCurrency="$currentCurrency"/>
+                @endforeach
+            </div>
+        @endisset
     </div>
 @endsection

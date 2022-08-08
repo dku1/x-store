@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Jobs\SendMessage;
 use App\Mail\SendSubscriptionMessage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,7 +26,7 @@ class Subscription extends Model
     {
         $subscriptions = self::activeByProduct($product)->get();
         foreach ($subscriptions as $subscription) {
-            Mail::to($subscription->email)->send(new SendSubscriptionMessage($product));
+            SendMessage::dispatch($subscription->email, new SendSubscriptionMessage($product));
             $subscription->status = 0;
             $subscription->save();
         }
