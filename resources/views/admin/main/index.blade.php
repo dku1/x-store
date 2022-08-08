@@ -20,7 +20,6 @@
             </div>
         </div>
     </div>
-
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -28,7 +27,6 @@
                     <div class="small-box bg-info">
                         <div class="inner">
                             <h3>{{ $clients->count() }}</h3>
-
                             <p>{{ __('admin.users.users_registered') }}</p>
                         </div>
                         <div class="icon">
