@@ -8,14 +8,16 @@ class FilterForm extends Component
 {
 
     public string $title;
+    public string $buttonText;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(string $title)
+    public function __construct(string $title, string $buttonText)
     {
         $this->title = $title;
+        $this->buttonText = $buttonText;
     }
 
     /**

@@ -1,5 +1,5 @@
 <aside id="coll-filter">
-    <x-filter-form title="{{ __('filter.filters') }}">
+    <x-filter-form title="{{ __('filter.filters') }}" buttonText="{{ __('filter.sort') }}" margin="mt-3">
         <div class="input-group input-group-sm">
             <input class="form-control border-1" type="search"
                    placeholder="{{ __('filter.product_title') }}"
@@ -29,12 +29,9 @@
                 @endforeach
             </select>
         </div>
-        <div class="input-group input-group-sm mt-3">
-            <button class="filter-button input-group-text border-1">{{ __('filter.sort') }}
-            </button>
-        </div>
     </x-filter-form>
-    <x-filter-form title="{{ __('filter.price') }}" class="mt-3">
+
+    <x-filter-form title="{{ __('filter.price') }}" class="mt-3" buttonText="{{ __('filter.apply') }}">
         <div class="input-group input-group-sm mb-3">
             <span class="input-group-text">{{ __('filter.from') }}</span>
             <input type="text" class="form-control" name="priceFrom" placeholder="10000"
@@ -45,34 +42,54 @@
             <input type="text" class="form-control" name="priceTo" placeholder="50000"
                    value="{{ request()->priceTo }}">
         </div>
-        <div class="input-group input-group-sm">
-            <button class="filter-button input-group-text border-1">{{ __('filter.apply') }}
-            </button>
-        </div>
     </x-filter-form>
-    <x-filter-form title="{{ __('filter.options') }}" class="mt-3">
+
+    <x-filter-form title="{{ __('filter.options') }}" class="mt-3" buttonText="{{ __('filter.apply') }}" margin="mt-1" style="margin-left: 10px">
         @foreach($options as $option)
-            <h6>{{ $option->getField('title') }}</h6>
-            @foreach($option->values as $value)
-                <div class="form-check @if($loop->last) mb-3 @endif">
-                    <input
-                        @if(isset(request()->values) and in_array($value->id, request()->values))
-                        checked
-                        @endif
-                        class="form-check-input" type="checkbox" name="values[]"
-                        value="{{ $value->id }}" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        {{ $value->getField('title') }}
-                    </label>
-                </div>
-            @endforeach
+            <div class="dropdown">
+                <button class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ $option->getField('title') }}
+                </button>
+                <ul class="dropdown-menu p-2">
+                    @foreach($option->values as $value)
+                        <li>
+                            <div class="form-check">
+                                <input
+                                    @if(isset(request()->values) and in_array($value->id, request()->values))
+                                    checked
+                                    @endif
+                                    class="form-check-input" type="checkbox" value="{{ $value->id }}" name="values[]"
+                                    id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    {{ $value->getField('title') }}
+                                </label>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
         @endforeach
-        <div class="input-group input-group-sm">
-            <button class="filter-button input-group-text border-1">{{ __('filter.apply') }}
-            </button>
-        </div>
+
+        {{--        @foreach($options as $option)--}}
+        {{--            <h6>{{ $option->getField('title') }}</h6>--}}
+        {{--            @foreach($option->values as $value)--}}
+        {{--                <div class="form-check @if($loop->last) mb-3 @endif">--}}
+        {{--                    <input--}}
+        {{--                        @if(isset(request()->values) and in_array($value->id, request()->values))--}}
+        {{--                        checked--}}
+        {{--                        @endif--}}
+        {{--                        class="form-check-input" type="checkbox" name="values[]"--}}
+        {{--                        value="{{ $value->id }}" id="flexCheckDefault">--}}
+        {{--                    <label class="form-check-label" for="flexCheckDefault">--}}
+        {{--                        {{ $value->getField('title') }}--}}
+        {{--                    </label>--}}
+        {{--                </div>--}}
+        {{--            @endforeach--}}
+        {{--        @endforeach--}}
     </x-filter-form>
+
     <div class="card border-0">
-        <a href="#" class="btn btn-secondary mt-3" style="pointer-events: none">{{ __('filter.products')  }}: {{ $total }}</a>
+        <a href="#" class="btn btn-secondary mt-3" style="pointer-events: none">{{ __('filter.products')  }}
+            : {{ $total }}</a>
     </div>
 </aside>
