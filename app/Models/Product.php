@@ -20,12 +20,8 @@ class Product extends Model
     protected $fillable = [
         'title_ru',
         'title_en',
-        'image',
         'description',
-        'price',
-        'old_price',
         'category_id',
-        'count'
     ];
 
     protected $with = ['category'];
@@ -62,24 +58,29 @@ class Product extends Model
         return $this->count >= 1;
     }
 
-    public function values(): BelongsToMany
-    {
-        return $this->belongsToMany(Value::class);
-    }
-
     public function getRelatedProducts()
     {
         return self::where('category_id', $this->category_id)->where('id', '!=', $this->id)->get()->take(3);
     }
 
-    public function options(): \Illuminate\Support\Collection
+    public function options(): BelongsToMany
     {
-        $options = collect();
-        foreach ($this->values as $value) {
-            $options->push($value->option);
-        }
-        return $options;
+        return $this->belongsToMany(Option::class);
     }
+
+    public function positions(): HasMany
+    {
+        return $this->hasMany(Position::class);
+    }
+
+//    public function options(): \Illuminate\Support\Collection
+//    {
+//        $options = collect();
+//        foreach ($this->values as $value) {
+//            $options->push($value->option);
+//        }
+//        return $options;
+//    }
 
     public function convert(Currency $currency, $old = false): float|int
     {
