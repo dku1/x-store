@@ -69,23 +69,6 @@
                 </ul>
             </div>
         @endforeach
-
-        {{--        @foreach($options as $option)--}}
-        {{--            <h6>{{ $option->getField('title') }}</h6>--}}
-        {{--            @foreach($option->values as $value)--}}
-        {{--                <div class="form-check @if($loop->last) mb-3 @endif">--}}
-        {{--                    <input--}}
-        {{--                        @if(isset(request()->values) and in_array($value->id, request()->values))--}}
-        {{--                        checked--}}
-        {{--                        @endif--}}
-        {{--                        class="form-check-input" type="checkbox" name="values[]"--}}
-        {{--                        value="{{ $value->id }}" id="flexCheckDefault">--}}
-        {{--                    <label class="form-check-label" for="flexCheckDefault">--}}
-        {{--                        {{ $value->getField('title') }}--}}
-        {{--                    </label>--}}
-        {{--                </div>--}}
-        {{--            @endforeach--}}
-        {{--        @endforeach--}}
     </x-filter-form>
 
     <div class="card border-0">
