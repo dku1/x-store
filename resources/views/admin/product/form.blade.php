@@ -56,33 +56,6 @@
                        value="{{ $product->title_en ?? old('title_en') }}">
             </div>
 
-            <div class="col-md-4 mt-3">
-                @error('price')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-                <lable>{{ __('admin.products.price') }} (руб.)</lable>
-                <input type="text" class="form-control" placeholder="{{ __('admin.products.add_price') }}" name="price"
-                       value="{{ $product->price ?? old('price') }}">
-            </div>
-
-            <div class="col-md-4 mt-3">
-                @error('old_price')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-                <lable>{{ __('admin.products.old_price') }} (руб.)</lable>
-                <input type="text" class="form-control" placeholder="*" name="old_price"
-                       value="{{ $product->old_price ?? old('old_price') }}">
-            </div>
-
-                <div class="col-md-4 mt-3">
-                    @error('count')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                    <lable>{{ __('admin.products.count') }}</lable>
-                    <input type="text" class="form-control" placeholder="15" name="count"
-                           value="{{ $product->count ?? old('count') }}">
-                </div>
-
             <div class="col-6 mt-3">
                 @error('category_id')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -102,18 +75,16 @@
             <div class="col-6 mt-3">
                 <label>{{ __('admin.options') }}</label>
                 <select class="select2" multiple="multiple" data-placeholder="*"
-                        style="width: 100%;" name="value_ids[]">
+                        style="width: 100%;" name="option_ids[]">
                     @foreach($options as $option)
-                        @foreach($option->values as $value)
-                            <option value="{{$value->id}}"
-                                    @if(isset($product) and $product->values->contains($value->id))
-                                    selected
-                                    @elseif(is_array(old('value_ids')) and  in_array($value->id,old('value_ids')))
-                                    selected
-                                @endif
-                            >{{ $value->getField('title') }} ({{$option->getField('title')}})
-                            </option>
-                        @endforeach
+                        <option value="{{$option->id}}"
+                                @if(isset($product) and $product->options->contains($option->id))
+                                selected
+                                @elseif(is_array(old('option_ids')) and  in_array($option->id,old('option_ids')))
+                                selected
+                            @endif
+                        >{{ $option->getField('title') }}
+                        </option>
                     @endforeach
                 </select>
             </div>
@@ -125,18 +96,6 @@
                 <textarea class="form-control" rows="3" placeholder="{{ __('admin.products.description') }}"
                           style="height: 95px;"
                           name="description">{{ $product->description ?? old('description') }}</textarea>
-            </div>
-            @isset($product)
-                <div class="col-8 mt-3">
-                    <img src="{{ asset('storage/' . $product->image) }}" alt="Изображение недоступно" style="width: 385px; height: 500px">
-                </div>
-            @endisset
-            <div class="col-5 mt-3">
-                @error('image')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-                <label for="formFile" class="form-label">{{__('admin.products.image')}}</label>
-                <input class="form-control" type="file" name="image">
             </div>
             <div class="col-8 mt-3 mb-4">
                 <button type="submit" class="btn btn-success">{{ __('admin.save') }}</button>

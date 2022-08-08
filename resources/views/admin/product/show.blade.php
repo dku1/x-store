@@ -53,11 +53,6 @@
                 <td>{{ $product->id }}</td>
             </tr>
             <tr>
-                <td>{{ __('admin.products.image') }}</td>
-                <td><img src="{{ asset('storage/' . $product->image) }}" alt="Изображение недоступно"
-                         style="width: 200px; height: 250px"></td>
-            </tr>
-            <tr>
                 <td>{{ __('admin.title_ru') }}</td>
                 <td>{{ $product->title_ru }}</td>
             </tr>
@@ -66,20 +61,8 @@
                 <td>{{ $product->title_en }}</td>
             </tr>
             <tr>
-                <td>{{ __('admin.products.price') }}</td>
-                <td>{{ $product->price }}</td>
-            </tr>
-            <tr>
-                <td>{{ __('admin.products.old_price') }}</td>
-                <td>{{ $product->old_price ?? '-' }}</td>
-            </tr>
-            <tr>
-                <td>{{ __('admin.products.count') }}</td>
-                <td>{{ $product->count }}</td>
-            </tr>
-            <tr>
-                <td>{{ __('admin.products.number_of_sales') }}</td>
-                <td>{{ $product->getNumberOfSales() }}</td>
+                <td>{{ __('admin.products.positions') }}</td>
+                <td>{{ $product->positions->count() }}</td>
             </tr>
             <tr>
                 <td>{{ __('subscription.subscriptions') }}</td>
@@ -94,9 +77,9 @@
                 <td>
                     <select class="select2" multiple="multiple" data-placeholder="*"
                             style="width: 100%;" name="value_ids[]">
-                        @foreach($product->values as $value)
-                            <option value="{{$value->id}}" selected>
-                                {{ $value->getField('title') }} ({{$value->option->getField('title')}})
+                        @foreach($product->options as $option)
+                            <option value="{{$option->id}}" selected>
+                                {{ $option->getField('title') }}
                             </option>
                         @endforeach
                     </select>

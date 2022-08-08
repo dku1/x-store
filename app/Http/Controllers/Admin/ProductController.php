@@ -31,7 +31,7 @@ class ProductController extends Controller
      */
     public function index(): View|Factory|Application
     {
-        $products = Product::paginate(10);
+        $products = Product::with('positions')->orderBy('updated_at', 'desc')->paginate(10);
         return view('admin.product.index', compact('products'));
     }
 
@@ -43,7 +43,7 @@ class ProductController extends Controller
     public function create(): Application|Factory|View
     {
         $categories = Category::get();
-        $options = Option::with('values')->get();
+        $options = Option::get();
         return view('admin.product.form', compact('categories', 'options'));
     }
 
@@ -80,7 +80,7 @@ class ProductController extends Controller
     public function edit(Product $product): View|Factory|Application
     {
         $categories = Category::get();
-        $options = Option::with('values')->get();
+        $options = Option::get();
         return view('admin.product.form', compact('categories', 'product', 'options'));
     }
 

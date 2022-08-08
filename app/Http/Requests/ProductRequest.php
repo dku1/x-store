@@ -24,18 +24,13 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         $id = is_null($this->product) ? '' : $this->product->id;
-        $required = $this->path() == 'admin/products' ? '|required' : '';
         return [
-            'title_ru' => 'required|min:3|max:255|string|unique:categories,title_ru,' . $id,
-            'title_en' => 'required|min:3|max:255|string|unique:categories,title_en,' . $id,
-            'price' => 'required|numeric',
-            'old_price' => 'nullable|numeric',
-            'count' => 'required|numeric',
+            'title_ru' => 'required|min:3|max:255|string|unique:products,title_ru,' . $id,
+            'title_en' => 'required|min:3|max:255|string|unique:products,title_en,' . $id,
             'category_id' => 'nullable|exists:categories,id',
-            'value_ids' => 'nullable|array',
-            'value_ids.*' => 'nullable|integer|exists:values,id',
+            'option_ids' => 'nullable|array',
+            'option_ids.*' => 'nullable|integer|exists:options,id',
             'description' => 'required',
-            'image' => 'image:jpg,jpeg,png' . $required,
         ];
     }
 
@@ -52,18 +47,8 @@ class ProductRequest extends FormRequest
             'title_en.max' => 'Максимум 255 символов',
             'title_en.unique' => 'Название должно быть уникальным',
 
-            'price.required' => 'Добавьте цену',
-            'price.numeric' => 'Цена не соответствует формату',
-            'old_price.numeric' => 'Старая цена не соответствует формату',
-
-            'count.required' => 'Укажите кол-во товара',
-            'count.numeric' => 'Кол-во товара - число',
-
             'category_id.exists' => 'Категории не существует',
             'description.required' => 'Добавьте описание',
-
-            'image.required' => 'Добавьте изображение',
-            'image.image' => 'Изображение не соответствует формату',
         ];
     }
 }

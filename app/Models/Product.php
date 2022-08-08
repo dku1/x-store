@@ -41,18 +41,6 @@ class Product extends Model
         return $this->belongsToMany(Cart::class);
     }
 
-    public function getNumberOfSales(): int
-    {
-        $amount = 0;
-        $carts = $this->carts()->with('order');
-        foreach ($carts as $cart) {
-            if (isset($cart->order)) {
-                $amount += (new CartService())->getPivotRow($cart, $this)->quantity;
-            }
-        }
-        return $amount;
-    }
-
     public function available(): bool
     {
         return $this->count >= 1;

@@ -29,9 +29,8 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">{{ __('admin.products.image') }}</th>
                 <th scope="col">{{ __('admin.categories.title') }}</th>
-                <th scope="col" class="text-center">{{ __('admin.products.price') }}</th>
+                <th scope="col" class="text-center">{{ __('admin.products.positions') }}</th>
                 <th scope="col" class="text-center">{{ __('admin.actions') }}</th>
             </tr>
             </thead>
@@ -39,13 +38,10 @@
             @foreach($products as $product)
                 <tr>
                     <th class="align-middle" scope="row">{{ $product->id }}</th>
-                    <td class="align-middle">
-                        <img src="{{ asset('storage/' . $product->image) }}" alt="Изображение недоступно" width="80px" height="100px">
-                    </td>
                     <td class="align-middle"><a class="text-white"
                            href="{{ route('admin.products.show', $product) }}">{{ $product->getField('title') }}</a>
                     </td>
-                    <td class="text-center align-middle">{{ $product->price }}</td>
+                    <th class="align-middle text-center">{{ $product->positions->count() }}</th>
                     <td class="pt-1 text-center align-middle">
                         <form action="{{ route('admin.products.destroy', $product) }}"
                               method="post">

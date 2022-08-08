@@ -9,26 +9,21 @@ class ProductService
 {
     public function store(array $data)
     {
-        $data['image'] = Storage::put('/images/products', $data['image']);
-        if (isset($data['value_ids'])) {
-            $value_ids = $data['value_ids'];
-            unset($data['value_ids']);
+        if (isset($data['option_ids'])) {
+            $option_ids = $data['option_ids'];
+            unset($data['option_ids']);
         }
         $product = Product::create($data);
-        if(isset($value_ids)) $product->values()->attach($value_ids);
+        if(isset($option_ids)) $product->options()->attach($option_ids);
     }
 
     public function upload(array $data, Product $product)
     {
-        if (isset($data['image'])){
-            Storage::delete($product->image);
-            $data['image'] = Storage::put('/images/products', $data['image']);
-        }
-        if (isset($data['value_ids'])) {
-            $product->values()->sync($data['value_ids']);
-            unset($data['value_ids']);
+        if (isset($data['option_ids'])) {
+            $product->options()->sync($data['option_ids']);
+            unset($data['option_ids']);
         }else{
-            $product->values()->detach();
+            $product->options()->detach();
         }
         $product->update($data);
     }

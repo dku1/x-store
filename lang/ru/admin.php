@@ -27,6 +27,7 @@ return [
         'description' => 'Описание',
         'number_of_sales' => 'Количество продаж',
         'count' => 'Количество',
+        'positions' => 'Позиций',
     ],
     'currencies' => [
         'currencies' => 'Валюты',
