@@ -4,7 +4,7 @@
              style="width: 286px; height: 286px">
         <div class="card-body">
             <h5 class="card-title"><a class="text-dark text-decoration-none"
-                                      href="{{ route('products.show', $product) }}">{{ $product->getField('title') }}</a>
+                                      href="{{ route('products.show', $product->id) }}">{{ $product->getField('title') }}</a>
             </h5>
             <p class="card-text"><a class="text-dark text-decoration-none"
                                     href="{{ isset($product->category) ?

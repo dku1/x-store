@@ -31,6 +31,9 @@ class ProductFilters extends QueryFilter
     public function values(array $valuesIds): Builder
     {
         return $this->builder->join('product_value', 'products.id', '=',
-            'product_value.product_id')->whereIn('value_id', $valuesIds);
+            'product_value.product_id')->whereIn('value_id', $valuesIds)->select('products.*');
+
+//        return $this->builder->join('product_value', 'products.id', '=',
+//            'product_value.product_id')->whereIn('value_id', $valuesIds);
     }
 }

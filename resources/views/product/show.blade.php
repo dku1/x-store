@@ -12,8 +12,10 @@
             <div class="col-lg-4 mb-5 mb-lg-0">
                 <div class="row">
                     <div class="col-12 mt-5">
+                        @isset($product->category)
                         <span class="eyebrow text-muted"><a class="text-secondary text-decoration-none"
                                                             href="{{ route('categories.show', $product->category) }}">{{ $product->category->getField('title') }}</a></span>
+                        @endisset
                         <h2>{{ $product->getField('title') }}</h2>
                         <span
                             class="price fs-18">{{ $product->convert($currentCurrency) }} {{ $currentCurrency->symbol }}</span>
