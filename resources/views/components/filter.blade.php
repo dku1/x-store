@@ -72,7 +72,7 @@
     </x-filter-form>
 
     <div class="card border-0">
-        <a href="#" class="btn btn-secondary mt-3" style="pointer-events: none">{{ __('filter.products')  }}
+        <a href="#" class="btn btn-dark mt-3" style="pointer-events: none">{{ __('filter.products')  }}
             : {{ $total }}</a>
     </div>
 </aside>

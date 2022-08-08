@@ -19,14 +19,17 @@
                     <tbody>
                     @foreach($order->cart->products as $product)
                         <tr>
-                            <td class="text-center align-middle">IMG</td>
-                            <td class="text-left align-middle"><a class="text-decoration-none text-dark"
+                            <td class="text-center align-middle"><img
+                                    width="150px"
+                                    height="150px"
+                                    src="{{ asset('storage/' . $product->image) }}" alt="Изображение недоступно"></td>
+                            <td class="text-left"><a class="text-decoration-none text-dark"
                                                                   href="{{ route('products.show', $product) }}">
                                     {{ $product->getField('title') }}
                                 </a>
                             </td>
-                            <td class="text-center align-middle">{{ $product->pivot->quantity }}</td>
-                            <td class="text-center align-middle">{{ $order->getSum() . ' ' . $order->currency->symbol }}</td>
+                            <td class="text-center">{{ $product->pivot->quantity }}</td>
+                            <td class="text-center">{{ $order->getSum() . ' ' . $order->currency->symbol }}</td>
                         </tr>
                     @endforeach
                     </tbody>

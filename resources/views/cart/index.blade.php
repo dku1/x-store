@@ -16,13 +16,16 @@
             </tr>
             @foreach($cart->products as $product)
                 <tr>
-                    <td class="text-center align-middle">IMG</td>
-                    <td class="text-left align-middle"><a class="text-dark text-decoration-none"
+                    <td class="text-center align-middle"><img
+                            width="150px"
+                            height="150px"
+                            src="{{ asset('storage/' . $product->image) }}" alt="Изображение недоступно"></td>
+                    <td class="text-left"><a class="text-dark text-decoration-none"
                                                           href="{{ route('products.show', $product) }}">{{ $product->getField('title') }}</a>
                     </td>
-                    <td class="text-left align-middle">{{ $product->convert($currentCurrency) }} {{ $currentCurrency->symbol }}</td>
-                    <td class="text-center align-middle">{{ $product->pivot->quantity }}</td>
-                    <td class="text-center align-middle">
+                    <td class="text-left">{{ $product->convert($currentCurrency) }} {{ $currentCurrency->symbol }}</td>
+                    <td class="text-center">{{ $product->pivot->quantity }}</td>
+                    <td class="text-center">
                         <a href="{{ route('cart.add', $product) }}" class="btn btn-success">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                  class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
@@ -38,7 +41,7 @@
                             </svg>
                         </a>
                     </td>
-                    <td class="text-left align-middle">{{ $cart->getFullProductPrice($product) }} {{ $currentCurrency->symbol }}</td>
+                    <td class="text-left">{{ $cart->getFullProductPrice($product) }} {{ $currentCurrency->symbol }}</td>
                 </tr>
             @endforeach
         </table>

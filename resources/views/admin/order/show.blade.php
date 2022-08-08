@@ -122,7 +122,10 @@
             <tbody>
             @foreach($order->cart->products as $product)
                 <tr>
-                    <td class="text-center align-middle">IMG</td>
+                    <td class="text-center align-middle"><img
+                            width="150px"
+                            height="150px"
+                            src="{{ asset('storage/' . $product->image) }}" alt="Изображение недоступно"></td>
                     <td class="text-left align-middle"><a class="text-decoration-none text-dark"
                                                           href="{{ route('admin.products.show', $product) }}">
                             {{ $product->getField('title') }}
