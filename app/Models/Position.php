@@ -12,6 +12,8 @@ class Position extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = ['product_id', 'price', 'old_price', 'count', 'image'];
+
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);

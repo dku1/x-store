@@ -1,22 +1,20 @@
 @extends('admin.layouts.master')
 
-@section('title', 'x-store | Admin panel | Товары')
+@section('title', 'x-store | Admin panel | Позиции')
 
 @section('content')
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">{{ __('main.menu.products') }}<a href="{{ route('admin.products.create') }}"
-                                                                     class="btn btn-success ml-3">{{ __('admin.create') }}</a></h1>
+                    <h1 class="m-0">{{ __('main.menu.positions') }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.main') }}">{{ __('main.menu.main') }}</a>
                         </li>
                         <li class="breadcrumb-item"><a class="text-secondary"
-                                                       href="#"
-                                                       style="pointer-events: none">{{ __('main.menu.products') }}</a>
+                                                       href="#" style="pointer-events: none">{{ __('main.menu.positions') }}</a>
                         </li>
                     </ol>
                 </div>
@@ -29,25 +27,29 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">{{ __('admin.categories.title') }}</th>
-                <th scope="col" class="text-center">{{ __('admin.products.positions') }}</th>
+                <th scope="col">{{ __('admin.products.image') }}</th>
+                <th scope="col">{{ __('admin.products.product') }}</th>
+                <th scope="col">{{ __('admin.products.price') }}</th>
+                <th scope="col" class="text-center">{{ __('admin.products.count') }}</th>
                 <th scope="col" class="text-center">{{ __('admin.actions') }}</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($products as $product)
+            @foreach($positions as $position)
                 <tr>
-                    <th class="align-middle" scope="row">{{ $product->id }}</th>
-                    <td class="align-middle"><a class="text-white"
-                                                href="{{ route('admin.products.show', $product) }}">{{ $product->getField('title') }}</a>
+                    <th scope="row">{{ $position->id }}</th>
+                    <th scope="row"><img src="{{ asset('storage/' . $position->image) }}" alt="Изображение отсутствует" width="150px" height="180px"></th>
+                    <td><a class="text-white"
+                           href="{{ route('admin.products.show', $position->product) }}">{{ $position->product->getField('title') }}</a>
                     </td>
-                    <th class="align-middle text-center">{{ $product->positions->count() }}</th>
-                    <td class="pt-1 text-center align-middle">
-                        <form action="{{ route('admin.products.destroy', $product) }}"
+                    <th class="text-left">{{ $position->price }}</th>
+                    <th class="text-center">{{ $position->count }}</th>
+                    <td class="pt-1 text-center">
+                        <form action="{{ route('admin.positions.destroy', $position) }}"
                               method="post">
                             @method('DELETE')
                             @csrf
-                            <a href="{{ route('admin.products.show', $product) }}"
+                            <a href="{{ route('admin.positions.show', $position) }}"
                                class="btn text-blue">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                      fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
@@ -56,17 +58,7 @@
                                         d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                                 </svg>
                             </a>
-                            <a href="{{ route('admin.positions.create', $product) }}"
-                               class="btn text-success">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                     class="bi bi-bookmark-plus" viewBox="0 0 16 16">
-                                    <path
-                                        d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-                                    <path
-                                        d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z"/>
-                                </svg>
-                            </a>
-                            <a href="{{ route('admin.products.edit', $product) }}"
+                            <a href="{{ route('admin.positions.edit', $position) }}"
                                class="btn text-warning">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                      fill="currentColor" class="bi bi-pencil-fill"
@@ -90,7 +82,7 @@
             </tbody>
         </table>
         <div class="d-flex justify-content-center paginate">
-            {{ $products->links('pagination::bootstrap-4') }}
+            {{ $positions->links('pagination::bootstrap-4') }}
         </div>
     </div>
 @endsection

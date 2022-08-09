@@ -58,7 +58,6 @@ class CartService
     {
         $discount = (new CurrencyService())->convert($coupon->value);
         if ($price < $discount) {
-            session()->flash('warning', 'Купон неприменим');
             return $price;
         } else {
             return round($price - $discount, 2);

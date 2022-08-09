@@ -20,6 +20,7 @@ return [
         'count_sub_category' => 'Count sub categories',
     ],
     'products' => [
+        'product' => 'Product',
         'price' => 'Price',
         'old_price' => 'Old price',
         'add_price' => 'Add price',
@@ -28,6 +29,7 @@ return [
         'number_of_sales' => 'Number of sales',
         'count' => 'Count',
         'positions' => 'Positions',
+        'position' => 'position',
     ],
     'currencies' => [
         'currencies' => 'Currencies',
@@ -45,6 +47,7 @@ return [
         'date_register' => 'Date register',
         'users_registered' => 'Users registered',
     ],
+    'for' => 'for',
     'options' => 'Options',
     'option' => 'Option',
     'count_values' => 'Count values',

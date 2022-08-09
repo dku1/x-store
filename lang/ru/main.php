@@ -7,5 +7,6 @@ return [
         'products' => 'Товары',
         'personal-area' => 'Личный кабинет',
         'account' => 'Аккаунт',
+        'positions' => 'Товарные позиции',
     ],
 ];

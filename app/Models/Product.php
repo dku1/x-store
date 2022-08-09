@@ -70,6 +70,12 @@ class Product extends Model
 //        return $options;
 //    }
 
+
+    public function availableForRemoval(): bool
+    {
+        return $this->positions->count() === 0;
+    }
+
     public function convert(Currency $currency, $old = false): float|int
     {
         if ($old and isset($this->old_price)) {

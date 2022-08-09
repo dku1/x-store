@@ -7,5 +7,6 @@ return [
         'products' => 'Products',
         'personal-area' => 'Personal area',
         'account' => 'Account',
+        'positions' => 'Commodity items',
     ],
 ];

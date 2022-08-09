@@ -20,6 +20,7 @@ return [
         'count_sub_category' => 'Кол-во подкатегорий',
     ],
     'products' => [
+        'product' => 'Товар',
         'price' => 'Цена',
         'old_price' => 'Старая цена',
         'add_price' => 'Добавьте цену',
@@ -28,6 +29,7 @@ return [
         'number_of_sales' => 'Количество продаж',
         'count' => 'Количество',
         'positions' => 'Позиций',
+        'position' => 'позиции',
     ],
     'currencies' => [
         'currencies' => 'Валюты',
@@ -45,6 +47,7 @@ return [
         'date_register' => 'Дата регистрации',
         'users_registered' => 'Пользователей зарегистрировано',
     ],
+    'for' => 'для',
     'options' => 'Опции',
     'option' => 'Опция',
     'count_values' => 'Кол-во значений',

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ValueController as AdminValueController;
 use App\Http\Controllers\Admin\CurrencyController as AdminCurrencyController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\CouponController as AdminCouponController;
+use App\Http\Controllers\Admin\PositionController as AdminPositionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
@@ -81,15 +82,19 @@ Route::group([
     'as' => 'admin.',
 ], function () {
     Route::get('/', [MainController::class, 'index'])->name('main');
-    Route::resource('categories', AdminCategoryController::class);
-    Route::resource('products', AdminProductController::class);
-    Route::resource('options', AdminOptionController::class);
+    Route::resources([
+        'categories' => AdminCategoryController::class,
+        'products' => AdminProductController::class,
+        'options' => AdminOptionController::class,
+        'coupons' => AdminCouponController::class,
+    ]);
+    Route::get('positions/create/{product}', [AdminPositionController::class, 'create'])->name('positions.create');
+    Route::resource('positions', AdminPositionController::class)->except('create');
     Route::resource('options.values', AdminValueController::class)->except(['show', 'index']);
     Route::resource('currencies', AdminCurrencyController::class)->except('show');
     Route::get('rates/update', [AdminCurrencyController::class, 'updateRates'])->name('rates.update');
     Route::resource('orders', AdminOrderController::class)->except(['create', 'store', 'update', 'edit']);
     Route::get('orders/handle/{order}', [AdminOrderController::class, 'handle'])->name('orders.handle');
-    Route::resource('coupons', AdminCouponController::class);
     Route::resource('users', UserController::class)->except(['update', 'edit']);
     Route::get('users/ban/{user}', [UserController::class, 'ban'])->name('users.ban');
     Route::get('users/unban/{user}', [UserController::class, 'unBan'])->name('users.unban');

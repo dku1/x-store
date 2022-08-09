@@ -106,8 +106,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product): RedirectResponse
     {
-        $product->delete();
-        session()->flash('warning', $product->getField('title') . ' удалён');
-        return redirect()->route('admin.products.index');
+        if ($product->availableForRemoval()){
+            $product->delete();
+            return redirect()->back()->with('warning', $product->getField('title') . ' удалён');
+        }
+        return redirect()->back()->with('warning', 'У товара есть позиции');
     }
 }
