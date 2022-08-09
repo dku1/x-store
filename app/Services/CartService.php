@@ -4,38 +4,39 @@ namespace App\Services;
 
 use App\Models\Cart;
 use App\Models\Coupon;
+use App\Models\Position;
 use App\Models\Product;
 
 class CartService
 {
-    public function add(Cart $cart, Product $product): bool
+    public function add(Cart $cart, Position $position): bool
     {
-        if (!$product->available() or !$product->removeCount(1)) {
+        if (!$position->available() or !$position->removeCount(1)) {
             return false;
         }
-        if ($cart->products->contains($product)) {
-            $pivotRow = $this->getPivotRow($cart,$product);
+        if ($cart->positions->contains($position)) {
+            $pivotRow = $this->getPivotRow($cart, $position);
             $pivotRow->quantity++;
             $pivotRow->save();
         } else {
-            $cart->products()->attach($product);
+            $cart->positions()->attach($position);
         }
         return true;
     }
 
-    public function remove(Cart $cart, Product $product): bool
+    public function remove(Cart $cart, Position $position): bool
     {
-        if (!$cart->products->contains($product)) {
+        if (!$cart->positions->contains($position)) {
             return false;
         }
-        $pivotRow = $this->getPivotRow($cart,$product);
+        $pivotRow = $this->getPivotRow($cart, $position);
         if ($pivotRow->quantity == 1) {
-            $cart->products()->detach($product);
+            $cart->positions()->detach($position);
         } else {
             $pivotRow->quantity--;
             $pivotRow->save();
         }
-        $product->increaseCount(1);
+        $position->increaseCount(1);
         return true;
     }
 
@@ -64,9 +65,9 @@ class CartService
         }
     }
 
-    public function getPivotRow(Cart $cart, Product $product)
+    public function getPivotRow(Cart $cart, Position $position)
     {
-        return $cart->products->where('id', $product->id)->first()->pivot;
+        return $cart->positions->where('id', $position->id)->first()->pivot;
     }
 
 }

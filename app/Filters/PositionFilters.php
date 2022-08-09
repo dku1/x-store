@@ -4,13 +4,13 @@ namespace App\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class ProductFilters extends QueryFilter
+class PositionFilters extends QueryFilter
 {
     public function search($keyword = ''): Builder
     {
         return $this->builder
-            ->where('title_ru', 'like', '%' . $keyword . '%')
-            ->orWhere('title_en', 'like', '%' . $keyword . '%');
+            ->whereRelation('product', 'title_ru', 'like', '%' . $keyword . '%')
+            ->orWhereRelation('product', 'title_en', 'like', '%' . $keyword . '%');
     }
 
     public function price($order = 'asc'): Builder
@@ -30,7 +30,7 @@ class ProductFilters extends QueryFilter
 
     public function values(array $valuesIds): Builder
     {
-        return $this->builder->join('product_value', 'products.id', '=',
-            'product_value.product_id')->whereIn('value_id', $valuesIds)->select('products.*')->distinct();
+        return $this->builder->join('position_value', 'positions.id', '=',
+            'position_value.position_id')->whereIn('value_id', $valuesIds)->select('positions.*')->distinct();
     }
 }

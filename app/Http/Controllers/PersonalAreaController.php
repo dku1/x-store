@@ -18,7 +18,7 @@ class PersonalAreaController extends Controller
 
     public function orders(): Factory|View|Application
     {
-        $orders = auth()->user()->orders()->with(['currency', 'cart.products', 'cart.coupons'])->get();
+        $orders = auth()->user()->orders()->with(['currency', 'cart.positions', 'cart.coupons'])->get();
         return view('personal-area.orders', compact('orders'));
     }
 
@@ -30,6 +30,7 @@ class PersonalAreaController extends Controller
 
     public function showProductsByOrder(Order $order): Factory|View|Application
     {
+        $order->load('cart.positions.product');
         if (!Gate::allows('view-order-products', $order)) return abort(403);
         return view('personal-area.show-products', compact('order'));
     }

@@ -14,9 +14,9 @@ class Cart extends Model
 
     protected $fillable = ['session_id'];
 
-    public function products(): BelongsToMany
+    public function positions(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class)->withPivot('quantity');
+        return $this->belongsToMany(Position::class)->withPivot('quantity');
     }
 
     public function coupons(): BelongsToMany
@@ -31,7 +31,7 @@ class Cart extends Model
 
     public function isEmpty(): bool
     {
-        return $this->products->count() === 0;
+        return $this->positions->count() === 0;
     }
 
     public static function getBySessionOrCreate()
@@ -41,21 +41,21 @@ class Cart extends Model
         return $cart ?? self::create(['session_id' => $sessionId]);
     }
 
-    public function getFullProductPrice(Product $product, Currency $currency = null): float|int
+    public function getFullPositionPrice(Position $position, Currency $currency = null): float|int
     {
-        $pivotRow = $this->products->where('id', $product->id)->first()->pivot;
+        $pivotRow = $this->positions->where('id', $position->id)->first()->pivot;
         if (is_null($currency)){
-            return $pivotRow->quantity * $product->convert(Currency::getCurrent());
+            return $pivotRow->quantity * $position->convert(Currency::getCurrent());
         }else{
-            return $pivotRow->quantity * $product->convert($currency);
+            return $pivotRow->quantity * $position->convert($currency);
         }
     }
 
     public function getFullPrice(Currency $currency = null): float|int
     {
         $fullPrice = 0;
-        foreach ($this->products as $product){
-            $fullPrice += $this->getFullProductPrice($product, $currency);
+        foreach ($this->positions as $position){
+            $fullPrice += $this->getFullPositionPrice($position, $currency);
         }
         if ($this->coupons->count() > 0){
              foreach ($this->coupons as $coupon){

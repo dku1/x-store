@@ -21,8 +21,8 @@ class Value extends Model
         return $this->belongsTo(Option::class);
     }
 
-    public function products(): BelongsToMany
+    public function positions(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Position::class);
     }
 }

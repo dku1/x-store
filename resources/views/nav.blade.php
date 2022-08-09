@@ -11,8 +11,8 @@
                        href="{{ route('categories.index') }}">{{ __('main.menu.categories') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link @if(request()->routeIs('products.*')) text-primary @endif"
-                       href="{{ route('products.index') }}">{{ __('main.menu.products') }}</a>
+                    <a class="nav-link @if(request()->routeIs('positions.*')) text-primary @endif"
+                       href="{{ route('positions.index') }}">{{ __('main.menu.products') }}</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"

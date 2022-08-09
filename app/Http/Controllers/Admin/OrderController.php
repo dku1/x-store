@@ -18,7 +18,7 @@ class OrderController extends Controller
      */
     public function index(): View|Factory|Application
     {
-        $allOrders = Order::with('currency', 'cart.products', 'cart.coupons')->get()->groupBy('status');
+        $allOrders = Order::with('currency', 'cart.positions', 'cart.coupons')->get()->groupBy('status');
         $orders = $allOrders[0]->merge($allOrders[1]);
         return view('admin.order.index', compact('orders'));
     }
@@ -31,6 +31,7 @@ class OrderController extends Controller
      */
     public function show(Order $order): View|Factory|Application
     {
+        $order->load('cart.positions.product');
         $couponsString = '';
         foreach ($order->cart->coupons as $coupon) {
             $couponsString .= $coupon->code . ' ';

@@ -1,35 +1,35 @@
 @extends('layouts.master')
-@section('title', 'x-store | ' . $product->getField('title'))
+@section('title', 'x-store | ' . $position->product->getField('title'))
 
 @section('content')
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-7 text-center">
-                <img src="{{ asset('storage/' . $product->image) }}" class="img-fluid" alt="Изображение недоступно"
+                <img src="{{ asset('storage/' . $position->image) }}" class="img-fluid" alt="Изображение недоступно"
                      style="max-height: 700px; max-width: 700px">
             </div>
             <div class="col-lg-4 mb-5 mb-lg-0">
                 <div class="row">
                     <div class="col-12 mt-5">
-                        @isset($product->category)
+                        @isset($position->product->category)
                             <span class="eyebrow text-muted"><a class="text-secondary text-decoration-none"
-                                                                href="{{ route('categories.show', $product->category) }}">{{ $product->category->getField('title') }}</a></span>
+                                                                href="{{ route('categories.show', $position->product->category) }}">{{ $position->product->category->getField('title') }}</a></span>
                         @endisset
-                        <h2>{{ $product->getField('title') }}</h2>
+                        <h2>{{ $position->product->getField('title') }}</h2>
                         <span
-                            class="price fs-18">{{ $product->convert($currentCurrency) }} {{ $currentCurrency->symbol }}</span>
+                            class="price fs-18">{{ $position->convert($currentCurrency) }} {{ $currentCurrency->symbol }}</span>
                     </div>
                 </div>
                 <div class="row gutter-2">
                     <div class="col-12 mt-2">
-                        @foreach($product->options() as $option)
+                        @foreach($position->product->options as $option)
                             <div class="form-group">
                                 <label>{{ $option->getField('title') }}</label>
                                 <div class="btn-group-toggle btn-group-square" data-toggle="buttons">
                                     @foreach($option->values as $value)
                                         <label class="btn">
                                             <input type="radio" name="{{ $option->title_en }}"
-                                                   @if($product->values->contains($value)) checked @endif
+                                                   @if($position->values->contains($value)) checked @endif
                                                    id="option-1"> {{ $value->getField('title') }}
                                         </label>
                                     @endforeach
@@ -37,9 +37,9 @@
                             </div>
                         @endforeach
                     </div>
-                    @if($product->available())
+                    @if($position->available())
                         <div class="col-12 mt-2">
-                            <a href="{{ route('cart.add', $product) }}" class="btn btn-success">
+                            <a href="{{ route('cart.add', $position) }}" class="btn btn-success">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor"
                                      class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
                                     <path
@@ -65,14 +65,14 @@
                                 <div id="collapse-1-1" class="collapse show" aria-labelledby="heading-1-1"
                                      data-parent="#accordion-1">
                                     <div class="card-body">
-                                        {{ $product->description }}
+                                        {{ $position->product->description }}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                @if(!$product->available())
+                @if(!$position->available())
                     <div class="row mt-3">
                         <div class="col">
                             <div class="accordion" id="accordion-1">
@@ -83,7 +83,7 @@
                                     <div id="collapse-1-1" class="collapse show" aria-labelledby="heading-1-1"
                                          data-parent="#accordion-1">
                                         <div class="card-body">
-                                            <form method="post" action="{{ route('products.subscription', $product) }}">
+                                            <form method="post" action="{{ route('positions.subscription', $position) }}">
                                                 @csrf
                                                 <div class="input-group mb-3">
                                                     @error('email')
@@ -109,13 +109,13 @@
                 @endif
             </div>
         </div>
-        @if($product->getRelatedProducts()->count() != 0)
+        @if($position->getRelated()->count() != 0)
             <div class="row">
                 <h4 class="mt-3">Похожите товары</h4>
-                @foreach($product->getRelatedProducts() as $product)
-                    <x-product-card :product="$product" :currentCurrency="$currentCurrency"/>
+                @foreach($position->getRelated() as $item)
+                    <x-position-card :position="$item" :currentCurrency="$currentCurrency"/>
                 @endforeach
             </div>
-        @endisset
+        @endif
     </div>
 @endsection

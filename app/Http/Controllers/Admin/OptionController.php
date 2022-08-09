@@ -54,6 +54,7 @@ class OptionController extends Controller
      */
     public function show(Option $option): View|Factory|Application
     {
+        $option->load('values.positions');
         return view('admin.option.show', compact('option'));
     }
 

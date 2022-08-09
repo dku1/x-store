@@ -122,19 +122,19 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($order->cart->products as $product)
+            @foreach($order->cart->positions as $position)
                 <tr>
                     <td class="text-center align-middle"><img
                             width="150px"
                             height="150px"
-                            src="{{ asset('storage/' . $product->image) }}" alt="Изображение недоступно"></td>
+                            src="{{ asset('storage/' . $position->image) }}" alt="Изображение недоступно"></td>
                     <td class="text-left align-middle"><a class="text-decoration-none text-dark"
-                                                          href="{{ route('admin.products.show', $product) }}">
-                            {{ $product->getField('title') }}
+                                                          href="{{ route('admin.positions.show', $position) }}">
+                            {{ $position->product->getField('title') }}
                         </a>
                     </td>
-                    <td class="text-center align-middle">{{ $product->pivot->quantity }}</td>
-                    <td class="text-center align-middle">{{ $order->cart->getFullProductPrice($product, $order->currency) . ' ' . $order->currency->symbol }}</td>
+                    <td class="text-center align-middle">{{ $position->pivot->quantity }}</td>
+                    <td class="text-center align-middle">{{ $order->cart->getFullPositionPrice($position, $order->currency) . ' ' . $order->currency->symbol }}</td>
                 </tr>
             @endforeach
             </tbody>

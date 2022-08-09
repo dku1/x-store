@@ -12,7 +12,7 @@ use App\Http\Controllers\Admin\CouponController as AdminCouponController;
 use App\Http\Controllers\Admin\PositionController as AdminPositionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PositionController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PersonalAreaController;
@@ -28,7 +28,7 @@ use App\Http\Controllers\PersonalAreaController;
 |
 */
 
-Route::redirect('/', 'products/index')->name('main');
+Route::redirect('/', 'positions/index')->name('main');
 
 Route::get('locale/{locale}', function ($locale) {
     session()->put(['locale' => $locale]);
@@ -45,8 +45,8 @@ Route::group([
     'as' => 'cart.',
 ], function () {
     Route::get('index', [CartController::class, 'index'])->name('index');
-    Route::get('add/{product}', [CartController::class, 'add'])->name('add');
-    Route::get('remove/{product}', [CartController::class, 'remove'])->name('remove');
+    Route::get('add/{position}', [CartController::class, 'add'])->name('add');
+    Route::get('remove/{position}', [CartController::class, 'remove'])->name('remove');
     Route::post('coupon-apply/{cart}', [CartController::class, 'coupon'])->name('coupon.apply');
 });
 
@@ -68,12 +68,12 @@ Route::group([
 });
 
 Route::group([
-    'prefix' => 'products',
-    'as' => 'products.',
+    'prefix' => 'positions',
+    'as' => 'positions.',
 ], function () {
-    Route::get('index', [ProductController::class, 'index'])->name('index');
-    Route::get('show/{product}', [ProductController::class, 'show'])->name('show');
-    Route::post('subscription/{product}', [ProductController::class, 'subscribe'])->name('subscription');
+    Route::get('index', [PositionController::class, 'index'])->name('index');
+    Route::get('show/{position}', [PositionController::class, 'show'])->name('show');
+    Route::post('subscription/{position}', [PositionController::class, 'subscribe'])->name('subscription');
 });
 
 Route::group([

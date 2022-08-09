@@ -22,7 +22,7 @@ class CartNotEmpty
         $cart = app()->make(Cart::class);
         if ($cart->isEmpty()) {
             session()->flash('warning', 'Корзина пуста');
-            return redirect()->route('products.index');
+            return redirect()->route('positions.index');
         }
         return $next($request);
     }

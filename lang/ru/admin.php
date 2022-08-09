@@ -47,6 +47,7 @@ return [
         'date_register' => 'Дата регистрации',
         'users_registered' => 'Пользователей зарегистрировано',
     ],
+    'count_positions' => 'Количество позиций',
     'for' => 'для',
     'options' => 'Опции',
     'option' => 'Опция',

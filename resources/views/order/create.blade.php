@@ -9,19 +9,19 @@
                 <div class="col-md-5 col-lg-4 order-md-last">
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
                         <span class="text-primary">{{ __('order.you_cart') }}</span>
-                        <span class="badge bg-primary rounded-pill">{{ $cart->products->count() }}</span>
+                        <span class="badge bg-primary rounded-pill">{{ $cart->positions->count() }}</span>
                     </h4>
                     <ul class="list-group mb-3">
-                        @foreach($cart->products as $product)
+                        @foreach($cart->positions as $position)
                             <li class="list-group-item d-flex justify-content-between lh-sm">
                                 <div>
                                     <h6 class="my-0"><a class="text-dark text-decoration-none"
-                                                        href="{{ route('products.show', $product) }}">{{ $product->getField('title') }}</a>
+                                                        href="{{ route('positions.show', $position) }}">{{ $position->product->getField('title') }}</a>
                                     </h6>
-                                    <small class="text-muted">Кол-во: {{ $product->pivot->quantity }}</small>
+                                    <small class="text-muted">Кол-во: {{ $position->pivot->quantity }}</small>
                                 </div>
                                 <span
-                                    class="text-muted">{{ $cart->getFullProductPrice($product) }} {{ $currentCurrency->symbol }}</span>
+                                    class="text-muted">{{ $cart->getFullPositionPrice($position) }} {{ $currentCurrency->symbol }}</span>
                             </li>
                         @endforeach
                         @foreach($cart->coupons as $coupon)

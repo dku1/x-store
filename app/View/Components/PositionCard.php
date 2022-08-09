@@ -3,14 +3,14 @@
 namespace App\View\Components;
 
 use App\Models\Currency;
-use App\Models\Product;
+use App\Models\Position;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class ProductCard extends Component
+class PositionCard extends Component
 {
-    public Product $product;
+    public Position $position;
 
     public Currency $currentCurrency;
     /**
@@ -18,9 +18,9 @@ class ProductCard extends Component
      *
      * @return void
      */
-    public function __construct(Product $product, Currency $currentCurrency)
+    public function __construct(Position $position, Currency $currentCurrency)
     {
-        $this->product = $product;
+        $this->position = $position;
         $this->currentCurrency = $currentCurrency;
     }
 
@@ -31,6 +31,6 @@ class ProductCard extends Component
      */
     public function render(): View|string|Closure
     {
-        return view('components.product-card');
+        return view('components.position-card');
     }
 }

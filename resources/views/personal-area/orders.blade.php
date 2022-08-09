@@ -27,7 +27,7 @@
                         <tr>
                             <th class="text-center align-middle" scope="row">{{ $order->id }}</th>
                             <td class="text-center align-middle">{{ $order->getSum() . ' ' .  $order->currency->symbol}}</td>
-                            <td class="text-center align-middle">{{ $order->cart->products->count() }}</td>
+                            <td class="text-center align-middle">{{ $order->cart->positions->count() }}</td>
                             <td class="text-center align-middle">{{ $order->created_at->format('d m Y') }}</td>
                             <td class="text-center align-middle">{{ $order->city }}</td>
                             <td class="text-center align-middle">{{ $order->address }}</td>

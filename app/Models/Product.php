@@ -36,21 +36,6 @@ class Product extends Model
         return $this->hasMany(Subscription::class);
     }
 
-    public function carts(): BelongsToMany
-    {
-        return $this->belongsToMany(Cart::class);
-    }
-
-    public function available(): bool
-    {
-        return $this->count >= 1;
-    }
-
-    public function getRelatedProducts()
-    {
-        return self::where('category_id', $this->category_id)->where('id', '!=', $this->id)->get()->take(3);
-    }
-
     public function options(): BelongsToMany
     {
         return $this->belongsToMany(Option::class);
@@ -76,34 +61,4 @@ class Product extends Model
         return $this->positions->count() === 0;
     }
 
-    public function convert(Currency $currency, $old = false): float|int
-    {
-        if ($old and isset($this->old_price)) {
-            return round($this->old_price * $currency->rate, 2);
-        } else {
-            return round($this->price * $currency->rate, 2);
-        }
-    }
-
-    public function removeCount(int $countRemove): bool
-    {
-        if ($this->count < $countRemove) {
-            return false;
-        }
-        $this->count = $this->count - $countRemove;
-        $this->save();
-        return true;
-    }
-
-    public function increaseCount(int $countIncrease): bool
-    {
-        $this->count = $this->count + $countIncrease;
-        $this->save();
-        return true;
-    }
-
-    public function scopeFilter(Builder $builder, QueryFilter $filters): Builder
-    {
-        return $filters->apply($builder);
-    }
 }

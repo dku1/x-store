@@ -22,12 +22,13 @@ class OrderController extends Controller
 
     public function create(Cart $cart): Factory|View|Application
     {
+        $cart->load('positions.product');
         return view('order.create', compact('cart'));
     }
 
     public function store(OrderRequest $request, Cart $cart): RedirectResponse
     {
          $this->service->save($request->validated(), $cart);
-         return redirect()->route('products.index')->with('success', 'Заказ успешно оформлен');
+         return redirect()->route('positions.index')->with('success', 'Заказ успешно оформлен');
     }
 }

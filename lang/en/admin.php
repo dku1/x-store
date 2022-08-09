@@ -47,6 +47,7 @@ return [
         'date_register' => 'Date register',
         'users_registered' => 'Users registered',
     ],
+    'count_positions' => 'Count positions',
     'for' => 'for',
     'options' => 'Options',
     'option' => 'Option',

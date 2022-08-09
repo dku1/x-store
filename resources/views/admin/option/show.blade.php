@@ -59,7 +59,7 @@
             </tr>
             <tr>
                 <td>{{ __('admin.categories.count_products') }}</td>
-                <td>{{ $option->products()->count() }}</td>
+                <td>{{ $option->products->count() }}</td>
             </tr>
         </table>
     </div>
@@ -72,14 +72,14 @@
             <tr>
                 <td class="text-center">{{ __('admin.title_ru') }}</td>
                 <td class="text-center">{{ __('admin.title_en') }}</td>
-                <td class="text-center">{{ __('admin.categories.count_products') }}</td>
+                <td class="text-center">{{ __('admin.count_positions') }}</td>
                 <td class="text-center">{{ __('admin.actions') }}</td>
             </tr>
             @foreach($option->values as $value)
                 <tr>
                     <td class="text-center">{{$value->title_ru}}</td>
                     <td class="text-center">{{$value->title_en}}</td>
-                    <td class="text-center">{{$value->products->count()}}</td>
+                    <td class="text-center">{{$value->positions->count()}}</td>
                     <td class="text-center">
                         <form action="{{ route('admin.options.values.destroy', [$option, $value]) }}" method="post">
                             @csrf

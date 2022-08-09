@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Coupon;
+use App\Models\Position;
 use App\Models\Product;
 use App\Services\CartService;
 use Illuminate\Contracts\Foundation\Application;
@@ -24,24 +25,24 @@ class CartController extends Controller
 
     public function index(Cart $cart): Factory|View|Application
     {
+        $cart->load('positions.product');
         return view('cart.index', compact('cart'));
     }
 
-    public function add(Product $product): RedirectResponse
+    public function add(Position $position): RedirectResponse
     {
         $cart = Cart::getBySessionOrCreate();
-        if ($this->service->add($cart, $product)){
-            return redirect()->back()->with('success', $product->getField('title') . ' добавлен в корзину');
+        if ($this->service->add($cart, $position)){
+            return redirect()->back()->with('success', $position->product->getField('title') . ' добавлен в корзину');
         }
-        return redirect()->back()->with('warning', $product->getField('title') . ' недоступен в полном объёме');
+        return redirect()->back()->with('warning', $position->product->getField('title') . ' недоступен в полном объёме');
     }
 
-    public function remove(Product $product): RedirectResponse
+    public function remove(Position $position): RedirectResponse
     {
         $cart = Cart::getBySessionOrCreate();
-        $this->service->remove($cart, $product);
-        session()->flash('warning', 'Количество товара уменьшено');
-        return redirect()->back();
+        $this->service->remove($cart, $position);
+        return redirect()->back()->with('warning', 'Количество товара уменьшено');
     }
 
     public function coupon(Request $request, Cart $cart): RedirectResponse

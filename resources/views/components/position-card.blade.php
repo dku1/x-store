@@ -1,30 +1,31 @@
 <div class="{{ $attributes->get('class') ?? 'col-lg-3' }} col-sm-6 mt-4" style="display: flex; vertical-align: middle;">
     <div class="card card-hover" style="width: 18rem;">
-        <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top" alt="Изображение недоступно"
+        <img src="{{ asset('storage/' . $position->image) }}" class="card-img-top" alt="Изображение недоступно"
              style="width: 286px; height: 286px">
         <div class="card-body">
             <h5 class="card-title"><a class="text-dark text-decoration-none"
-                                      href="{{ route('products.show', $product->id) }}">{{ $product->getField('title') }}</a>
+                                      href="{{ route('positions.show', $position) }}">{{ $position->product->getField('title') }}</a>
             </h5>
-            <p class="card-text"><a class="text-dark text-decoration-none"
-                                    href="{{ isset($product->category) ?
-                                    route('categories.show', $product->category) :
-                                    route('categories.index') }}">
-                    {{ isset($product->category) ? $product->category->getField('title') : '-'  }}
-                </a>
+            <p class="card-text">
+                @isset($position->product->category)
+                    <a class="text-dark text-decoration-none"
+                       href="{{ route('categories.show', $position->product->category ) }}">
+                        {{ $position->product->category->getField('title') }}
+                    </a>
+                @endisset
             </p>
         </div>
         <div class="card-footer text-muted links d-flex justify-content-between">
             <div class="mt-2">
-                {{ $product->convert($currentCurrency) }} {{ $currentCurrency->symbol }}
-                @isset($product->old_price)
+                {{ $position->convert($currentCurrency) }} {{ $currentCurrency->symbol }}
+                @isset($position->old_price)
                     <small class="text-decoration-line-through"
-                           style="margin-left: 15px">{{ $product->convert($currentCurrency, true) }} {{ $currentCurrency->symbol }}
+                           style="margin-left: 15px">{{ $position->convert($currentCurrency, true) }} {{ $currentCurrency->symbol }}
                     </small>
                 @endisset
             </div>
-            @if($product->available())
-                <a href="{{ route('cart.add', $product) }}" class="btn btn-success">
+            @if($position->available())
+                <a href="{{ route('cart.add', $position) }}" class="btn btn-success">
                     <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor"
                          class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
                         <path
