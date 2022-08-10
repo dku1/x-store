@@ -17,7 +17,7 @@ class PositionController extends Controller
 {
     public function index(PositionFilters $filters): Factory|View|Application
     {
-        $positions = Position::with('product')->filter($filters)->paginate(12);
+        $positions = Position::filter($filters)->paginate(12);
         $total = $positions->total();
         $options = Option::with('values')->get();
         return view('position.index', compact('positions', 'options', 'total'));
@@ -25,8 +25,10 @@ class PositionController extends Controller
 
     public function show(Position $position): Factory|View|Application
     {
-        $position->load('product');
-        return view('position.show', compact('position'));
+        $related = Position::byCategory($position->product->category)
+            ->where('id', '!=', $position->id)
+            ->get()->take(4);
+        return view('position.show', compact('position', 'related'));
     }
 
     public function subscribe(Request $request, Product $product): RedirectResponse

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Models\Product;
+use App\Models\Position;
 use App\Services\CategoryService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -21,14 +21,14 @@ class CategoryController extends Controller
     public function index(): Factory|View|Application
     {
         $categoryItems = $this->service->getItems();
-        $products = Product::paginate(9);
-        return view('category.index', compact('categoryItems', 'products'));
+        $positions = Position::paginate(12);
+        return view('category.index', compact('categoryItems', 'positions'));
     }
 
     public function show(Category $category): Factory|View|Application
     {
+        $positions = Position::byCategory($category)->paginate(12);
         $categoryItems = $this->service->getItems();
-        $products = Product::where('category_id', $category->id)->paginate(9);
-        return view('category.index', compact('categoryItems', 'products'));
+        return view('category.index', compact('categoryItems', 'positions'));
     }
 }

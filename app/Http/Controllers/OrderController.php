@@ -22,7 +22,7 @@ class OrderController extends Controller
 
     public function create(Cart $cart): Factory|View|Application
     {
-        $cart->load('positions.product');
+        $cart->load('positions');
         return view('order.create', compact('cart'));
     }
 

@@ -109,10 +109,10 @@
                 @endif
             </div>
         </div>
-        @if($position->getRelated()->count() != 0)
+        @if($related->count() != 0)
             <div class="row">
                 <h4 class="mt-3">Похожите товары</h4>
-                @foreach($position->getRelated() as $item)
+                @foreach($related as $item)
                     <x-position-card :position="$item" :currentCurrency="$currentCurrency"/>
                 @endforeach
             </div>

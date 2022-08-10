@@ -30,7 +30,7 @@ class PersonalAreaController extends Controller
 
     public function showProductsByOrder(Order $order): Factory|View|Application
     {
-        $order->load('cart.positions.product');
+        $order->load('cart.positions');
         if (!Gate::allows('view-order-products', $order)) return abort(403);
         return view('personal-area.show-products', compact('order'));
     }

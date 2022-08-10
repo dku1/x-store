@@ -11,12 +11,12 @@
             </div>
             <div class="col-lg-9">
                 <div class="card-group">
-                    @foreach($products as $product)
-                        <x-product-card :product="$product" :currentCurrency="$currentCurrency"/>
+                    @foreach($positions as $position)
+                        <x-position-card :position="$position" :currentCurrency="$currentCurrency"/>
                     @endforeach
                 </div>
                 <div class="d-flex justify-content-center paginate mt-5">
-                    {{ $products->onEachSide(1)->links('pagination::bootstrap-4') }}
+                    {{ $positions->onEachSide(1)->links('pagination::bootstrap-4') }}
                 </div>
             </div>
         </div>

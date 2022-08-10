@@ -16,6 +16,8 @@ class Position extends Model
 
     protected $fillable = ['product_id', 'price', 'old_price', 'count', 'image'];
 
+    protected $with = ['product'];
+
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
@@ -59,6 +61,13 @@ class Position extends Model
         $this->count = $this->count - $countRemove;
         $this->save();
         return true;
+    }
+
+    public function scopeByCategory($query, Category $category)
+    {
+        return $query->whereHas('product', function (Builder $query) use ($category) {
+            $query->where('category_id', $category->id);
+        });
     }
 
     public function increaseCount(int $countIncrease): bool
