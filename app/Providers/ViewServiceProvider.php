@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\View\Composers\AllCurrencyComposer;
-use App\View\Composers\CartComposer;
 use App\View\Composers\CurrentCurrencyComposer;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;

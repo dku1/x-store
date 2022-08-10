@@ -4,8 +4,8 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-between">
-            <div class="col-7 text-center">
-                <img src="{{ asset('storage/' . $position->image) }}" class="img-fluid" alt="Изображение недоступно"
+            <div class="col-md-7 m-auto">
+                <img src="{{ asset('storage/' . $position->image) }}" alt="Изображение недоступно"
                      style="max-height: 700px; max-width: 700px">
             </div>
             <div class="col-lg-4 mb-5 mb-lg-0">
@@ -18,27 +18,35 @@
                         <h2>{{ $position->product->getField('title') }}</h2>
                         <span
                             class="price fs-18">{{ $position->convert($currentCurrency) }} {{ $currentCurrency->symbol }}</span>
+                            @isset($position->old_price)
+                                <small class="text-decoration-line-through"
+                                       style="margin-left: 15px">{{ $position->convert($currentCurrency, true) }} {{ $currentCurrency->symbol }}
+                                </small>
+                            @endisset
                     </div>
                 </div>
                 <div class="row gutter-2">
-                    <div class="col-12 mt-2">
+                    <div class="col-12 mt-1">
                         @foreach($position->product->options as $option)
-                            <div class="form-group">
-                                <label>{{ $option->getField('title') }}</label>
-                                <div class="btn-group-toggle btn-group-square" data-toggle="buttons">
-                                    @foreach($option->values as $value)
-                                        <label class="btn">
-                                            <input type="radio" name="{{ $option->title_en }}"
-                                                   @if($position->values->contains($value)) checked @endif
-                                                   id="option-1"> {{ $value->getField('title') }}
-                                        </label>
-                                    @endforeach
+                            <div class="accordion mt-3" id="accordion-1">
+                                <div class="card active">
+                                    <div class="card-header" id="heading-1-1">
+                                        <h5 class="mb-0">{{ $option->getField('title') }}</h5>
+                                    </div>
+                                    <div id="collapse-1-1" class="collapse show" aria-labelledby="heading-1-1"
+                                         data-parent="#accordion-1">
+                                        <div class="card-body">
+                                            @foreach($option->values as $value)
+                                                <a href="#" class="text-dark text-decoration-none btn btn-secondary btn-sm mt-1">{{ $value->getField('title') }}</a>
+                                            @endforeach
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         @endforeach
                     </div>
                     @if($position->available())
-                        <div class="col-12 mt-2">
+                        <div class="col-12 mt-3">
                             <a href="{{ route('cart.add', $position) }}" class="btn btn-success">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor"
                                      class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
@@ -48,7 +56,7 @@
                             </a>
                         </div>
                     @else
-                        <div class="col-12 mt-2">
+                        <div class="col-12 mt-3">
                             <a href="#" class="btn btn-secondary" style="pointer-events: none">
                                 Товар закончился
                             </a>
@@ -83,7 +91,8 @@
                                     <div id="collapse-1-1" class="collapse show" aria-labelledby="heading-1-1"
                                          data-parent="#accordion-1">
                                         <div class="card-body">
-                                            <form method="post" action="{{ route('positions.subscription', $position) }}">
+                                            <form method="post"
+                                                  action="{{ route('positions.subscription', $position) }}">
                                                 @csrf
                                                 <div class="input-group mb-3">
                                                     @error('email')
@@ -110,11 +119,13 @@
             </div>
         </div>
         @if($related->count() != 0)
-            <div class="row">
-                <h4 class="mt-3">Похожите товары</h4>
-                @foreach($related as $item)
-                    <x-position-card :position="$item" :currentCurrency="$currentCurrency"/>
-                @endforeach
+            <div class="border rounded mt-5">
+                <h4 class="p-3 border-bottom related-position">Похожите товары</h4>
+                <div class="row p-3">
+                    @foreach($related as $item)
+                        <x-position-card :position="$item" :currentCurrency="$currentCurrency"/>
+                    @endforeach
+                </div>
             </div>
         @endif
     </div>

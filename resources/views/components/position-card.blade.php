@@ -1,4 +1,4 @@
-<div class="{{ $attributes->get('class') ?? 'col-lg-3' }} col-sm-6 mt-4" style="display: flex; vertical-align: middle;">
+<div class="{{ $attributes->get('class') ?? 'col-lg-3' }} col-sm-6" style="display: flex; vertical-align: middle;">
     <div class="card card-hover" style="width: 18rem;">
         <img src="{{ asset('storage/' . $position->image) }}" class="card-img-top" alt="Изображение недоступно"
              style="width: 286px; height: 286px">

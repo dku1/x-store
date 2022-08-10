@@ -11,7 +11,7 @@
             <div class="col-9">
                 <div class="card-group">
                     @foreach($positions as $position)
-                        <x-position-card class="col-lg-4" :position="$position" :currentCurrency="$currentCurrency"/>
+                        <x-position-card class="col-lg-4 mt-4" :position="$position" :currentCurrency="$currentCurrency"/>
                     @endforeach
                 </div>
                 <div class="d-flex justify-content-center paginate mt-5">

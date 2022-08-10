@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\Cart;
 use App\Models\Currency;
 use App\Models\Order;
-use App\Models\Product;
 
 class OrderService
 {

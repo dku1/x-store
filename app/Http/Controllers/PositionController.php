@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Filters\PositionFilters;
 use App\Models\Option;
 use App\Models\Position;
-use App\Models\Product;
 use App\Models\Subscription;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;

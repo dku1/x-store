@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Models\Position;
-use App\Models\Product;
 use App\Models\Subscription;
 
 class PositionObserver

@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Models\Cart;
-use App\Models\Currency;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

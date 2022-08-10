@@ -1,18 +1,18 @@
 .active-category {
-    background-color: #494949;
-    border: 1px solid #494949;
+    background-color:  #F5F5F5;
+    border: 1px solid  	#707070;
     border-radius: 5px;
 }
 
 .category-item {
     border-radius: 5px;
-    width: 300px;
+    width: auto;
 }
 
 .category-item:hover {
     transition: 0.5s;
-    background-color: #494949;
-    border: 1px solid #494949;
+    background-color:  #F5F5F5;
+    border: 1px solid  	#707070;
 }
 
 .main-content {
@@ -73,5 +73,12 @@ nav.profile {
     transition: 0.2s;
     background-color: #b2b1b1;
 }
+
+/* position */
+.related-position{
+    background-color: #F5F5F5;
+}
+/* position */
+
 
 
