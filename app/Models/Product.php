@@ -31,11 +31,6 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function subscriptions(): HasMany
-    {
-        return $this->hasMany(Subscription::class);
-    }
-
     public function options(): BelongsToMany
     {
         return $this->belongsToMany(Option::class);
@@ -45,16 +40,6 @@ class Product extends Model
     {
         return $this->hasMany(Position::class);
     }
-
-//    public function options(): \Illuminate\Support\Collection
-//    {
-//        $options = collect();
-//        foreach ($this->values as $value) {
-//            $options->push($value->option);
-//        }
-//        return $options;
-//    }
-
 
     public function availableForRemoval(): bool
     {

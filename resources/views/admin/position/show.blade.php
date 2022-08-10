@@ -81,6 +81,10 @@
                 <td>{{ $position->old_price }}</td>
             </tr>
             <tr>
+                <td>{{ __('subscription.subscriptions') }}</td>
+                <td>{{ $position->subscriptions->count() }}</td>
+            </tr>
+            <tr>
                 <td>{{ __('admin.last_update') }}</td>
                 <td class="align-middle">{{ $position->updated_at->format('d-m-Y') }}</td>
             </tr>

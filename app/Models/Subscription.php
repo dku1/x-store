@@ -13,20 +13,20 @@ class Subscription extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['email', 'product_id'];
+    protected $fillable = ['email', 'position_id'];
 
-    protected $with = ['product'];
+    protected $with = ['position'];
 
-    public function product(): BelongsTo
+    public function position(): BelongsTo
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Position::class);
     }
 
-    public static function sendEmails(Product $product)
+    public static function sendEmails(Position $position)
     {
-        $subscriptions = self::activeByProduct($product)->get();
+        $subscriptions = self::activeByProduct($position)->get();
         foreach ($subscriptions as $subscription) {
-            SendMessage::dispatch($subscription->email, new SendSubscriptionMessage($product));
+            SendMessage::dispatch($subscription->email, new SendSubscriptionMessage($position));
             $subscription->status = 0;
             $subscription->save();
         }
@@ -37,9 +37,9 @@ class Subscription extends Model
         return self::where('email', auth()->user()->email)->active()->get();
     }
 
-    public static function subscriptionExists(string $email, Product $product): bool
+    public static function subscriptionExists(string $email, Position $position): bool
     {
-        $subscription = self::where('email', $email)->where('product_id', $product->id)->activeByProduct($product)->first();
+        $subscription = self::where('email', $email)->where('position_id', $position->id)->activeByProduct($position)->first();
         return (bool)$subscription;
     }
 
@@ -48,8 +48,8 @@ class Subscription extends Model
         return $query->where('status', 1);
     }
 
-    public function scopeActiveByProduct($query, Product $product)
+    public function scopeActiveByProduct($query, Position $position)
     {
-        return $query->where('status', 1)->where('product_id', $product->id);
+        return $query->where('status', 1)->where('position_id', $position->id);
     }
 }

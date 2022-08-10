@@ -31,12 +31,12 @@ class PositionController extends Controller
         return view('position.show', compact('position', 'related'));
     }
 
-    public function subscribe(Request $request, Product $product): RedirectResponse
+    public function subscribe(Request $request, Position $position): RedirectResponse
     {
-        if (!Subscription::subscriptionExists($request->email, $product)) {
-            Subscription::create(['email' => $request->email, 'product_id' => $product->id]);
+        if (!Subscription::subscriptionExists($request->email, $position)) {
+            Subscription::create(['email' => $request->email, 'position_id' => $position->id]);
             return redirect()->back()->with('success',
-                'Спасибо, мы сообщим о поступлении ' . $product->getField('title'));
+                'Спасибо, мы сообщим о поступлении ' . $position->product->getField('title'));
         }
         return redirect()->back()->with('warning', 'Вы уже подписаны на этот товар');
     }

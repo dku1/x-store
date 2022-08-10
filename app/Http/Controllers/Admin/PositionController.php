@@ -64,6 +64,7 @@ class PositionController extends Controller
      */
     public function show(Position $position): View|Factory|Application
     {
+        $position->load('subscriptions');
         return view('admin.position.show', compact('position'));
     }
 

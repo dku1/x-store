@@ -17,10 +17,10 @@
                     <tbody>
                     @foreach($subscriptions as $subscription)
                         <tr>
-                            <td class="text-center align-middle"><img src="{{ asset('storage/' . $subscription->product->image) }}" class="card-img-top" alt="Изображение недоступно"
+                            <td class="text-center align-middle"><img src="{{ asset('storage/' . $subscription->position->image) }}" class="card-img-top" alt="Изображение недоступно"
                                                                       style="width: 150px; height: 150px"></td>
-                            <td class="text-center align-middle"><a class="text-dark text-decoration-none" href="{{ route('products.show', $subscription->product) }}">
-                                    {{ $subscription->product->getField('title') }}
+                            <td class="text-center align-middle"><a class="text-dark text-decoration-none" href="{{ route('positions.show', $subscription->position) }}">
+                                    {{ $subscription->position->product->getField('title') }}
                                 </a></td>
                         </tr>
                     @endforeach

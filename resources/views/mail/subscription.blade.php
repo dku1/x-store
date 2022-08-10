@@ -1,1 +1,1 @@
-Hello, product {{ $product->title_en }} appeared in stock!
+Hello, product {{ $position->product->title_en }} appeared in stock!

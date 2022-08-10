@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\Product;
+use App\Models\Position;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -12,16 +12,16 @@ class SendSubscriptionMessage extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public Product $product;
+    public Position $position;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Product $product)
+    public function __construct(Position $position)
     {
-        $this->product = $product;
+        $this->position = $position;
     }
 
     /**
