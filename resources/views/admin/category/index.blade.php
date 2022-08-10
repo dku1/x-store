@@ -25,6 +25,7 @@
         </div>
     </div>
 
+    @if($categories->count() != 0)
     <div class="col-9 m-auto">
         <table class="table mt-3 table-dark table-hover">
             <thead>
@@ -84,4 +85,7 @@
             {{ $categories->links('pagination::bootstrap-4') }}
         </div>
     </div>
+    @else
+        <h3 class="ml-3">Категории отсутствуют</h3>
+    @endif
 @endsection

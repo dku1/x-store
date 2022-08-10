@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\Product;
+use App\Models\Position;
 use App\Observers\PositionObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -28,7 +28,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Product::observe(PositionObserver::class);
+        Position::observe(PositionObserver::class);
     }
 
     /**

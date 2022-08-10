@@ -82,7 +82,7 @@
             </tr>
             <tr>
                 <td>{{ __('subscription.subscriptions') }}</td>
-                <td>{{ $position->subscriptions->count() }}</td>
+                <td>{{ $position->subscriptions()->active()->count() }}</td>
             </tr>
             <tr>
                 <td>{{ __('admin.last_update') }}</td>

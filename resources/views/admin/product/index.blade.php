@@ -23,7 +23,7 @@
             </div>
         </div>
     </div>
-
+    @if($products->count() != 0)
     <div class="col-9 m-auto">
         <table class="table mt-3 table-dark table-hover">
             <thead>
@@ -93,4 +93,7 @@
             {{ $products->links('pagination::bootstrap-4') }}
         </div>
     </div>
+    @else
+        <h3 class="ml-3">Товары отсутствуют</h3>
+    @endif
 @endsection

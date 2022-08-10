@@ -65,10 +65,6 @@
                 <td>{{ $product->positions->count() }}</td>
             </tr>
             <tr>
-                <td>{{ __('subscription.subscriptions') }}</td>
-                <td>{{ $product->subscriptions()->active()->count() }}</td>
-            </tr>
-            <tr>
                 <td>{{ __('admin.category') }}</td>
                 <td>{{ isset($product->category) ? $product->category->getField('title') : '-' }}</td>
             </tr>

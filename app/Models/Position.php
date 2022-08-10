@@ -71,8 +71,9 @@ class Position extends Model
 
     public function scopeByCategory($query, Category $category)
     {
-        return $query->whereHas('product', function (Builder $query) use ($category) {
-            $query->where('category_id', $category->id);
+        $ids = $this->getChildrenIds($category);
+        return $query->whereHas('product', function (Builder $query) use ($category, $ids) {
+            $query->where('category_id', $category->id)->orWhereIn('category_id', $ids);
         });
     }
 
@@ -81,5 +82,17 @@ class Position extends Model
         $this->count = $this->count + $countIncrease;
         $this->save();
         return true;
+    }
+
+    private function getChildrenIds(Category $category): array
+    {
+        $ids = [];
+        foreach ($category->children as $child){
+            if (isset($child->children)){
+               $ids = array_merge($ids, $this->getChildrenIds($child));
+            }
+            $ids[] = $child->id;
+        }
+        return $ids;
     }
 }

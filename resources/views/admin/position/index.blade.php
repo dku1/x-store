@@ -21,7 +21,7 @@
             </div>
         </div>
     </div>
-
+    @if($positions->count() != 0)
     <div class="col-9 m-auto">
         <table class="table mt-3 table-dark table-hover">
             <thead>
@@ -85,4 +85,7 @@
             {{ $positions->links('pagination::bootstrap-4') }}
         </div>
     </div>
+    @else
+        <h3 class="ml-3">Позиции отсутствуют</h3>
+    @endif
 @endsection

@@ -10,9 +10,13 @@
             </div>
             <div class="col-9">
                 <div class="card-group">
+                    @if($positions->count() != 0)
                     @foreach($positions as $position)
                         <x-position-card class="col-lg-4 mt-4" :position="$position" :currentCurrency="$currentCurrency"/>
                     @endforeach
+                    @else
+                    <h3 class="mt-4">Товары не найдены</h3>
+                    @endif
                 </div>
                 <div class="d-flex justify-content-center paginate mt-5">
                     {{ $positions->onEachSide(1)->withQueryString()->links('pagination::bootstrap-4') }}

@@ -74,12 +74,12 @@ class ValueController extends Controller
      */
     public function destroy(Option $option, Value $value): RedirectResponse
     {
-        if ($value->products->count() == 0){
+        if ($value->positions->count() == 0){
             $value->delete();
             session()->flash('warning', 'Значение удалено');
         }else{
             session()->flash('warning', 'Значение имеет продукты!');
         }
-        return redirect()->route('admin.options.index', $option);
+        return redirect()->route('admin.options.show', $option);
     }
 }
