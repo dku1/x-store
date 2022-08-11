@@ -84,12 +84,17 @@ class Position extends Model
         return true;
     }
 
+    public function scopeByProductValue($query, Product $product, Value $value)
+    {
+        return $query->where('product_id', $product->id)->whereRelation('values', 'value_id', '=', $value->id);
+    }
+
     private function getChildrenIds(Category $category): array
     {
         $ids = [];
-        foreach ($category->children as $child){
-            if (isset($child->children)){
-               $ids = array_merge($ids, $this->getChildrenIds($child));
+        foreach ($category->children as $child) {
+            if (isset($child->children)) {
+                $ids = array_merge($ids, $this->getChildrenIds($child));
             }
             $ids[] = $child->id;
         }

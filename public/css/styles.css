@@ -80,5 +80,21 @@ nav.profile {
 }
 /* position */
 
+/* total products */
+.total{
+    background-color:  #F5F5F5;
+}
+/* total products */
+
+.value-links{
+    color: white;
+    text-decoration: none;
+}
+
+.value-links:hover{
+    color: black;
+    text-decoration: none;
+}
+
 
 

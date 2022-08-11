@@ -44,7 +44,8 @@
         </div>
     </x-filter-form>
 
-    <x-filter-form title="{{ __('filter.options') }}" class="mt-3" buttonText="{{ __('filter.apply') }}" margin="mt-1" style="margin-left: 10px">
+    <x-filter-form title="{{ __('filter.options') }}" class="mt-3" buttonText="{{ __('filter.apply') }}" margin="mt-1"
+                   style="margin-left: 10px">
         @foreach($options as $option)
             <div class="dropdown">
                 <button class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -70,9 +71,5 @@
             </div>
         @endforeach
     </x-filter-form>
-
-    <div class="card border-0">
-        <a href="#" class="btn btn-dark mt-3" style="pointer-events: none">{{ __('filter.products')  }}
-            : {{ $total }}</a>
-    </div>
+    <h5 class="mt-3 total p-2 border rounded">{{ __('filter.products')  }} : {{ $total }}</h5>
 </aside>

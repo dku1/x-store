@@ -5,7 +5,6 @@
 @section('content')
     <div class="container">
         <h3 class="text-center mt-4">{{ request()->routeIs('categories.show') ? request()->category->getField('title') :  __('main.menu.categories') }}</h3>
-
         <div class="d-flex align-items-start">
             <div class="col-md-3 col-lg-3 mt-4 border rounded">
                 <div class="border-bottom">
@@ -17,7 +16,6 @@
                     @include('category-tree', ['categoryItems' => $categoryItems])
                 </div>
             </div>
-
             <div class="col-lg-9" style="margin-left: 20px">
                 <div class="card-group">
                     @if($positions->count() != 0)
@@ -34,7 +32,5 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 @endsection

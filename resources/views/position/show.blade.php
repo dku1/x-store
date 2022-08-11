@@ -18,11 +18,11 @@
                         <h2>{{ $position->product->getField('title') }}</h2>
                         <span
                             class="price fs-18">{{ $position->convert($currentCurrency) }} {{ $currentCurrency->symbol }}</span>
-                            @isset($position->old_price)
-                                <small class="text-decoration-line-through"
-                                       style="margin-left: 15px">{{ $position->convert($currentCurrency, true) }} {{ $currentCurrency->symbol }}
-                                </small>
-                            @endisset
+                        @isset($position->old_price)
+                            <small class="text-decoration-line-through"
+                                   style="margin-left: 15px">{{ $position->convert($currentCurrency, true) }} {{ $currentCurrency->symbol }}
+                            </small>
+                        @endisset
                     </div>
                 </div>
                 <div class="row gutter-2">
@@ -37,7 +37,12 @@
                                          data-parent="#accordion-1">
                                         <div class="card-body">
                                             @foreach($option->values as $value)
-                                                <a href="#" class="text-dark text-decoration-none btn btn-secondary btn-sm mt-1">{{ $value->getField('title') }}</a>
+                                                @if($values->contains($value))
+                                                    <a href="{{ route('positions.show-by', [$position->product, $value]) }}"
+                                                       class="value-links btn-sm
+                                                   @if($position->values->contains($value))
+                                                           bg-info @else bg-secondary @endif">{{ $value->getField('title') }}</a>
+                                                @endif
                                             @endforeach
                                         </div>
                                     </div>
@@ -62,23 +67,6 @@
                             </a>
                         </div>
                     @endif
-                </div>
-                <div class="row mt-3">
-                    <div class="col">
-                        <div class="accordion" id="accordion-1">
-                            <div class="card active">
-                                <div class="card-header" id="heading-1-1">
-                                    <h5 class="mb-0">Описание</h5>
-                                </div>
-                                <div id="collapse-1-1" class="collapse show" aria-labelledby="heading-1-1"
-                                     data-parent="#accordion-1">
-                                    <div class="card-body">
-                                        {{ $position->product->description }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 @if(!$position->available())
                     <div class="row mt-3">
@@ -116,6 +104,24 @@
                         </div>
                     </div>
                 @endif
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col">
+                <div class="accordion" id="accordion-1">
+                    <div class="card active">
+                        <div class="card-header" id="heading-1-1">
+                            <h5 class="mb-0">Описание</h5>
+                        </div>
+                        <div id="collapse-1-1" class="collapse show" aria-labelledby="heading-1-1"
+                             data-parent="#accordion-1">
+                            <div class="card-body">
+                                {{ $position->product->description }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         @if($related->count() != 0)
