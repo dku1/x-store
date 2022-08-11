@@ -18,7 +18,7 @@ class PositionController extends Controller
 {
     public function index(PositionFilters $filters): Factory|View|Application
     {
-        $positions = Position::filter($filters)->paginate(12);
+        $positions = Position::with('product.category')->filter($filters)->paginate(12);
         $total = $positions->total();
         $options = Option::with('values')->get();
         return view('position.index', compact('positions', 'options', 'total'));
@@ -27,19 +27,18 @@ class PositionController extends Controller
     public function show(Position $position): Factory|View|Application
     {
         $values = Value::whereRelation('positions.product', 'id', '=', $position->product_id)->get();
-        $related = Position::byCategory($position->product->category)
+        $related = Position::with('product.category')
+            ->whereRelation('product', 'category_id', '=', $position->product->category_id)
             ->where('id', '!=', $position->id)
-            ->get()->take(4);
+            ->get()
+            ->take(4);
         return view('position.show', compact('position', 'related', 'values'));
     }
 
-    public function showByValue(Product $product, Value $value): RedirectResponse
+    public function showByValue(PositionFilters $filters, Product $product): RedirectResponse
     {
-        $position = Position::byProductValue($product, $value)->first();
-        if ($position){
-            return redirect()->route('positions.show', $position);
-        }
-        return redirect()->back()->with('warning', 'Товар не найден');
+        $position = Position::where('product_id', $product->id)->filter($filters)->first();
+        return redirect()->route('positions.show', $position);
     }
 
     public function subscribe(Request $request, Position $position): RedirectResponse

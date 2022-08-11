@@ -15,11 +15,11 @@ class CategoryService
     private function buildTree($categoryItems)
     {
         $grouped = $categoryItems->groupBy('parent_id');
-        foreach ($categoryItems as $item){
-            if ($grouped->has($item->id)){
+        foreach ($categoryItems as $item) {
+            if ($grouped->has($item->id)) {
                 $item->children = $grouped[$item->id];
             }
         }
-        return $categoryItems->where('parent_id',0);
+        return $categoryItems->where('parent_id', 0);
     }
 }

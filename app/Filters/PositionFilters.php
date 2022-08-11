@@ -33,4 +33,9 @@ class PositionFilters extends QueryFilter
         return $this->builder->join('position_value', 'positions.id', '=',
             'position_value.position_id')->whereIn('value_id', $valuesIds)->select('positions.*')->distinct();
     }
+
+    public function value(int $id)
+    {
+        return $this->builder->whereRelation('values', 'value_id', '=', $id);
+    }
 }

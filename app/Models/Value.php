@@ -14,8 +14,6 @@ class Value extends Model
 
     protected $fillable = ['title_ru', 'title_en', 'option_id'];
 
-    protected $with = ['option'];
-
     public function option(): BelongsTo
     {
         return $this->belongsTo(Option::class);

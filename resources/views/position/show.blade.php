@@ -36,14 +36,16 @@
                                     <div id="collapse-1-1" class="collapse show" aria-labelledby="heading-1-1"
                                          data-parent="#accordion-1">
                                         <div class="card-body">
-                                            @foreach($option->values as $value)
-                                                @if($values->contains($value))
-                                                    <a href="{{ route('positions.show-by', [$position->product, $value]) }}"
-                                                       class="value-links btn-sm
-                                                   @if($position->values->contains($value))
-                                                           bg-info @else bg-secondary @endif">{{ $value->getField('title') }}</a>
-                                                @endif
-                                            @endforeach
+                                            <form action="{{ route('positions.show-by', $position->product) }}" method="get">
+                                                @foreach($option->values as $value)
+                                                    @if($values->contains($value))
+                                                        <button
+                                                            name="value"
+                                                            value="{{ $value->id }}"
+                                                            class="value-button rounded @if($position->values->contains($value)) active @endif">{{ $value->getField('title') }}</button>
+                                                    @endif
+                                                @endforeach
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

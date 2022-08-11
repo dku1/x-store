@@ -17,8 +17,6 @@ class Position extends Model
 
     protected $fillable = ['product_id', 'price', 'old_price', 'count', 'image'];
 
-    protected $with = ['product'];
-
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
@@ -71,9 +69,9 @@ class Position extends Model
 
     public function scopeByCategory($query, Category $category)
     {
-        $ids = $this->getChildrenIds($category);
-        return $query->whereHas('product', function (Builder $query) use ($category, $ids) {
-            $query->where('category_id', $category->id)->orWhereIn('category_id', $ids);
+        $ids = array_merge([$category->id], $category->getChildrenIds());
+        return $query->whereHas('product', function (Builder $query) use ($ids) {
+            $query->whereIn('category_id', $ids);
         });
     }
 
@@ -87,17 +85,5 @@ class Position extends Model
     public function scopeByProductValue($query, Product $product, Value $value)
     {
         return $query->where('product_id', $product->id)->whereRelation('values', 'value_id', '=', $value->id);
-    }
-
-    private function getChildrenIds(Category $category): array
-    {
-        $ids = [];
-        foreach ($category->children as $child) {
-            if (isset($child->children)) {
-                $ids = array_merge($ids, $this->getChildrenIds($child));
-            }
-            $ids[] = $child->id;
-        }
-        return $ids;
     }
 }

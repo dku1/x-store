@@ -86,15 +86,18 @@ nav.profile {
 }
 /* total products */
 
-.value-links{
-    color: white;
-    text-decoration: none;
+
+
+.value-button {
+    border: 2px solid transparent;
 }
 
-.value-links:hover{
-    color: black;
-    text-decoration: none;
+.value-button:hover, .active {
+    background: transparent;
+    color: #222;
+    border-color: #4676d7;
 }
+
 
 
 

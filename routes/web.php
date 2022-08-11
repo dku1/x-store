@@ -73,7 +73,7 @@ Route::group([
 ], function () {
     Route::get('index', [PositionController::class, 'index'])->name('index');
     Route::get('show/{position}', [PositionController::class, 'show'])->name('show');
-    Route::get('show-by/{product}/{value}', [PositionController::class, 'showByValue'])->name('show-by');
+    Route::get('show-by/{product}', [PositionController::class, 'showByValue'])->name('show-by');
     Route::post('subscription/{position}', [PositionController::class, 'subscribe'])->name('subscription');
 });
 
