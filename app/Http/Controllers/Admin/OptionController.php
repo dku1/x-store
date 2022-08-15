@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Filters\OptionFilters;
 use App\Http\Controllers\Controller;
 use App\Models\Option;
 use Illuminate\Contracts\Foundation\Application;
@@ -17,9 +18,9 @@ class OptionController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function index(): Application|Factory|View
+    public function index(OptionFilters $filters): Application|Factory|View
     {
-        $options = Option::with('values')->paginate(10);
+        $options = Option::filter($filters)->with('values.positions')->paginate(10);
         return view('admin.option.index', compact('options'));
     }
 

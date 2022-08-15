@@ -28,7 +28,7 @@ class CategoryController extends Controller
      */
     public function index(CategoryFilters $filters): View|Factory|Application
     {
-        $categories = $this->service->getItems($filters, true)->paginate(8);
+        $categories = $this->service->getItems($filters)->paginate(8);
         return view('admin.category.index', compact('categories'));
     }
 

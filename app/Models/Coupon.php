@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Filter;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +13,7 @@ use Illuminate\Support\Str;
 
 class Coupon extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, Filter;
 
     protected $fillable = ['code', 'value', 'currency_id', 'disposable', 'status', 'end_date', 'type'];
 

@@ -6,6 +6,7 @@ return [
     'values' => 'Значения',
     'value' => 'значение',
     'for_option' => 'для опции',
+    'option_title' => 'Название опции',
     'actions' => 'Действия',
     'save' => 'Сохранить',
     'edit' => 'Редактирование',
@@ -42,6 +43,7 @@ return [
     'orders' => [
         'orders' => 'Заказы',
         'count_orders' => 'Количество заказов',
+        'goods_to_order' => 'Товары заказа',
     ],
     'users' => [
         'users' => 'Пользователи',

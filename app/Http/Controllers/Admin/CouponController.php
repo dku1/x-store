@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Filters\CouponFilters;
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
 use App\Models\Currency;
@@ -26,9 +27,9 @@ class CouponController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function index(): Application|Factory|View
+    public function index(CouponFilters $filters): Application|Factory|View
     {
-        $coupons = Coupon::with('currency')->paginate(10);
+        $coupons = Coupon::filter($filters)->with('currency')->paginate(8);
         return view('admin.coupon.index', compact('coupons'));
     }
 

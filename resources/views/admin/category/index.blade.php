@@ -51,7 +51,7 @@
                         <x-category-table-body :categories="$categories"/>
                     </table>
                     <div class="d-flex justify-content-center paginate mt-4">
-                        {{ $categories->links('pagination::bootstrap-4') }}
+                        {{ $categories->withQueryString()->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
             </div>
@@ -59,5 +59,4 @@
     @else
         <h3 class="ml-3">Категории отсутствуют</h3>
     @endif
-
 @endsection

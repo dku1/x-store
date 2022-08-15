@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Filter;
 use App\Models\Traits\Localization;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory, Localization, SoftDeletes;
+    use HasFactory, Localization, SoftDeletes, Filter;
 
     protected $fillable = [
         'title_ru',

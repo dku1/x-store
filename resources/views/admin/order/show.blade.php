@@ -8,7 +8,6 @@
             <div class="row mb-2">
                 <div class="col-sm-6 d-flex">
                     <h1 class="m-0">{{ __('order.order') . ' # ' . $order->id }}</h1>
-
                     <form class="ml-3" action="{{ route('admin.orders.destroy', $order) }}"
                           method="post">
                         @method('DELETE')
@@ -108,36 +107,6 @@
                     </td>
                 @endif
             </tr>
-        </table>
-    </div>
-
-    <div class="col-9 m-auto">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th class="text-center" scope="col">Изображение</th>
-                <th class="text-left" scope="col">Товар</th>
-                <th class="text-center" scope="col">Количество</th>
-                <th class="text-center" scope="col">Полная стоимость</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($order->cart->positions as $position)
-                <tr>
-                    <td class="text-center align-middle"><img
-                            width="150px"
-                            height="150px"
-                            src="{{ asset('storage/' . $position->image) }}" alt="Изображение недоступно"></td>
-                    <td class="text-left align-middle"><a class="text-decoration-none text-dark"
-                                                          href="{{ route('admin.positions.show', $position) }}">
-                            {{ $position->product->getField('title') }}
-                        </a>
-                    </td>
-                    <td class="text-center align-middle">{{ $position->pivot->quantity }}</td>
-                    <td class="text-center align-middle">{{ $order->cart->getFullPositionPrice($position, $order->currency) . ' ' . $order->currency->symbol }}</td>
-                </tr>
-            @endforeach
-            </tbody>
         </table>
     </div>
 @endsection

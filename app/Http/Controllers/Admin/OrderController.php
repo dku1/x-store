@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Filters\OrderFilters;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Contracts\Foundation\Application;
@@ -16,10 +17,12 @@ class OrderController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function index(): View|Factory|Application
+    public function index(OrderFilters $filters): View|Factory|Application
     {
-        $allOrders = Order::with('currency', 'cart.positions', 'cart.coupons')->get()->groupBy('status');
-        $orders = $allOrders[0]->merge($allOrders[1]);
+        $orders = Order::filter($filters)
+            ->with('currency', 'cart.positions.product', 'cart.coupons')
+            ->orderBy('status')
+            ->paginate(8);
         return view('admin.order.index', compact('orders'));
     }
 

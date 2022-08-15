@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Filters\CurrencyFilters;
 use App\Http\Controllers\Controller;
 use App\Models\Currency;
 use App\Services\CurrencyService;
@@ -25,9 +26,9 @@ class CurrencyController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function index(): Application|Factory|View
+    public function index(CurrencyFilters $filters): Application|Factory|View
     {
-        $currencies = Currency::all();
+        $currencies = Currency::filter($filters)->get();
         return view('admin.currency.index', compact('currencies'));
     }
 

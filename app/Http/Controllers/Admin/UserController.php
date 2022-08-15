@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Actions\Admin\UserCreate;
+use App\Filters\UserFilters;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
@@ -19,9 +20,9 @@ class UserController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function index(): View|Factory|Application
+    public function index(UserFilters $filters): View|Factory|Application
     {
-        $users = User::with('orders')->get();
+        $users = User::filter($filters)->with('orders')->paginate(9);
         return view('admin.user.index', compact('users'));
     }
 

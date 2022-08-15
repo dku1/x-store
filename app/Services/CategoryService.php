@@ -7,10 +7,9 @@ use App\Models\Category;
 
 class CategoryService
 {
-    public function getItems(?CategoryFilters $filters = null, $loadProducts = false)
+    public function getItems(?CategoryFilters $filters = null)
     {
-        $categoryItems = Category::orderBy('parent_id')->with('children');
-        if ($loadProducts) $categoryItems->with('products');
+        $categoryItems = Category::orderBy('parent_id');
         if (request()->search){
             return $categoryItems->filter($filters)->get();
         }

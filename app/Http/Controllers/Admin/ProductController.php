@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Filters\ProductFilters;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Option;
@@ -28,9 +29,9 @@ class ProductController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function index(): View|Factory|Application
+    public function index(ProductFilters $filters): View|Factory|Application
     {
-        $products = Product::with('positions')->orderBy('updated_at', 'desc')->paginate(10);
+        $products = Product::filter($filters)->with('positions')->orderBy('updated_at', 'desc')->paginate(9);
         return view('admin.product.index', compact('products'));
     }
 

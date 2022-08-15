@@ -7,6 +7,7 @@ return [
     'value' => 'value',
     'for_option' => 'for option',
     'actions' => 'Actions',
+    'option_title' => 'Option title',
     'save' => 'Save',
     'edit' => 'Edit',
     'title_ru' => 'Title ru',
@@ -42,6 +43,7 @@ return [
     'orders' => [
         'orders' => 'Orders',
         'count_orders' => 'Count orders',
+        'goods_to_order' => 'Goods to order',
     ],
     'users' => [
         'users' => 'Users',

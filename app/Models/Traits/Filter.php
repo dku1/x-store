@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Traits;
 
 use App\Filters\QueryFilter;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 
-class BaseModel extends Model
+trait Filter
 {
     public function scopeFilter(Builder $builder, QueryFilter $filters): Builder
     {

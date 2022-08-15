@@ -2,17 +2,21 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Filter;
 use App\Models\Traits\Localization;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
-class Category extends BaseModel
+class Category extends Model
 {
-    use HasFactory, Localization;
+    use HasFactory, Localization, Filter;
 
     protected $fillable = ['title_ru', 'title_en', 'parent_id'];
+
+    protected $with = ['products', 'children'];
 
     public function products(): HasMany
     {

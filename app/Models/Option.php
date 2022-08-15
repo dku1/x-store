@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Filter;
 use App\Models\Traits\Localization;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Option extends Model
 {
-    use HasFactory, SoftDeletes, Localization;
+    use HasFactory, SoftDeletes, Localization, Filter;
 
     protected $fillable = ['title_ru', 'title_en'];
 
