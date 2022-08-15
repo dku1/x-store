@@ -46,7 +46,7 @@
         </div>
     </div>
     <div class="col-6 m-auto">
-        <table class="table mt-3 table-dark table-hover">
+        <table class="table mt-3 table-bordered table-hover">
             <tr>
                 <td>#</td>
                 <td>{{ $position->id }}</td>
@@ -59,14 +59,14 @@
             <tr>
                 <td>{{ __('admin.products.product') }}</td>
                 <td><a href="{{ route('admin.products.show', $position->product) }}"
-                       class="text-white text-decoration-none">{{ $position->product->getField('title') }}</a></td>
+                       class="text-dark text-decoration-none">{{ $position->product->getField('title') }}</a></td>
             </tr>
             <tr>
                 <td>{{ __('admin.category') }}</td>
                 <td>
                     @isset($position->product->category)
                         <a href="{{ route('admin.categories.show', $position->product->category) }}"
-                           class="text-white text-decoration-none">{{ $position->product->category->getField('title') }}</a>
+                           class="text-dark text-decoration-none">{{ $position->product->category->getField('title') }}</a>
                     @else
                         -
                     @endisset

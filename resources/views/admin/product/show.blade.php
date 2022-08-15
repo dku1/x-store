@@ -47,7 +47,7 @@
     </div>
 
     <div class="col-12 m-auto">
-        <table class="table mt-3 table-dark table-hover">
+        <table class="table mt-3 table-bordered table-hover">
             <tr>
                 <td>#</td>
                 <td>{{ $product->id }}</td>

@@ -57,6 +57,7 @@ class UserController extends Controller
      */
     public function show(User $user): View|Factory|Application
     {
+        $user->load('orders.cart.positions', 'orders.cart.coupons', 'orders.currency');
         return view('admin.user.show', compact('user'));
     }
 

@@ -46,7 +46,7 @@
     </div>
 
     <div class="col-9 m-auto">
-        <table class="table mt-3 table-dark table-hover mb-4">
+        <table class="table mt-3 table-bordered table-hover mb-4">
             <tr>
                 <td>#</td>
                 <td>{{ $order->id }}</td>

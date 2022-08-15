@@ -49,6 +49,7 @@ return [
         'users' => 'Users',
         'date_register' => 'Date register',
         'users_registered' => 'Users registered',
+        'user_orders' => 'User orders',
     ],
     'count_positions' => 'Count positions',
     'for' => 'for',
