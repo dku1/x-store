@@ -18,6 +18,7 @@ return [
         'count_products' => 'Кол-во товаров',
         'parent_category' => 'Родительская категория',
         'count_sub_category' => 'Кол-во подкатегорий',
+        'subcategories_for' => 'Подкатегории для категории',
     ],
     'products' => [
         'product' => 'Товар',

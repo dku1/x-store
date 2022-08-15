@@ -4,12 +4,11 @@ namespace App\Models;
 
 use App\Models\Traits\Localization;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
-class Category extends Model
+class Category extends BaseModel
 {
     use HasFactory, Localization;
 
@@ -18,6 +17,11 @@ class Category extends Model
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function positions(): HasManyThrough
+    {
+        return $this->hasManyThrough(Position::class, Product::class, 'category_id', 'product_id', 'id', 'id');
     }
 
     public function parent(): BelongsTo
@@ -30,14 +34,22 @@ class Category extends Model
         return $this->hasMany(self::class, 'parent_id');
     }
 
+    public function childrenExist(): bool
+    {
+        return $this->children->count() > 0;
+    }
+
+    public function existsFromChildrenNamed($keyword): bool
+    {
+        return $this->children()
+            ->where('title_ru', 'like', '%' . $keyword . '%')
+            ->orWhere('title_en', 'like', '%' . $keyword . '%')
+            ->get()->count() > 0;
+    }
+
     public function availableForRemoval(): bool
     {
         return $this->children->count() === 0 and $this->products->count() === 0;
-    }
-
-    public function positions(): HasManyThrough
-    {
-        return $this->hasManyThrough(Position::class, Product::class, 'category_id', 'product_id', 'id', 'id');
     }
 
     public function getChildrenIds(): array

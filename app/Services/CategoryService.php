@@ -2,14 +2,19 @@
 
 namespace App\Services;
 
+use App\Filters\CategoryFilters;
 use App\Models\Category;
 
 class CategoryService
 {
-    public function getItems()
+    public function getItems(?CategoryFilters $filters = null, $loadProducts = false)
     {
-        $categoryItems = Category::orderBy('parent_id')->with('children')->get();
-        return $this->buildTree($categoryItems);
+        $categoryItems = Category::orderBy('parent_id')->with('children');
+        if ($loadProducts) $categoryItems->with('products');
+        if (request()->search){
+            return $categoryItems->filter($filters)->get();
+        }
+        return $this->buildTree($categoryItems->get());
     }
 
     private function buildTree($categoryItems)

@@ -13,4 +13,5 @@ return [
     'apply' => 'Применить',
     'options' => 'Опции',
     'products' => 'Товаров',
+    'category_title' => 'Название категории',
 ];

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Filters\CategoryFilters;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Services\CategoryService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -12,14 +14,21 @@ use Illuminate\Http\RedirectResponse;
 
 class CategoryController extends Controller
 {
+    public CategoryService $service;
+
+    public function __construct(CategoryService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return Application|Factory|View
      */
-    public function index(): View|Factory|Application
+    public function index(CategoryFilters $filters): View|Factory|Application
     {
-        $categories = Category::with('products')->orderBy('updated_at', 'desc')->paginate(10);
+        $categories = $this->service->getItems($filters, true)->paginate(8);
         return view('admin.category.index', compact('categories'));
     }
 
@@ -92,10 +101,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category): RedirectResponse
     {
-        if ($category->availableForRemoval()){
+        if ($category->availableForRemoval()) {
             $category->delete();
             session()->flash('warning', 'Категория удалена');
-        }else{
+        } else {
             session()->flash('warning', 'Категорию нельзя удалить');
         }
         return redirect()->route('admin.categories.index');

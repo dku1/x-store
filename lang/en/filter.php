@@ -13,4 +13,5 @@ return [
     'apply' => 'Apply',
     'options' => 'Options',
     'products' => 'Products',
+    'category_title' => 'Category title',
 ];

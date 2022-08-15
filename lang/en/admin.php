@@ -18,6 +18,7 @@ return [
         'count_products' => 'Count products',
         'parent_category' => 'Parent category',
         'count_sub_category' => 'Count sub categories',
+        'subcategories_for' => 'Subcategories for a category',
     ],
     'products' => [
         'product' => 'Product',
