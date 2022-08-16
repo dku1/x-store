@@ -2,6 +2,7 @@
 
 namespace App\Filters;
 
+use App\Models\Position;
 use Illuminate\Database\Eloquent\Builder;
 
 class PositionFilters extends QueryFilter
@@ -34,7 +35,7 @@ class PositionFilters extends QueryFilter
             'position_value.position_id')->whereIn('value_id', $valuesIds)->select('positions.*')->distinct();
     }
 
-    public function value(int $id)
+    public function value(int $id): Builder
     {
         return $this->builder->whereRelation('values', 'value_id', '=', $id);
     }

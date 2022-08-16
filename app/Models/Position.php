@@ -48,7 +48,7 @@ class Position extends Model
 
     public function getRelated()
     {
-        return self::where('product_id', $this->product_id)
+        return self::product($this->product_id)
             ->where('id', '!=', $this->id)->get()->take(3);
     }
 
@@ -77,8 +77,8 @@ class Position extends Model
         return true;
     }
 
-    public function scopeByProductValue($query, Product $product, Value $value)
+    public function scopeProduct($query, Product $product)
     {
-        return $query->where('product_id', $product->id)->whereRelation('values', 'value_id', '=', $value->id);
+        return $query->where('product_id', $product->id);
     }
 }

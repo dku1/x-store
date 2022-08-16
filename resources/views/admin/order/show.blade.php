@@ -133,7 +133,7 @@
             @endif
             <tr>
                 <td>{{ __('order.sum') }}</td>
-                <td>{{ $order->getSum()}} {{ $order->currency->symbol }}</td>
+                <td>{{ round($order->currency->convert($order->sum),2) }} {{ $order->currency->symbol }}</td>
             </tr>
             <tr>
                 <td>{{ __('order.city') }}</td>

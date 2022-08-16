@@ -11,12 +11,14 @@ class OrderService
     public function save(array $data, Cart $cart)
     {
         $data['cart_id'] = $cart->id;
-        $data['currency_id'] = Currency::getCurrent()->id;
+        $data['sum'] = session('cart_full_sum');
+        $data['currency_id'] = Currency::current()->first()->id;
         if (auth()->check()) {
             $data['user_id'] = auth()->user()->id;
         }
         $this->deactivateCouponsFromCart($cart);
         Order::create($data);
+        session(['cart_full_sum' => 0]);
         session()->regenerate();
     }
 

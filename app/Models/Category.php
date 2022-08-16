@@ -16,8 +16,6 @@ class Category extends Model
 
     protected $fillable = ['title_ru', 'title_en', 'parent_id'];
 
-    protected $with = ['products', 'children'];
-
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
@@ -46,9 +44,9 @@ class Category extends Model
     public function existsFromChildrenNamed($keyword): bool
     {
         return $this->children()
-            ->where('title_ru', 'like', '%' . $keyword . '%')
-            ->orWhere('title_en', 'like', '%' . $keyword . '%')
-            ->get()->count() > 0;
+                ->where('title_ru', 'like', '%' . $keyword . '%')
+                ->orWhere('title_en', 'like', '%' . $keyword . '%')
+                ->get()->count() > 0;
     }
 
     public function availableForRemoval(): bool

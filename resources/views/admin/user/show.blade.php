@@ -113,7 +113,7 @@
                                         {{ $order->email }}
                                     </td>
                                     <td class="text-center align-middle">
-                                        {{ $order->getSum() . ' ' . $order->currency->symbol }}
+                                        {{ round($order->currency->convert($order->sum),2) }} {{ $order->currency->symbol }}
                                     </td>
                                     <td class="text-center align-middle">
                                         {{ $order->city }}

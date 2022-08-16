@@ -22,7 +22,8 @@ class Order extends Model
         'coupon_id',
         'cart_id',
         'currency_id',
-        'email'
+        'email',
+        'sum',
     ];
 
     public function cart(): BelongsTo
@@ -54,10 +55,5 @@ class Order extends Model
     {
         $this->status = 1;
         $this->save();
-    }
-
-    public function getSum()
-    {
-        return $this->cart->getFullPrice($this->currency);
     }
 }

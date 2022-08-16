@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Filters\PositionFilters;
+use App\Models\Currency;
 use App\Models\Option;
 use App\Models\Position;
 use App\Models\Product;
@@ -37,7 +38,7 @@ class PositionController extends Controller
 
     public function showByValue(PositionFilters $filters, Product $product): RedirectResponse
     {
-        $position = Position::where('product_id', $product->id)->filter($filters)->first();
+        $position = Position::filter($filters)->product($product)->first();
         return redirect()->route('positions.show', $position);
     }
 

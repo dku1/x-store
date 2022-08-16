@@ -40,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
             );
         });
 
-        $this->app->bind(Cart::class, function ($app){
+        $this->app->singleton(Cart::class, function ($app){
             return Cart::getBySessionOrCreate();
         });
     }

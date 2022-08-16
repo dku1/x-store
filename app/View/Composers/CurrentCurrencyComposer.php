@@ -9,6 +9,6 @@ class CurrentCurrencyComposer
 {
     public function compose(View $view)
     {
-        $view->with(['currentCurrency' => Currency::getCurrent()]);
+        $view->with(['currentCurrency' => Currency::current()->first()]);
     }
 }

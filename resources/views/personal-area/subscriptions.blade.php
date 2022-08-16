@@ -16,7 +16,7 @@
                         <th class="text-center" scope="col">Товар</th>
                         <th class="text-center" scope="col">Дата подписки</th>
                     </tr>
-                    <div class="card-body">
+                    <div class="card-body p-0">
                         @foreach($subscriptions as $subscription)
                             <tr>
                                 <td class="text-center align-middle"><img

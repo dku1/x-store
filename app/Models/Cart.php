@@ -45,7 +45,7 @@ class Cart extends Model
     {
         $pivotRow = $this->positions->where('id', $position->id)->first()->pivot;
         if (is_null($currency)){
-            return $pivotRow->quantity * $position->convert(Currency::getCurrent());
+            return $pivotRow->quantity * $position->convert(Currency::current()->first());
         }else{
             return $pivotRow->quantity * $position->convert($currency);
         }
@@ -63,5 +63,11 @@ class Cart extends Model
              }
         }
         return $fullPrice;
+    }
+
+    public static function changeSum($changePrice)
+    {
+        $sum = session('cart_full_sum') + $changePrice;
+        session(['cart_full_sum' => $sum]);
     }
 }

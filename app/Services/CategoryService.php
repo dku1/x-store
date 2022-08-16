@@ -9,7 +9,7 @@ class CategoryService
 {
     public function getItems(?CategoryFilters $filters = null)
     {
-        $categoryItems = Category::orderBy('parent_id');
+        $categoryItems = Category::with('products', 'children')->orderBy('parent_id');
         if (request()->search){
             return $categoryItems->filter($filters)->get();
         }

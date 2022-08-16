@@ -42,7 +42,7 @@ class PositionController extends Controller
     public function store(PositionRequest $request): RedirectResponse
     {
         $this->service->store($request);
-        return redirect()->route('admin.positions.index')->with('success', 'Позиция добавлена');
+        return redirect()->route('admin.products.index')->with('success', 'Позиция добавлена');
     }
 
     /**

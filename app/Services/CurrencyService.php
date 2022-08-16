@@ -34,7 +34,7 @@ class CurrencyService
 
     public function convert($value): float|int
     {
-        $currency = Currency::getCurrent();
+        $currency = Currency::current()->first();
         return $value / $currency->rate;
     }
 }

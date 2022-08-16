@@ -32,7 +32,7 @@
                         @endforeach
                         <li class="list-group-item d-flex justify-content-between">
                             <span>{{ __('order.sum') }} ({{ $currentCurrency->code }})</span>
-                            <strong> {{ $cart->getFullPrice() }} {{ $currentCurrency->symbol }}</strong>
+                            <strong>{{ round($currentCurrency->convert(session('cart_full_sum')), 2)  . ' ' . $currentCurrency->symbol }}</strong>
                         </li>
                     </ul>
 

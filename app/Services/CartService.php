@@ -20,6 +20,7 @@ class CartService
         } else {
             $cart->positions()->attach($position);
         }
+        Cart::changeSum($position->price);
         return true;
     }
 
@@ -36,6 +37,7 @@ class CartService
             $pivotRow->save();
         }
         $position->increaseCount(1);
+        Cart::changeSum(-$position->price);
         return true;
     }
 

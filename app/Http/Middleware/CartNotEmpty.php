@@ -19,8 +19,7 @@ class CartNotEmpty
      */
     public function handle(Request $request, Closure $next): Response|RedirectResponse
     {
-        $cart = app()->make(Cart::class);
-        if ($cart->isEmpty()) {
+        if (session('cart_full_sum', 0) <= 0) {
             session()->flash('warning', 'Корзина пуста');
             return redirect()->route('positions.index');
         }

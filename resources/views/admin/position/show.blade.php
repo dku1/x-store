@@ -33,7 +33,7 @@
                 <a href="{{ route('admin.main') }}">{{ __('main.menu.main') }}</a>
             </li>
             <li class="breadcrumb-item">
-                <a class="text-primary" href="{{ route('admin.positions.index') }}">{{ __('main.menu.positions') }}</a>
+                <a class="text-primary" href="{{ route('admin.products.index') }}">{{ __('main.menu.positions') }}</a>
             </li>
             <li class="breadcrumb-item">
                 <a class="text-secondary" href="#">{{ $position->product->getField('title') }}</a>

@@ -36,13 +36,16 @@
                                     <div id="collapse-1-1" class="collapse show" aria-labelledby="heading-1-1"
                                          data-parent="#accordion-1">
                                         <div class="card-body">
-                                            <form action="{{ route('positions.show-by', $position->product) }}" method="get">
+                                            <form action="{{ route('positions.show-by', $position->product) }}"
+                                                  method="get">
                                                 @foreach($option->values as $value)
                                                     @if($values->contains($value))
                                                         <button
                                                             name="value"
                                                             value="{{ $value->id }}"
-                                                            class="value-button rounded @if($position->values->contains($value)) active @endif">{{ $value->getField('title') }}</button>
+                                                            class="value-button rounded @if($position->values->contains($value)) active @endif">
+                                                            {{ $value->getField('title') }}
+                                                        </button>
                                                     @endif
                                                 @endforeach
                                             </form>
@@ -127,7 +130,7 @@
             </div>
         </div>
         @if($related->count() != 0)
-            <div class="border rounded mt-5">
+            <div class="border rounded mt-5 mb-5">
                 <h4 class="p-3 border-bottom related-position">Похожите товары</h4>
                 <div class="row p-3">
                     @foreach($related as $item)

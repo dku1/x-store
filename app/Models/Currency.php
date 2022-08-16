@@ -13,13 +13,18 @@ class Currency extends Model
 
     protected $fillable = ['code', 'symbol', 'is_main', 'rate'];
 
-    public static function getCurrent()
+    public function scopeCurrent($query)
     {
-        return self::where('code', session('currency', 'RUB'))->first();
+        return $query->where('code', session('currency', 'RUB'));
     }
 
     public function isMain(): bool
     {
         return $this->is_main == 1;
+    }
+
+    public function convert(float|int $value): float|int
+    {
+        return $value * $this->rate;
     }
 }

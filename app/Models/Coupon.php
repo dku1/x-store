@@ -32,6 +32,11 @@ class Coupon extends Model
         return $this->belongsToMany(Cart::class, 'cart_coupon');
     }
 
+    public function scopeCode($query, string $code)
+    {
+        return $query->where('code', $code);
+    }
+
     public function disposable(): bool
     {
         return $this->disposable === 1;

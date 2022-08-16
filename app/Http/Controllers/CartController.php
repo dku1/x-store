@@ -28,27 +28,26 @@ class CartController extends Controller
         return view('cart.index', compact('cart'));
     }
 
-    public function add(Position $position): RedirectResponse
+    public function add(Position $position, Cart $cart): RedirectResponse
     {
-        $cart = Cart::getBySessionOrCreate();
         if ($this->service->add($cart, $position)){
             return redirect()->back()->with('success', $position->product->getField('title') . ' добавлен в корзину');
         }
         return redirect()->back()->with('warning', $position->product->getField('title') . ' недоступен в полном объёме');
     }
 
-    public function remove(Position $position): RedirectResponse
+    public function remove(Position $position, Cart $cart): RedirectResponse
     {
-        $cart = Cart::getBySessionOrCreate();
         $this->service->remove($cart, $position);
         return redirect()->back()->with('warning', 'Количество товара уменьшено');
     }
 
     public function coupon(Request $request, Cart $cart): RedirectResponse
     {
-        $coupon = Coupon::where('code', $request->code)->first();
+        $coupon = Coupon::code($request->code)->first();
         if (!$coupon or !$coupon->isAvailable()) return redirect()->back()->with('warning', 'Купон не действителен');
         $cart->coupons()->attach($coupon);
+        session(['cart_full_sum' => $this->service->recalculation(session('cart_full_sum'), $coupon)]);
         return redirect()->back();
     }
 }
