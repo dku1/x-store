@@ -18,34 +18,32 @@
     </x-admin.content-header>
     @if($categories->count() != 0)
         <div class="col-9 m-auto">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        <a href="{{ route('admin.categories.create') }}"
-                           class="btn btn-sm btn-success">{{ __('admin.create') }}</a>
-                    </h3>
-                    <div class="card-tools mt-1">
-                        <form action="#" method="get">
-                            <x-filters.filter-search placeholder="{{ __('filter.category_title') }}"/>
-                        </form>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <table class="table table-bordered table-hover">
-                        <tr>
-                            <th scope="col" class="text-center">#</th>
-                            <th scope="col" class="text-center">{{ __('admin.categories.title') }}</th>
-                            <th scope="col" class="text-center"
-                                class="text-center">{{ __('admin.categories.count_products') }}</th>
-                            <th scope="col" class="text-center" class="text-center">{{ __('admin.actions') }}</th>
-                        </tr>
-                        <x-category-table-body :categories="$categories"/>
-                    </table>
+            <x-admin.table-layout>
+                <x-slot:cardTitle>
+                    <a href="{{ route('admin.categories.create') }}"
+                       class="btn btn-sm btn-success">{{ __('admin.create') }}</a>
+                </x-slot:cardTitle>
+                <x-slot:cardTools>
+                    <form action="#" method="get">
+                        <x-filters.filter-search placeholder="{{ __('filter.category_title') }}"/>
+                    </form>
+                </x-slot:cardTools>
+                <x-slot:tableHeaders>
+                    <th scope="col" class="text-center">#</th>
+                    <th scope="col" class="text-center">{{ __('admin.categories.title') }}</th>
+                    <th scope="col" class="text-center"
+                        class="text-center">{{ __('admin.categories.count_products') }}</th>
+                    <th scope="col" class="text-center" class="text-center">{{ __('admin.actions') }}</th>
+                </x-slot:tableHeaders>
+                <x-slot:tableContent>
+                    <x-category-table-body :categories="$categories"/>
+                </x-slot:tableContent>
+                <x-slot:paginate>
                     <div class="d-flex justify-content-center paginate mt-4">
                         {{ $categories->withQueryString()->links('pagination::bootstrap-4') }}
                     </div>
-                </div>
-            </div>
+                </x-slot:paginate>
+            </x-admin.table-layout>
         </div>
     @else
         <h3 class="ml-3">Категории отсутствуют</h3>

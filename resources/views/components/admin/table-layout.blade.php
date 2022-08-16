@@ -16,5 +16,6 @@
                 {{ $tableContent }}
             </tr>
         </table>
+        {{ $paginate ?? '' }}
     </div>
 </div>
