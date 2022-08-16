@@ -1,23 +1,19 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Admin;
 
 use Illuminate\View\Component;
 
-class FilterForm extends Component
+class ContentHeader extends Component
 {
-
-    public string $title;
-    public string $buttonText;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(string $title, string $buttonText)
+    public function __construct()
     {
-        $this->title = $title;
-        $this->buttonText = $buttonText;
+        //
     }
 
     /**
@@ -27,6 +23,6 @@ class FilterForm extends Component
      */
     public function render()
     {
-        return view('components.filter-form');
+        return view('components.admin.content-header');
     }
 }

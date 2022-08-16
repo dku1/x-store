@@ -12,7 +12,18 @@ class Order extends Model
 {
     use HasFactory, SoftDeletes, Filter;
 
-    protected $fillable = ['first_name', 'last_name', 'address', 'city', 'index', 'user_id', 'coupon_id', 'cart_id', 'currency_id', 'email'];
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'address',
+        'city',
+        'index',
+        'user_id',
+        'coupon_id',
+        'cart_id',
+        'currency_id',
+        'email'
+    ];
 
     public function cart(): BelongsTo
     {

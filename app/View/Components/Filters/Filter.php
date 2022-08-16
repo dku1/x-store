@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Filters;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\Component;
@@ -28,6 +28,6 @@ class Filter extends Component
      */
     public function render()
     {
-        return view('components.filter');
+        return view('components.filters.filter');
     }
 }

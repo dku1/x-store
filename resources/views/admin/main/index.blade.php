@@ -3,23 +3,16 @@
 @section('title', 'x-store | Admin panel')
 
 @section('content')
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">Административная панель x-Store</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a class="text-secondary"
-                                                       href="#"
-                                                       style="pointer-events: none">{{ __('main.menu.main') }}</a>
-                        </li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
+    <x-admin.content-header>
+        <x-slot:title>
+            <h1>Административная панель x-Store</h1>
+        </x-slot:title>
+        <x-slot:breadcrumbs>
+            <li class="breadcrumb-item">
+                <a class="text-secondary" href="#" style="pointer-events: none">{{ __('main.menu.main') }}</a>
+            </li>
+        </x-slot:breadcrumbs>
+    </x-admin.content-header>
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -56,7 +49,8 @@
                                     d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z"/>
                             </svg>
                         </div>
-                        <a href="{{ route('admin.orders.index') }}" class="small-box-footer">{{ __('order.more_info') }}
+                        <a href="{{ route('admin.orders.index') .'?processed=1' }}"
+                           class="small-box-footer">{{ __('order.more_info') }}
                             <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
@@ -95,7 +89,8 @@
                                     d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
                             </svg>
                         </div>
-                        <a href="{{ route('admin.orders.index') }}" class="small-box-footer">{{ __('order.more_info') }}
+                        <a href="{{ route('admin.orders.index') .'?notProcessed=1' }}"
+                           class="small-box-footer">{{ __('order.more_info') }}
                             <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>

@@ -3,30 +3,21 @@
 @section('title', 'x-store | Admin panel | Заказы')
 
 @section('content')
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">{{ __('admin.orders.orders') }}</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.main') }}">{{ __('main.menu.main') }}</a>
-                        </li>
-                        <li class="breadcrumb-item"><a class="text-secondary"
-                                                       href="#"
-                                                       style="pointer-events: none">{{ __('admin.orders.orders') }}</a>
-                        </li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <x-admin.content-header>
+        <x-slot:title>
+            <h1>{{ __('admin.orders.orders') }}</h1>
+        </x-slot:title>
+        <x-slot:breadcrumbs>
+            <li class="breadcrumb-item"><a href="{{ route('admin.main') }}">{{ __('main.menu.main') }}</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a class="text-secondary" href="#" style="pointer-events: none">{{ __('admin.orders.orders') }}</a>
+            </li>
+        </x-slot:breadcrumbs>
+    </x-admin.content-header>
     <div class="col-9 m-auto d-flex justify-content-between align-items-start">
         <div class="card col-2">
             <div class="card-header">
-
                 <a href="{{ route('admin.orders.index') }}" class="btn btn-sm btn-primary">Все заказы</a>
             </div>
             <div class="card-body">
@@ -43,7 +34,7 @@
                 </h3>
                 <div class="card-tools">
                     <form action="#" method="get">
-                        <x-filter-search placeholder="email"/>
+                        <x-filters.filter-search placeholder="email"/>
                     </form>
                 </div>
             </div>
@@ -136,9 +127,11 @@
                                                 <td class="text-center align-middle"><img
                                                         width="100px"
                                                         height="100px"
-                                                        src="{{ asset('storage/' . $position->image) }}" alt="Изображение недоступно"></td>
-                                                <td class="text-left align-middle"><a class="text-decoration-none text-dark"
-                                                                                      href="{{ route('admin.positions.show', $position) }}">
+                                                        src="{{ asset('storage/' . $position->image) }}"
+                                                        alt="Изображение недоступно"></td>
+                                                <td class="text-left align-middle"><a
+                                                        class="text-decoration-none text-dark"
+                                                        href="{{ route('admin.positions.show', $position) }}">
                                                         {{ $position->product->getField('title') }}
                                                     </a>
                                                 </td>

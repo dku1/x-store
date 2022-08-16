@@ -27,11 +27,4 @@ class PersonalAreaController extends Controller
         $subscriptions = Subscription::getSubscriptionsByUser();
         return view('personal-area.subscriptions', compact('subscriptions'));
     }
-
-    public function showProductsByOrder(Order $order): Factory|View|Application
-    {
-        $order->load('cart.positions');
-        if (!Gate::allows('view-order-products', $order)) return abort(403);
-        return view('personal-area.show-products', compact('order'));
-    }
 }

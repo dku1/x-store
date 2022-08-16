@@ -37,12 +37,12 @@
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
             <li class="nav-item mr-3">
-                <a href="{{ route('main') }}" class="btn btn-primary">{{ __('personal-area.menu.go-main') }}</a>
+                <a href="{{ route('main') }}" class="btn btn-sm btn-outline-primary">{{ __('personal-area.menu.go_to_site') }}</a>
             </li>
             <li class="nav-item mr-1">
                 <form action="" method="post">
                     @csrf
-                    <button class="btn btn-danger">{{ __('auth.logout') }}</button>
+                    <button class="btn btn-sm btn-outline-danger">{{ __('auth.logout') }}</button>
                 </form>
             </li>
         </ul>
@@ -87,9 +87,7 @@
 <!-- jQuery UI 1.11.4 -->
 <script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
 <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 <script src="/plugins/select2/js/select2.full.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $.widget.bridge('uibutton', $.ui.button)
 </script>

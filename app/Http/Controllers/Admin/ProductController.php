@@ -31,7 +31,7 @@ class ProductController extends Controller
      */
     public function index(ProductFilters $filters): View|Factory|Application
     {
-        $products = Product::filter($filters)->with('positions')->orderBy('updated_at', 'desc')->paginate(9);
+        $products = Product::filter($filters)->with('positions.product')->orderBy('updated_at', 'desc')->paginate(9);
         return view('admin.product.index', compact('products'));
     }
 

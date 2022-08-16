@@ -3,34 +3,27 @@
 @section('title', 'x-store | Admin panel | Категории')
 
 @section('content')
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">{{ isset($category) ? __('admin.edit') . ' ' . $category->getField('title') : __('admin.create') }}</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.main') }}">{{ __('main.menu.main') }}</a>
-                        </li>
-                        <li class="breadcrumb-item"><a class="text-primary"
-                                                       href="{{ route('admin.categories.index') }}">{{ __('main.menu.categories') }}</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            @isset($category)
-                                <a class="text-secondary"
-                                   href="#" style="pointer-events: none">{{ __('admin.edit') }}</a>
-                            @else
-                                <a class="text-secondary"
-                                   href="#" style="pointer-events: none">{{ __('admin.create') }}</a>
-                            @endisset
-                        </li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <x-admin.content-header>
+        <x-slot:title>
+           <h1>{{ isset($category) ? __('admin.edit') . ' ' . $category->getField('title') : __('admin.create') }}</h1>
+        </x-slot:title>
+        <x-slot:breadcrumbs>
+            <li class="breadcrumb-item">
+                <a href="{{ route('admin.main') }}">{{ __('main.menu.main') }}</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a class="text-primary"
+                   href="{{ route('admin.categories.index') }}">{{ __('main.menu.categories') }}</a>
+            </li>
+            <li class="breadcrumb-item">
+                @isset($category)
+                    <a class="text-secondary" href="#" style="pointer-events: none">{{ __('admin.edit') }}</a>
+                @else
+                    <a class="text-secondary" href="#" style="pointer-events: none">{{ __('admin.create') }}</a>
+                @endisset
+            </li>
+        </x-slot:breadcrumbs>
+    </x-admin.content-header>
     <div class="col-8 m-auto">
         <form class="row g-3"
               action="{{ isset($category) ? route('admin.categories.update', $category) : route('admin.categories.store') }}"

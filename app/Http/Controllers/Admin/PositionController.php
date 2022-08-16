@@ -23,17 +23,6 @@ class PositionController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return Application|Factory|View
-     */
-    public function index(PositionFilters $filters): View|Factory|Application
-    {
-        $positions = Position::filter($filters)->with('product')->orderBy('updated_at', 'desc')->paginate(8);
-        return view('admin.position.index', compact('positions'));
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return Application|Factory|View

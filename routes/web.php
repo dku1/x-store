@@ -90,7 +90,7 @@ Route::group([
         'coupons' => AdminCouponController::class,
     ]);
     Route::get('positions/create/{product}', [AdminPositionController::class, 'create'])->name('positions.create');
-    Route::resource('positions', AdminPositionController::class)->except('create');
+    Route::resource('positions', AdminPositionController::class)->except(['index','create']);
     Route::resource('options.values', AdminValueController::class)->except(['show', 'index']);
     Route::resource('currencies', AdminCurrencyController::class)->except('show');
     Route::get('rates/update', [AdminCurrencyController::class, 'updateRates'])->name('rates.update');
@@ -110,8 +110,6 @@ Route::middleware([
     Route::prefix('personal-area')->group(function () {
         Route::get('dashboard', [PersonalAreaController::class, 'dashboard'])->name('dashboard');
         Route::get('orders', [PersonalAreaController::class, 'orders'])->name('personal-area.orders');
-        Route::get('orders/products-show/{order}',
-            [PersonalAreaController::class, 'showProductsByOrder'])->name('personal-area.orders.show');
         Route::get('subscriptions', [PersonalAreaController::class, 'subscriptions'])->name('personal-area.subscriptions');
     });
 });

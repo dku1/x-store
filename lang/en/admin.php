@@ -32,6 +32,7 @@ return [
         'count' => 'Count',
         'positions' => 'Positions',
         'position' => 'position',
+        'positions_for' => 'Positions for',
     ],
     'currencies' => [
         'currencies' => 'Currencies',

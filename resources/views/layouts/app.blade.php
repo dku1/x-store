@@ -22,5 +22,7 @@
         @yield('content')
     </div>
 </div>
+<script src="/plugins/jquery/jquery.min.js"></script>
+<script src="/dist/js/adminlte.js"></script>
 </body>
 </html>

@@ -3,26 +3,18 @@
 @section('title', 'x-store | Admin panel | Купоны')
 
 @section('content')
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">{{ __('coupon.coupons') }}</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.main') }}">{{ __('main.menu.main') }}</a>
-                        </li>
-                        <li class="breadcrumb-item"><a class="text-secondary"
-                                                       href="#"
-                                                       style="pointer-events: none">{{ __('coupon.coupons') }}</a>
-                        </li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <x-admin.content-header>
+        <x-slot:title>
+            <h1>{{ __('coupon.coupons') }}</h1>
+        </x-slot:title>
+        <x-slot:breadcrumbs>
+            <li class="breadcrumb-item"><a href="{{ route('admin.main') }}">{{ __('main.menu.main') }}</a>
+            </li>
+            <li class="breadcrumb-item"><a class="text-secondary" href="#"
+                                           style="pointer-events: none">{{ __('coupon.coupons') }}</a>
+            </li>
+        </x-slot:breadcrumbs>
+    </x-admin.content-header>
     <div class="col-9 m-auto">
         <div class="card">
             <div class="card-header">
@@ -32,7 +24,7 @@
                 </h3>
                 <div class="card-tools mt-1">
                     <form action="#" method="get">
-                        <x-filter-search placeholder="{{ __('admin.currencies.code') }}"/>
+                        <x-filters.filter-search placeholder="{{ __('admin.currencies.code') }}"/>
                     </form>
                 </div>
             </div>

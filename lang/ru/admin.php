@@ -32,6 +32,7 @@ return [
         'count' => 'Количество',
         'positions' => 'Позиций',
         'position' => 'позиции',
+        'positions_for' => 'Позиции для',
     ],
     'currencies' => [
         'currencies' => 'Валюты',

@@ -3,34 +3,28 @@
 @section('title', 'x-store | Admin panel | Товары')
 
 @section('content')
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">{{ isset($product) ? __('admin.edit') . ' ' . $product->getField('title') : __('admin.create') }}</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.main') }}">{{ __('main.menu.main') }}</a>
-                        </li>
-                        <li class="breadcrumb-item"><a class="text-primary"
-                                                       href="{{ route('admin.products.index') }}">{{ __('main.menu.products') }}</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            @isset($product)
-                                <a class="text-secondary"
-                                   href="#" style="pointer-events: none">{{ __('admin.edit') }}</a>
-                            @else
-                                <a class="text-secondary"
-                                   href="#" style="pointer-events: none">{{ __('admin.create') }}</a>
-                            @endisset
-                        </li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <x-admin.content-header>
+        <x-slot:title>
+            <h1>{{ isset($product) ? __('admin.edit') . ' ' . $product->getField('title') : __('admin.create') }}</h1>
+        </x-slot:title>
+        <x-slot:breadcrumbs>
+            <li class="breadcrumb-item">
+                <a href="{{ route('admin.main') }}">{{ __('main.menu.main') }}</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a class="text-primary" href="{{ route('admin.products.index') }}">{{ __('main.menu.products') }}</a>
+            </li>
+            <li class="breadcrumb-item">
+                @isset($product)
+                    <a class="text-secondary"
+                       href="#" style="pointer-events: none">{{ __('admin.edit') }}</a>
+                @else
+                    <a class="text-secondary"
+                       href="#" style="pointer-events: none">{{ __('admin.create') }}</a>
+                @endisset
+            </li>
+        </x-slot:breadcrumbs>
+    </x-admin.content-header>
     <div class="col-8 m-auto">
         <form enctype="multipart/form-data" class="row g-3"
               action="{{ isset($product) ? route('admin.products.update', $product) : route('admin.products.store') }}"

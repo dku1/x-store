@@ -3,34 +3,27 @@
 @section('title', 'x-store | Admin panel | Купоны')
 
 @section('content')
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">{{ isset($coupon) ? __('admin.edit') . ' ' . $coupon->code : __('admin.create') }}</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.main') }}">{{ __('main.menu.main') }}</a>
-                        </li>
-                        <li class="breadcrumb-item"><a class="text-primary"
-                                                       href="{{ route('admin.coupons.index') }}">{{ __('coupon.coupons') }}</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            @isset($coupon)
-                                <a class="text-secondary"
-                                   href="#" style="pointer-events: none">{{ __('admin.edit') }}</a>
-                            @else
-                                <a class="text-secondary"
-                                   href="#" style="pointer-events: none">{{ __('admin.create') }}</a>
-                            @endisset
-                        </li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <x-admin.content-header>
+        <x-slot:title>
+            <h1>{{ isset($coupon) ? __('admin.edit') . ' ' . $coupon->code : __('admin.create') }}</h1>
+        </x-slot:title>
+        <x-slot:breadcrumbs>
+            <li class="breadcrumb-item"><a href="{{ route('admin.main') }}">{{ __('main.menu.main') }}</a>
+            </li>
+            <li class="breadcrumb-item"><a class="text-primary"
+                                           href="{{ route('admin.coupons.index') }}">{{ __('coupon.coupons') }}</a>
+            </li>
+            <li class="breadcrumb-item">
+                @isset($coupon)
+                    <a class="text-secondary"
+                       href="#" style="pointer-events: none">{{ __('admin.edit') }}</a>
+                @else
+                    <a class="text-secondary"
+                       href="#" style="pointer-events: none">{{ __('admin.create') }}</a>
+                @endisset
+            </li>
+        </x-slot:breadcrumbs>
+    </x-admin.content-header>
     <div class="col-4 m-auto">
         <form class="row g-3"
               action="{{ isset($coupon) ? route('admin.coupons.update', $coupon) : route('admin.coupons.store') }}"
@@ -108,13 +101,14 @@
                 @isset($coupon)
                     <div class="form-group">
                         <label class="control-label" for="date">{{ __('coupon.date_end') }}</label>
-                        <input class="form-control" id="date" name="end_date" placeholder="MM/DD/YYY" type="text" value="{{  substr($coupon->end_date, 0, 10)  }}">
+                        <input class="form-control" id="date" name="end_date" placeholder="MM/DD/YYY" type="text"
+                               value="{{  substr($coupon->end_date, 0, 10)  }}">
                     </div>
                 @else
-                <div class="form-group">
-                    <label class="control-label" for="date">{{ __('coupon.date_end') }}</label>
-                    <input class="form-control" id="date" name="end_date" placeholder="MM/DD/YYY" type="date">
-                </div>
+                    <div class="form-group">
+                        <label class="control-label" for="date">{{ __('coupon.date_end') }}</label>
+                        <input class="form-control" id="date" name="end_date" placeholder="MM/DD/YYY" type="date">
+                    </div>
                 @endif
             </div>
             <div class="col-10 mt-3">

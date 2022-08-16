@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Filters;
 
 use Illuminate\View\Component;
 
@@ -23,6 +23,6 @@ class FilterSearch extends Component
      */
     public function render()
     {
-        return view('components.filter-search');
+        return view('components.filters.filter-search');
     }
 }

@@ -8,8 +8,7 @@
         <div class="row">
             <div class="col-12 p-3">
                 <table class="table table-hover">
-
-                <thead>
+                    <thead>
                     <tr>
                         <th class="text-center" scope="col">#</th>
                         <th class="text-center" scope="col">Сумма</th>
@@ -19,12 +18,11 @@
                         <th class="text-center" scope="col">Адрес</th>
                         <th class="text-center" scope="col">Индекс</th>
                         <th class="text-center" scope="col">Статус</th>
-                        <th class="text-center" scope="col">Подробнее</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($orders as $order)
-                        <tr>
+                        <tr  data-widget="expandable-table" aria-expanded="false">
                             <th class="text-center align-middle" scope="row">{{ $order->id }}</th>
                             <td class="text-center align-middle">{{ $order->getSum() . ' ' .  $order->currency->symbol}}</td>
                             <td class="text-center align-middle">{{ $order->cart->positions->count() }}</td>
@@ -41,7 +39,36 @@
                                     {{ __('order.not_processed') }}
                                 </td>
                             @endif
-                            <td class="text-center align-middle"><a href="{{ route('personal-area.orders.show', $order) }}" class="btn btn-info">Просмотреть</a></td>
+                        </tr>
+                        <tr class="expandable-body d-none">
+                            <td colspan="8">
+                                <div style="display: none;">
+                                    <h4 class="p-2">{{ __('admin.orders.goods_to_order') }} # {{ $order->id }} </h4>
+                                    <table class="table" style="width: 100%">
+                                        <tr>
+                                            <th class="text-center" scope="col">Изображение</th>
+                                            <th class="text-left" scope="col">Товар</th>
+                                            <th class="text-center" scope="col">Количество</th>
+                                            <th class="text-center" scope="col">Полная стоимость</th>
+                                        </tr>
+                                        @foreach($order->cart->positions as $position)
+                                            <tr>
+                                                <td class="text-center align-middle"><img
+                                                        width="100px"
+                                                        height="100px"
+                                                        src="{{ asset('storage/' . $position->image) }}" alt="Изображение недоступно"></td>
+                                                <td class="text-left align-middle"><a class="text-decoration-none text-dark"
+                                                                                      href="{{ route('admin.positions.show', $position) }}">
+                                                        {{ $position->product->getField('title') }}
+                                                    </a>
+                                                </td>
+                                                <td class="text-center align-middle">{{ $position->pivot->quantity }}</td>
+                                                <td class="text-center align-middle">{{ $order->cart->getFullPositionPrice($position, $order->currency) . ' ' . $order->currency->symbol }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </table>
+                                </div>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

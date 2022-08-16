@@ -3,35 +3,27 @@
 @section('title', 'x-store | Admin panel | Позиции')
 
 @section('content')
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">{{ isset($position) ? __('admin.edit') . ' ' . __('admin.products.position') . ' # ' . $position->id : __('admin.create') . ' ' .   __('admin.products.position') }}</h1>
-                    <h4>( {{ isset($position) ? $position->product->getField('title') : $product->getField('title') }} )</h4>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.main') }}">{{ __('main.menu.main') }}</a>
-                        </li>
-                        <li class="breadcrumb-item"><a class="text-primary"
-                                                       href="{{ route('admin.positions.index') }}">{{ __('main.menu.positions') }}</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            @isset($position)
-                                <a class="text-secondary"
-                                   href="#" style="pointer-events: none">{{ __('admin.edit') }}</a>
-                            @else
-                                <a class="text-secondary"
-                                   href="#" style="pointer-events: none">{{ __('admin.create') }}</a>
-                            @endisset
-                        </li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <x-admin.content-header>
+        <x-slot:title>
+            <h1>{{ isset($position) ? __('admin.edit') . ' ' . __('admin.products.position') . ' # ' . $position->id : __('admin.create') . ' ' .   __('admin.products.position') }}</h1>
+            <h4>( {{ isset($position) ? $position->product->getField('title') : $product->getField('title') }} )</h4>
+        </x-slot:title>
+        <x-slot:breadcrumbs>
+            <li class="breadcrumb-item">
+                <a href="{{ route('admin.main') }}">{{ __('main.menu.main') }}</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a class="text-primary" href="{{ route('admin.positions.index') }}">{{ __('main.menu.positions') }}</a>
+            </li>
+            <li class="breadcrumb-item">
+                @isset($position)
+                    <a class="text-secondary" href="#" style="pointer-events: none">{{ __('admin.edit') }}</a>
+                @else
+                    <a class="text-secondary" href="#" style="pointer-events: none">{{ __('admin.create') }}</a>
+                @endisset
+            </li>
+        </x-slot:breadcrumbs>
+    </x-admin.content-header>
     <div class="col-7 m-auto">
         <form enctype="multipart/form-data" class="row g-3"
               action="{{ isset($position) ? route('admin.positions.update', $position) : route('admin.positions.store') }}"
@@ -77,7 +69,8 @@
                     @enderror
                     @isset($position)
                         <div class="mt-3 mb-3">
-                            <img src="{{ asset('storage/' . $position->image) }}" alt="Изображение отсутствует" width="310px" height="390px">
+                            <img src="{{ asset('storage/' . $position->image) }}" alt="Изображение отсутствует"
+                                 width="310px" height="390px">
                         </div>
                     @endisset
                     <label for="formFileMultiple" class="form-label">{{ __('admin.products.image') }}</label>

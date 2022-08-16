@@ -6,7 +6,7 @@
         <div class="row">
             <h3 class="text-center mt-4">{{ __('main.menu.products') }}</h3>
             <div class="col-md-3 col-lg-3 mt-4">
-                <x-filter :total="$total" :options="$options"/>
+                <x-filters.filter :total="$total" :options="$options"/>
             </div>
             <div class="col-9">
                 <div class="card-group">
