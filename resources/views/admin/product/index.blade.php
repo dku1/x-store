@@ -21,7 +21,7 @@
             <x-admin.table-layout>
                 <x-slot:cardTitle>
                     <a href="{{ route('admin.products.create') }}"
-                       class="btn btn-sm btn-success">{{ __('admin.create') }}</a>
+                       class="btn btn-sm btn-outline-success">{{ __('admin.create') }}</a>
                 </x-slot:cardTitle>
                 <x-slot:cardTools>
                     <form action="#" method="get">
@@ -86,7 +86,7 @@
                                         <div>
                                             <a
                                                 href="{{ route('admin.positions.create', $product) }}"
-                                                class="btn btn-sm btn-success">{{ __('admin.add') }}
+                                                class="btn btn-sm btn-outline-success">{{ __('admin.add') }}
                                             </a>
                                         </div>
                                     </h4>

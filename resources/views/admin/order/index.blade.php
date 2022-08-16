@@ -18,12 +18,12 @@
     <div class="col-9 m-auto d-flex justify-content-between align-items-start">
         <div class="card col-2">
             <div class="card-header">
-                <a href="{{ route('admin.orders.index') }}" class="btn btn-sm btn-primary">Все заказы</a>
+                <a href="{{ route('admin.orders.index') }}" class="btn btn-sm btn-outline-info">Все заказы</a>
             </div>
             <div class="card-body">
                 <form action="#" method="get">
-                    <button name="processed" value="1" class="btn btn-sm btn-success">Обработанные</button>
-                    <button name="notProcessed" value="1" class="btn btn-sm btn-danger mt-2">Не обработанные</button>
+                    <button name="processed" value="1" class="btn btn-sm btn-outline-success">Обработанные</button>
+                    <button name="notProcessed" value="1" class="btn btn-sm btn-outline-danger mt-2">Не обработанные</button>
                 </form>
             </div>
         </div>

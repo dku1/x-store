@@ -20,7 +20,7 @@
         <x-admin.table-layout>
             <x-slot:cardTitle>
                 <a href="{{ route('admin.options.create') }}"
-                   class="btn btn-sm btn-success">{{ __('admin.create') }}</a>
+                   class="btn btn-sm btn-outline-success">{{ __('admin.create') }}</a>
             </x-slot:cardTitle>
             <x-slot:cardTools>
                 <form action="#" method="get">

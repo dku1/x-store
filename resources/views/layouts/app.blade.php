@@ -15,11 +15,14 @@
     <title>@yield('title')</title>
 </head>
 <body>
-<x-nav class="profile"/>
 
-<div class="container mt-5 profile-content p-3">
+<x-personal-area.header/>
+<div class="container-fluid">
     <div class="row">
+        <x-personal-area.nav class="profile"/>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         @yield('content')
+        </main>
     </div>
 </div>
 <script src="/plugins/jquery/jquery.min.js"></script>

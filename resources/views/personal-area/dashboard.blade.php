@@ -3,16 +3,18 @@
 @section('title', 'x-store | Личный кабинет')
 
 @section('content')
-    <div class="col-12 m-auto">
-        <h4>Личный кабинет</h4>
-        <div class="row">
-            <div class="col-12 p-3">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Личный кабинет</h1>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
                 <table class="table table-hover">
                     <tr>
                         <td>
                             Email:
                         </td>
-                        <td class="text-center">
+                        <td class="text-left">
                             {{ auth()->user()->email }}
                         </td>
                     </tr>
@@ -20,7 +22,7 @@
                         <td>
                             Имя:
                         </td>
-                        <td class="text-center">
+                        <td class="text-left">
                             {{ auth()->user()->first_name }}
                         </td>
                     </tr>
@@ -28,7 +30,7 @@
                         <td>
                             Фамилия:
                         </td>
-                        <td class="text-center">
+                        <td class="text-left">
                             {{ auth()->user()->last_name }}
                         </td>
                     </tr>
@@ -36,7 +38,7 @@
                         <td>
                             Город:
                         </td>
-                        <td class="text-center">
+                        <td class="text-left">
                             {{ auth()->user()->city ?? '-' }}
                         </td>
                     </tr>
@@ -44,7 +46,7 @@
                         <td>
                             Адрес:
                         </td>
-                        <td class="text-center">
+                        <td class="text-left">
                             {{ auth()->user()->address ?? '-' }}
                         </td>
                     </tr>
@@ -52,7 +54,7 @@
                         <td>
                             Индекс:
                         </td>
-                        <td class="text-center">
+                        <td class="text-left">
                             {{ auth()->user()->index ?? '-' }}
                         </td>
                     </tr>
@@ -60,14 +62,11 @@
                         <td>
                             Заказов:
                         </td>
-                        <td class="text-center">
+                        <td class="text-left">
                             {{ auth()->user()->orders->count() }}
                         </td>
                     </tr>
                 </table>
-                <h4 class="text-center">
-                    <a href="#" class="btn btn-secondary">Редактировать</a>
-                </h4>
             </div>
         </div>
     </div>

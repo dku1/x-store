@@ -6,6 +6,7 @@ return [
       'orders' => 'Orders',
       'subscriptions' => 'Subscriptions',
       'go_to_site' => 'Go to site',
+      'my_profile' => 'My profile',
   ],
 
 ];
