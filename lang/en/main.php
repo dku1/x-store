@@ -9,5 +9,6 @@ return [
         'account' => 'Account',
         'positions' => 'Commodity items',
         'popular_products' => 'Popular products',
+        'admin_panel' => 'Admin panel',
     ],
 ];

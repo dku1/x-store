@@ -4,7 +4,8 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 main-menu">
                 <li class="nav-item">
-                    <a class="nav-link @if(request()->routeIs('main')) text-primary @endif" href="{{ route('main') }}">{{ __('main.menu.main') }}</a>
+                    <a class="nav-link @if(request()->routeIs('main')) text-primary @endif"
+                       href="{{ route('main') }}">{{ __('main.menu.main') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link @if(request()->routeIs('categories.*')) text-primary @endif"
@@ -14,6 +15,14 @@
                     <a class="nav-link @if(request()->routeIs('positions.*')) text-primary @endif"
                        href="{{ route('positions.index') }}">{{ __('main.menu.products') }}</a>
                 </li>
+                @auth
+                    @if(auth()->user()->role->value == 'admin')
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{{ route('admin.main') }}">{{ __('main.menu.admin_panel') }}</a>
+                        </li>
+                    @endif
+                @endauth
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">
@@ -44,7 +53,8 @@
                     <ul class="dropdown-menu dropdown-menu-dark">
                         @foreach($currencies as $currency)
                             @if($currency->code !== $currentCurrency->code)
-                                <li><a class="dropdown-item" href="{{ route('currency', $currency->code) }}">{{ $currency->symbol }}</a></li>
+                                <li><a class="dropdown-item"
+                                       href="{{ route('currency', $currency->code) }}">{{ $currency->symbol }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -55,7 +65,8 @@
             <x-locale/>
             <ul class="navbar-nav">
                 <li>
-                    <a class="nav-link @if(request()->routeIs('cart.index')) text-primary @endif" href="{{ route('cart.index') }}">
+                    <a class="nav-link @if(request()->routeIs('cart.index')) text-primary @endif"
+                       href="{{ route('cart.index') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
                              class="bi bi-cart-fill" viewBox="0 0 16 16">
                             <path

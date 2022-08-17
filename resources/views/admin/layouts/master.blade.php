@@ -61,7 +61,7 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex flex-column text-secondary">
                 <div class="info text-center">
-                    <span>ADMIN</span>
+                    <span>{{ auth()->user()->email }}</span>
                 </div>
             </div>
             <x-session-flash/>

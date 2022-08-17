@@ -82,6 +82,7 @@ Route::group([
     'namespace' => 'App\Http\Controllers\Admin',
     'prefix' => 'admin',
     'as' => 'admin.',
+    'middleware' => ['auth', 'is_admin'],
 ], function () {
     Route::get('/', [MainController::class, 'index'])->name('main');
     Route::resources([
