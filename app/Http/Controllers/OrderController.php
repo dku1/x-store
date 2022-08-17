@@ -21,7 +21,7 @@ class OrderController extends Controller
 
     public function create(Cart $cart): Factory|View|Application
     {
-        $cart->load('positions');
+        $cart->load('positions.product');
         return view('order.create', compact('cart'));
     }
 

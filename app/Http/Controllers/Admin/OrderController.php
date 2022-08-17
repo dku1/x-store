@@ -34,7 +34,7 @@ class OrderController extends Controller
      */
     public function show(Order $order): View|Factory|Application
     {
-        $order->load('cart.positions.product');
+        $order->load('cart.positions.product', 'cart.coupons.currency');
         return view('admin.order.show', compact('order'));
     }
 

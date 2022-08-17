@@ -38,7 +38,7 @@ class PositionController extends Controller
 
     public function show(Position $position): Factory|View|Application
     {
-        $position->load('reviews.user');
+        $position->load('reviews.user', 'product.options.values');
         $values = Value::whereRelation('positions.product', 'id', '=', $position->product_id)->get();
         $related = Position::with('product.category')
             ->whereRelation('product', 'category_id', '=', $position->product->category_id)

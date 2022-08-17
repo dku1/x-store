@@ -21,7 +21,7 @@
                                     <small class="text-muted">Кол-во: {{ $position->pivot->quantity }}</small>
                                 </div>
                                 <span
-                                    class="text-muted">{{ $cart->getFullPositionPrice($position) }} {{ $currentCurrency->symbol }}</span>
+                                    class="text-muted">{{ $cart->getFullPositionPrice($position, $currentCurrency) }} {{ $currentCurrency->symbol }}</span>
                             </li>
                         @endforeach
                         @foreach($cart->coupons as $coupon)

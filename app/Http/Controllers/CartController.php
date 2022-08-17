@@ -24,7 +24,7 @@ class CartController extends Controller
 
     public function index(Cart $cart): Factory|View|Application
     {
-        $cart->load('positions');
+        $cart->load('positions.product');
         return view('cart.index', compact('cart'));
     }
 

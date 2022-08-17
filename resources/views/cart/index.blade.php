@@ -43,7 +43,7 @@
                                     </svg>
                                 </a>
                             </td>
-                            <td class="text-left">{{ $cart->getFullPositionPrice($position) }} {{ $currentCurrency->symbol }}</td>
+                            <td class="text-left">{{ $cart->getFullPositionPrice($position, $currentCurrency) }} {{ $currentCurrency->symbol }}</td>
                         </tr>
                     @endforeach
                 </table>
