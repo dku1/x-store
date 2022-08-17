@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Filters\PositionFilters;
 use App\Models\Currency;
 use App\Models\Option;
+use App\Models\Order;
 use App\Models\Position;
 use App\Models\Product;
 use App\Models\Subscription;
@@ -23,6 +24,16 @@ class PositionController extends Controller
         $total = $positions->total();
         $options = Option::with('values')->get();
         return view('position.index', compact('positions', 'options', 'total'));
+    }
+
+    public function popular(): Factory|View|Application
+    {
+        $positions = Position::with('product.category')
+            ->withCount('carts')
+            ->orderBy('carts_count', 'desc')
+            ->get()
+            ->take(9);
+        return view('position.popular', compact('positions'));
     }
 
     public function show(Position $position): Factory|View|Application

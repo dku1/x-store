@@ -40,8 +40,8 @@ class CreateNewUser implements CreatesNewUsers
             'index' => $input['index'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'role_id' => Role::where('value', 'client')->first()->id,
         ]);
-        $user->roles()->attach(Role::where('value', 'client')->first());
         return $user;
     }
 }

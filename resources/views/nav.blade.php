@@ -4,7 +4,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 main-menu">
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('main') }}">{{ __('main.menu.main') }}</a>
+                    <a class="nav-link @if(request()->routeIs('main')) text-primary @endif" href="{{ route('main') }}">{{ __('main.menu.main') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link @if(request()->routeIs('categories.*')) text-primary @endif"

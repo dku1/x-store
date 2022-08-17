@@ -28,7 +28,8 @@ use App\Http\Controllers\PersonalAreaController;
 |
 */
 
-Route::redirect('/', 'positions/index')->name('main');
+//Route::redirect('/', 'positions/index')->name('main');
+Route::get('/', [PositionController::class, 'popular'])->name('main');
 
 Route::get('locale/{locale}', function ($locale) {
     session()->put(['locale' => $locale]);

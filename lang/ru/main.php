@@ -8,5 +8,6 @@ return [
         'personal-area' => 'Личный кабинет',
         'account' => 'Аккаунт',
         'positions' => 'Товарные позиции',
+        'popular_products' => 'Популярные товары',
     ],
 ];

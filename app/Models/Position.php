@@ -22,6 +22,11 @@ class Position extends Model
         return $this->belongsTo(Product::class);
     }
 
+    public function carts(): BelongsToMany
+    {
+        return $this->belongsToMany(Cart::class)->withPivot('quantity');
+    }
+
     public function values(): BelongsToMany
     {
         return $this->belongsToMany(Value::class);
