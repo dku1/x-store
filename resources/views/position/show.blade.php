@@ -139,5 +139,30 @@
                 </div>
             </div>
         @endif
+        <div class="border rounded mt-5 mb-5">
+            <h4 class="p-3 border-bottom related-position">Отзывы</h4>
+            <div class="row p-5">
+                <form action="{{ route('review.store', $position) }}" method="post">
+                    @csrf
+                    <div class="form-floating">
+                        <textarea class="form-control" name="message" style="height: 100px"></textarea>
+                        <label for="floatingTextarea2">Ваш отзыв</label>
+                    </div>
+                    <div class="form-floating d-flex justify-content-end mt-3">
+                        <button class="btn btn-outline-secondary">Оставить отзыв</button>
+                    </div>
+                </form>
+                @foreach($position->reviews as $review)
+                    <div class="card card-hover p-0 mt-5">
+                        <div class="card-header">
+                            {{ $review->user->email }}
+                        </div>
+                        <div class="card-body">
+                            {{ $review->message }}
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
     </div>
 @endsection

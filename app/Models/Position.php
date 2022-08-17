@@ -27,6 +27,11 @@ class Position extends Model
         return $this->belongsToMany(Cart::class)->withPivot('quantity');
     }
 
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Reviews::class)->orderBy('created_at', 'desc');
+    }
+
     public function values(): BelongsToMany
     {
         return $this->belongsToMany(Value::class);

@@ -5,7 +5,7 @@
 @section('content')
     <x-admin.content-header>
         <x-slot:title>
-            <h1>Административная панель x-Store</h1>
+            <h1>{{ __('main.menu.admin_panel') }} x-Store</h1>
         </x-slot:title>
         <x-slot:breadcrumbs>
             <li class="breadcrumb-item">

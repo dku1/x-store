@@ -16,6 +16,7 @@ use App\Http\Controllers\PositionController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PersonalAreaController;
+use App\Http\Controllers\ReviewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,6 @@ use App\Http\Controllers\PersonalAreaController;
 |
 */
 
-//Route::redirect('/', 'positions/index')->name('main');
 Route::get('/', [PositionController::class, 'popular'])->name('main');
 
 Route::get('locale/{locale}', function ($locale) {
@@ -58,6 +58,13 @@ Route::group([
 ], function () {
     Route::get('create/{cart}', [OrderController::class, 'create'])->name('create');
     Route::post('store/{cart}', [OrderController::class, 'store'])->name('store');
+});
+
+Route::group([
+    'prefix' => 'review',
+    'as' => 'review.',
+], function () {
+    Route::post('store/{position}', [ReviewsController::class, 'store'])->name('store');
 });
 
 Route::group([
