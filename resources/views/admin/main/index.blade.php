@@ -38,7 +38,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3>{{ $processedOrders->count() }}</h3>
+                            <h3>{{ isset($processedOrders) ? $processedOrders->count() : 0 }}</h3>
 
                             <p>{{ __('order.processed_orders') }}</p>
                         </div>
@@ -77,7 +77,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h3>{{ $unprocessedOrders->count() }}</h3>
+                            <h3>{{ isset($unprocessedOrders) ? $unprocessedOrders->count() : 0 }}</h3>
 
                             <p>{{ __('order.unprocessed_orders') }}</p>
                         </div>

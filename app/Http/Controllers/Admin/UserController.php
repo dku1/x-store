@@ -12,6 +12,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -63,6 +64,9 @@ class UserController extends Controller
 
     public function ban(User $user): RedirectResponse
     {
+        if (!Gate::allows('user-ban', $user)){
+            return redirect()->back()->with('warning', 'Нельзя забанить себя');
+        }
         $user->ban = true;
         $user->save();
         return redirect()->back()->with('warning', 'Пользователь заблокирован');
@@ -70,6 +74,9 @@ class UserController extends Controller
 
     public function unBan(User $user): RedirectResponse
     {
+        if (!Gate::allows('user-ban', $user)){
+            return redirect()->back()->with('warning', 'Нельзя разбанить себя');
+        }
         $user->ban = false;
         $user->save();
         return redirect()->back()->with('success', 'Пользователь разблокирован');

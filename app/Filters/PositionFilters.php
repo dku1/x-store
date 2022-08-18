@@ -3,6 +3,7 @@
 namespace App\Filters;
 
 use App\Models\Position;
+use App\Services\CurrencyService;
 use Illuminate\Database\Eloquent\Builder;
 
 class PositionFilters extends QueryFilter
@@ -21,11 +22,13 @@ class PositionFilters extends QueryFilter
 
     public function priceFrom(int $priceFrom = 1): Builder
     {
+        $priceFrom = (new CurrencyService())->convert($priceFrom);
         return $this->builder->where('price', '>=', $priceFrom);
     }
 
     public function priceTo(int $priceTo = 1000000): Builder
     {
+        $priceTo = (new CurrencyService())->convert($priceTo);
         return $this->builder->where('price', '<=', $priceTo);
     }
 

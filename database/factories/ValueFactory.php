@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Category;
+use App\Models\Option;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Value>
  */
-class CategoryFactory extends Factory
+class ValueFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,7 +20,7 @@ class CategoryFactory extends Factory
         return [
             'title_ru' => $this->faker->word,
             'title_en' => $this->faker->word,
-            'parent_id' => Category::get()->count() < 5 ? 0 : Category::get()->random()->id,
+            'option_id' => Option::get()->random()->id,
         ];
     }
 }

@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('positions', function (Blueprint $table) {
-            $table->unsignedBigInteger('price')->change();
-            $table->unsignedBigInteger('old_price')->change();
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropColumn('coupon_id');
         });
     }
 
@@ -26,9 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('positions', function (Blueprint $table) {
-            $table->float('price')->change();
-            $table->float('old_price')->change();
+        Schema::table('orders', function (Blueprint $table) {
+            $table->bigInteger('coupon_id')->nullable();
         });
     }
 };

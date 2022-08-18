@@ -62,7 +62,7 @@
                                                             src="{{ asset('storage/' . $position->image) }}"
                                                             alt="Изображение недоступно"></td>
                                                     <td class="text-left align-middle"><a class="text-decoration-none text-dark"
-                                                                                          href="{{ route('admin.positions.show', $position) }}">
+                                                                                          href="{{ route('positions.show', $position) }}">
                                                             {{ $position->product->getField('title') }}
                                                         </a>
                                                     </td>

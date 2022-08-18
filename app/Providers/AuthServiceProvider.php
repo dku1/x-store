@@ -29,5 +29,8 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('view-order-products', function (User $user, Order $order) {
             return $user->id === $order->user_id;
         });
+        Gate::define('user-ban', function (User $user, User $userBanned) {
+            return $user->id !== $userBanned->id;
+        });
     }
 }

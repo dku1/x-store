@@ -17,11 +17,6 @@ class Coupon extends Model
 
     protected $fillable = ['code', 'value', 'currency_id', 'disposable', 'status', 'end_date', 'type'];
 
-    public function orders(): BelongsToMany
-    {
-        return $this->belongsToMany(Order::class);
-    }
-
     public function currency(): BelongsTo
     {
         return $this->belongsTo(Currency::class);

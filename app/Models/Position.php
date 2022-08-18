@@ -29,7 +29,7 @@ class Position extends Model
 
     public function reviews(): HasMany
     {
-        return $this->hasMany(Reviews::class)->orderBy('created_at', 'desc');
+        return $this->hasMany(Review::class)->orderBy('created_at', 'desc');
     }
 
     public function values(): BelongsToMany

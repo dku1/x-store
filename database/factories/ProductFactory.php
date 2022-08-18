@@ -20,9 +20,7 @@ class ProductFactory extends Factory
         return [
             'title_ru' => $this->faker->sentence(rand(2,6)),
             'title_en' => $this->faker->sentence(rand(2,6)),
-            'price' => $this->faker->randomFloat(4, 0, 10000),
             'description' => $this->faker->text(200),
-            'image' => "https://loremflickr.com/200/200",
             'category_id' => Category::get()->random()->id,
         ];
     }

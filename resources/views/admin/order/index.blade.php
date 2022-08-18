@@ -15,7 +15,7 @@
             </li>
         </x-slot:breadcrumbs>
     </x-admin.content-header>
-    <div class="col-9 m-auto d-flex justify-content-between align-items-start">
+    <div class="col-10 m-auto d-flex justify-content-between align-items-start">
         <div class="card col-2">
             <div class="card-header">
                 <a href="{{ route('admin.orders.index') }}" class="btn btn-sm btn-outline-info">Все заказы</a>
@@ -23,7 +23,8 @@
             <div class="card-body">
                 <form action="#" method="get">
                     <button name="processed" value="1" class="btn btn-sm btn-outline-success">Обработанные</button>
-                    <button name="notProcessed" value="1" class="btn btn-sm btn-outline-danger mt-2">Не обработанные</button>
+                    <button name="notProcessed" value="1" class="btn btn-sm btn-outline-danger mt-2">Не обработанные
+                    </button>
                 </form>
             </div>
         </div>

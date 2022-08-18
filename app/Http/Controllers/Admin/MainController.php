@@ -16,8 +16,8 @@ class MainController extends Controller
     public function index(): Factory|View|Application
     {
         $orders = Order::get()->groupBy('status');
-        $unprocessedOrders = $orders[0];
-        $processedOrders = $orders[1];
+        $unprocessedOrders = $orders[0] ?? null;
+        $processedOrders = $orders[1] ?? null;
         $subscriptions = Subscription::active()->get();
         $clients = User::whereRelation('role', 'value' ,'client')->get();
         return view('admin.main.index', compact(['unprocessedOrders', 'processedOrders', 'subscriptions', 'clients']));

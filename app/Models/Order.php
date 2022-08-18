@@ -19,7 +19,6 @@ class Order extends Model
         'city',
         'index',
         'user_id',
-        'coupon_id',
         'cart_id',
         'currency_id',
         'email',

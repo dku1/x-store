@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Position;
-use App\Models\Reviews;
+use App\Models\Review;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -39,7 +39,7 @@ class ReviewsController extends Controller
     public function store(Request $request, Position $position): RedirectResponse
     {
         if (!auth()->check()) return redirect()->back()->with('warning', 'Авторизуйтесь, чтобы оставить отзыв');
-        Reviews::create([
+        Review::create([
             'user_id' => auth()->id(),
             'position_id' => $position->id,
             'message' => $request->message,
