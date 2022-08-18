@@ -40,7 +40,7 @@
                 <a href="{{ route('main') }}" class="btn btn-sm btn-outline-primary">{{ __('personal-area.menu.go_to_site') }}</a>
             </li>
             <li class="nav-item mr-1">
-                <form action="" method="post">
+                <form action="{{ route('logout') }}" method="post">
                     @csrf
                     <button class="btn btn-sm btn-outline-danger">{{ __('auth.logout') }}</button>
                 </form>
