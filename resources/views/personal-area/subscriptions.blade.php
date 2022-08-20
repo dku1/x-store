@@ -18,6 +18,7 @@
                     </tr>
                     <div class="card-body p-0">
                         @foreach($subscriptions as $subscription)
+                            @isset($subscription->position)
                             <tr>
                                 <td class="text-center align-middle"><img
                                         src="{{ asset('storage/' . $subscription->position->image) }}"
@@ -31,6 +32,7 @@
                                 <td class="text-center">
                                     {{ $subscription->created_at->format('d m Y') }}
                                 </td>
+                                @endisset
                             </tr>
                         @endforeach
                     </div>
